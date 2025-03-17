@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Chuyển hướng /articles → /html/articles.html
+RewriteRule ^articles$ html/articles.html [L]
