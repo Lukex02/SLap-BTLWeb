@@ -1,53 +1,49 @@
 .logo {
-    max-height: 60px;
-}
-.navbar {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
+  max-height: 60px;
 }
 .breadcrumb {
-    margin: 20px 0;
-    font-size: 14px;
+  margin: 20px 0;
+  font-size: 14px;
 }
 .breadcrumb a {
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 .breadcrumb .active {
-    color: #6c757d;
+  color: #6c757d;
 }
 .page-title {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 30px 0;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 30px 0;
 }
 .article-item {
-    display: flex;
-    margin-bottom: 30px;
-    text-decoration: none;
-    color: inherit;
+  display: flex;
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: inherit;
 }
 .article-image {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    margin-right: 20px;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 20px;
 }
 .article-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #000;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000;
 }
 .article-meta {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 10px;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 .article-meta a {
-    color: #dc3545;
-    text-decoration: none;
+  color: #dc3545;
+  text-decoration: none;
 }
 .article-excerpt {
-    color: #666;
-    line-height: 1.6;
+  color: #666;
+  line-height: 1.6;
 }

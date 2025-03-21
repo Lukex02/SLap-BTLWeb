@@ -1,4 +1,13 @@
 RewriteEngine On
 
-# Chuyển hướng /articles → /html/articles.html
-RewriteRule ^articles$ html/articles.html [L]
+# Chuyển hướng /article → /page/article.php
+RewriteRule ^article$ page/article.php [L]
+
+# Chuyển hướng /articleList → /page/articleList.php
+RewriteRule ^articleList$ page/articleList.php [L]
+
+# Chuyển hướng /product → /page/Product.php
+RewriteRule ^product$ page/Product.php [L]
+
+# Chuyển hướng /productList → /page/ProductList.php
+RewriteRule ^productList$ page/ProductList.php [L]
