@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chi tiết sản phẩm</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/Product.css" />
+    <link rel="stylesheet" href="/css/breadcrumb.css" />
   </head>
   <body>
     <?php include "navbar.html" ?>
-    <div class="container mt-4">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Trang chủ</a></li>
+          <li class="breadcrumb-item active" id="product"></li>
+        </ol>
+      </nav>
       <div id="product-detail">
         <!-- Chi tiết sản phẩm sẽ được hiển thị ở đây -->
       </div>
@@ -22,6 +30,7 @@
       // Lấy thông tin sản phẩm từ URL
       const urlParams = new URLSearchParams(window.location.search);
       const productName = urlParams.get("name");
+      document.getElementById("product").innerHTML = productName;
 
       fetch("../data/data.json")
         .then((response) => response.json())

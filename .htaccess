@@ -14,3 +14,6 @@ RewriteRule ^productList$ /page/ProductList.php [L]
 
 # Chuyển hướng /user → /page/nguoidung.php
 RewriteRule ^user$ /page/nguoidung.php [L]
+
+# Chuyển hướng /contact → /page/tranglienhe.php
+RewriteRule ^contact$ /page/tranglienhe.php [L]

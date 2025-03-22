@@ -3,12 +3,12 @@ function fetchPosts() {
     .then((response) => response.json())
     .then((data) => {
       const container = document.getElementById("posts-container");
-      container.innerHTML = data.posts
+      container.innerHTML = data
         .map(
           (post) => `
             <div class="post">
                 <img src="${post.thumbnail}" alt="${post.title}">
-                <h2><a href="/articlePage/${post.slug}">${post.title}</a></h2>
+                <h2><a href="/article?slug=${post.slug}">${post.title}</a></h2>
             <p class="post-meta">
                 <strong>Tác giả:</strong> ${post.author.name} |
                 <strong>Danh mục:</strong> ${post.category.name} |
@@ -18,7 +18,7 @@ function fetchPosts() {
                 <strong>Lượt xem:</strong> ${post.views}
             </p>
             <p>${post.excerpt}</p>
-            <a href="/articlePage/${post.slug}">Đọc tiếp</a>
+            <a href="/article?slug=${post.slug}">Đọc tiếp</a>
         </div>
     `,
         )

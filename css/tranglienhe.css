@@ -22,7 +22,7 @@ body {
   height: 60px;
 }
 
-nav ul {
+/* nav ul {
   list-style: none;
   display: flex;
 }
@@ -35,8 +35,8 @@ nav ul li a {
   text-decoration: none;
   color: black;
   font-weight: bold !important;
-}
-.container {
+} */
+/* .container {
   width: 80%;
   margin: auto;
   margin-top: 50px;
@@ -46,16 +46,16 @@ nav ul li a {
 .breadcrumb {
   font-size: 14px;
   margin-bottom: 20px;
-}
+} */
 .LienHe {
   font-weight: bold;
   font-size: 18px;
 }
-.breadcrumb a {
+/* .breadcrumb a {
   font-size: 18px;
   text-decoration: none;
   color: #333;
-}
+} */
 
 h2 {
   color: #333;

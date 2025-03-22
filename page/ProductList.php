@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danh sách sản phẩm</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/ProductList.css" />
+    <link rel="stylesheet" href="/css/breadcrumb.css" />
   </head>
   <body>
     <?php include "navbar.html"; ?>
-
-    <div class="container mt-4">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Sản phẩm</li>
+        </ol>
+      </nav>
       <div class="row" id="product-list">
         <!-- Sản phẩm sẽ được hiển thị ở đây -->
       </div>

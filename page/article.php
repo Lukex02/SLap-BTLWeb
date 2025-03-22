@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/articlePage.css" />
+    <link rel="stylesheet" href="/css/breadcrumb.css" />
   </head>
   <body>
     <!-- Navigation -->
@@ -16,58 +17,71 @@
 
     <!-- Article Content -->
     <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="/articleList">Bài viết</a></li>
+          <li class="breadcrumb-item active" id="article-title"></li>
+        </ol>
+      </nav>
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <article>
-            <header class="article-header">
-              <h1>NIKE ADAPT BB - ĐÔI GIÀY CÔNG NGHỆ ĐẾN TỪ TƯƠNG LAI</h1>
-            </header>
-
-            <div class="article-content">
-              <img
-                src="nike-adapt-bb.jpg"
-                alt="Nike Adapt BB"
-                class="img-fluid"
-              />
-
-              <p>
-                Nike luôn khẳng định được vị thế của mình trong làng thời trang
-                giày khi liên tục đưa ra những mẫu giày thời trang độc đáo cũng
-                như những mẫu giày công nghệ cực đỉnh. Mới đây nhất chính là mẫu
-                Nike Adapt BB với công nghệ tự thắt dây mới.
-              </p>
-
-              <p>
-                Tiếp nối những gì mà HyperAdapt 1.0 để lại, Nike Adapt BB chính
-                là mẫu giày với công nghệ tân tiến hơn những với giá thành chỉ
-                bằng 1 nửa so với người anh em trước đó. Công nghệ mới này của
-                Nike cho phép người dùng có thể tự điều chỉnh độ ôm chân thông
-                qua thông qua ứng dụng riêng có tên là Nike Adapt. Thông qua ứng
-                dụng này người dùng không chỉ điều chỉnh được độ khít của đôi
-                giày mà còn có thể theo dõi được lượng pin của giày, thả lỏng
-                dây giày hay thay đổi màu sắc của nút điều chỉnh trên giày. Việc
-                thiết kế app riêng như vậy sẽ giúp cho việc sử dụng cũng như
-                theo dõi đôi giày tốt hơn.
-              </p>
-
-              <img
-                src="nike-adapt-bb-app.jpg"
-                alt="Nike Adapt BB App Interface"
-                class="img-fluid"
-              />
-
-              <p>
-                Với công nghệ FitAdapt mới nhất, Nike Adapt BB có thể tự động
-                điều chỉnh độ ôm của giày dựa trên hình dạng bàn chân và hoạt
-                động của người sử dụng. Điều này đảm bảo sự thoải mái tối đa
-                trong mọi tình huống, từ tập luyện đến sinh hoạt hàng ngày.
-              </p>
-            </div>
-          </article>
-        </div>
+        <article id="article">
+          <!-- Bài viết sẽ được hiển thị ở đây -->
+        </article>
       </div>
     </div>
+    <script>
+      // Lấy thông tin sản phẩm từ URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleSlug = urlParams.get("slug");
+      document.getElementById("article-title").innerHTML = articleSlug;
+      
+      fetch("/data/example_article.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const article = data.find((p) => p.slug === articleSlug);
+        if (article) {
+            displayArticle(article);
+          } else {
+            document.getElementById("article").innerHTML =
+              "<p>Không tìm thấy bài viết.</p>";
+          }
+        })
+        .catch((error) => console.error("Lỗi tải dữ liệu:", error));
 
+      function displayArticle(article) {
+        const articleDetail = document.getElementById("article");
+        articleDetail.innerHTML = `
+          <header class="article-header">
+            <h1>${article.title}</h1>
+          </header>
+          <div class="article-meta">
+            <p><strong>Tác giả:</strong> ${article.author.name}</p>
+            <p><strong>Ngày đăng:</strong> ${new Date(article.published_at).toLocaleDateString()}</p>
+            <p><strong>Chuyên mục:</strong> ${article.category.name}</p>
+            <p><strong>Lượt xem:</strong> ${article.views} - <strong>Thích:</strong> ${article.likes}</p>
+          </div>
+          <div class="article-content">
+            ${article.content}
+          </div>
+          <footer class="article-footer">
+            <h3>Bình luận (${article.comments_count})</h3>
+            <ul class="comment-list">
+              ${article.comments.map(comment => `
+                <li class="comment">
+                  <img src="${comment.user.avatar}" alt="${comment.user.name}" class="comment-avatar">
+                  <div class="comment-body">
+                    <p><strong>${comment.user.name}</strong>: ${comment.content}</p>
+                    <small>${new Date(comment.created_at).toLocaleString()}</small>
+                  </div>
+                </li>
+              `).join("")}
+            </ul>
+          </footer>
+        `;
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
