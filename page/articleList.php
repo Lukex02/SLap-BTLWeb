@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/articles.css" />
-    <script src="../js/getArticle.js"></script>
+    <script src="/js/getArticle.js"></script>
   </head>
   <body>
     <!-- Navigation -->
@@ -20,7 +20,7 @@
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="/index.php">Trang chủ</a></li>
           <li class="breadcrumb-item active">Tin tức chung</li>
         </ol>
       </nav>
