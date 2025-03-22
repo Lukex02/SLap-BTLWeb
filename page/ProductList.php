@@ -18,15 +18,23 @@
         <!-- Sản phẩm sẽ được hiển thị ở đây -->
       </div>
     </div>
-
     <script>
       let products = [];
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedBrand = urlParams.get("brand"); // Lấy brand từ URL
 
       fetch("../data/data.json")
         .then((response) => response.json())
         .then((data) => {
           products = data;
-          displayProducts(products);
+          if (selectedBrand) {
+            const filtered = products.filter((product) =>
+              product.brand.toUpperCase().includes(selectedBrand.toUpperCase())
+            );
+            displayProducts(filtered);
+          } else {
+            displayProducts(products);
+          }
         })
         .catch((error) => console.error("Lỗi tải dữ liệu:", error));
 
@@ -63,17 +71,17 @@
         });
       }
 
-      document.querySelectorAll(".nav-link").forEach((link) => {
-        console.log(link.innerHTML)
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          const brand = event.target.getAttribute("data-brand");
-          const filteredProducts = products.filter(
-            (product) => product.brand.toUpperCase() === brand.toUpperCase()
-          );
-          displayProducts(filteredProducts);
-        });
-      });
+      // document.querySelectorAll(".nav-link").forEach((link) => {
+      //   console.log(link.innerHTML)
+      //   link.addEventListener("click", (event) => {
+      //     event.preventDefault();
+      //     const brand = event.target.getAttribute("data-brand");
+      //     const filteredProducts = products.filter(
+      //       (product) => product.brand.toUpperCase() === brand.toUpperCase()
+      //     );
+      //     displayProducts(filteredProducts);
+      //   });
+      // });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

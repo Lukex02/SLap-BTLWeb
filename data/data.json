@@ -1,6 +1,6 @@
 [
   {
-    "brand": "Lenovo",
+    "brand": "LENOVO",
     "name": "Laptop Lenovo Legion 5",
     "price": "25,990,000 VND",
     "core_chip": "Intel Core i7-12700H",
@@ -10,7 +10,7 @@
     "image": "https://www.czone.com.pk/images/products/2-czone.com.pk-1540-15972-130524091332.jpg"
   },
   {
-    "brand": "Lenovo",
+    "brand": "LENOVO",
     "name": "Laptop Lenovo IdeaPad Gaming 3",
     "price": "19,990,000 VND",
     "core_chip": "AMD Ryzen 5 5600H",
@@ -20,7 +20,7 @@
     "image": "https://i5.walmartimages.com/asr/34d78811-9da7-40fe-bafb-0a7aa8b502b1.b3d84a8004ebf89d1e054d167e285e40.jpeg"
   },
   {
-    "brand": "Lenovo",
+    "brand": "LENOVO",
     "name": "Laptop Lenovo ThinkPad X1 Gen 10",
     "price": "42,990,000 VND",
     "core_chip": "Intel Core i7-1260P",
