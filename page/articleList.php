@@ -17,14 +17,6 @@
 
     <!-- Main Content -->
     <div class="container">
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/index.php">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Tin tức chung</li>
-        </ol>
-      </nav>
-
       <h1 class="page-title">Tin Tức</h1>
 
       <!-- Articles List -->
