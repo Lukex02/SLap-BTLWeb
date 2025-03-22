@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/ProductList.css" />
+    <link rel="stylesheet" href="/css/ProductList.css" />
   </head>
   <body>
     <?php include "navbar.html"; ?>
@@ -56,7 +56,7 @@
         document.querySelectorAll(".card").forEach((card) => {
           card.addEventListener("click", () => {
             const productName = card.getAttribute("data-name");
-            window.location.href = `Product.html?name=${encodeURIComponent(
+            window.location.href = `/product?name=${encodeURIComponent(
               productName
             )}`;
           });
@@ -64,6 +64,7 @@
       }
 
       document.querySelectorAll(".nav-link").forEach((link) => {
+        console.log(link.innerHTML)
         link.addEventListener("click", (event) => {
           event.preventDefault();
           const brand = event.target.getAttribute("data-brand");
