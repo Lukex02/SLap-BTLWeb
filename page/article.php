@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NIKE ADAPT BB - ĐÔI GIÀY CÔNG NGHỆ ĐẾN TỪ TƯƠNG LAI</title>
+    <title>Bài viết</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/articlePage.css" />
+    <link rel="stylesheet" href="/css/article.css" />
     <link rel="stylesheet" href="/css/breadcrumb.css" />
   </head>
   <body>
@@ -37,12 +37,12 @@
       const articleSlug = urlParams.get("slug");
       document.getElementById("article-title").innerHTML = articleSlug;
       
-      fetch("/data/example_article.json")
+      fetch("/admin/getArticle.php?slug=" + articleSlug)
       .then((response) => response.json())
       .then((data) => {
-        const article = data.find((p) => p.slug === articleSlug);
-        if (article) {
-            displayArticle(article);
+          if (data) {
+            console.log(data);
+            displayArticle(data);
           } else {
             document.getElementById("article").innerHTML =
               "<p>Không tìm thấy bài viết.</p>";
@@ -50,16 +50,17 @@
         })
         .catch((error) => console.error("Lỗi tải dữ liệu:", error));
 
-      function displayArticle(article) {
+      function displayArticle({article, comments}) {
         const articleDetail = document.getElementById("article");
+        const title = document.title = article.title;
         articleDetail.innerHTML = `
           <header class="article-header">
             <h1>${article.title}</h1>
           </header>
           <div class="article-meta">
-            <p><strong>Tác giả:</strong> ${article.author.name}</p>
+            <p><strong>Tác giả:</strong> ${article.author_name}</p>
             <p><strong>Ngày đăng:</strong> ${new Date(article.published_at).toLocaleDateString()}</p>
-            <p><strong>Chuyên mục:</strong> ${article.category.name}</p>
+            <p><strong>Chuyên mục:</strong> ${article.category}</p>
             <p><strong>Lượt xem:</strong> ${article.views} - <strong>Thích:</strong> ${article.likes}</p>
           </div>
           <div class="article-content">
@@ -68,20 +69,20 @@
           <footer class="article-footer">
             <h3>Bình luận (${article.comments_count})</h3>
             <ul class="comment-list">
-              ${article.comments.map(comment => `
-                <li class="comment">
-                  <img src="${comment.user.avatar}" alt="${comment.user.name}" class="comment-avatar">
+              ${comments.map(comment => `
+                <li class="comment d-flex mt-4">
+                  <img src="/pic/user.png" alt="${comment.commenter_name}" class="comment-avatar">
                   <div class="comment-body">
-                    <p><strong>${comment.user.name}</strong>: ${comment.content}</p>
+                    <p class="mb-1"><strong>${comment.commenter_name}</strong>: ${comment.content}</p>
                     <small>${new Date(comment.created_at).toLocaleString()}</small>
                   </div>
                 </li>
               `).join("")}
             </ul>
           </footer>
-        `;
-      }
-    </script>
+          `;
+        }
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

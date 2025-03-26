@@ -8,9 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/articles.css" />
+    <link rel="stylesheet" href="/css/articleList.css" />
     <link rel="stylesheet" href="/css/breadcrumb.css" />
-    <script src="/js/getArticle.js"></script>
+    <script src="/js/getArticleList.js"></script>
   </head>
   <body>
     <!-- Navigation -->
@@ -29,7 +29,7 @@
       <h1 class="page-title">Tin Tức</h1>
 
       <!-- Articles List -->
-      <div class="container" id="posts-container"></div>
+      <div class="container" id="articles-container" style="padding: 0"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>

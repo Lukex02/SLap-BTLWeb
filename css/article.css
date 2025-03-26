@@ -9,6 +9,11 @@
   margin-bottom: 20px;
   font-weight: bold;
 }
+.article-meta {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
 .article-content {
   line-height: 1.8;
   color: #333;
@@ -22,3 +27,11 @@
 .article-content p {
   margin-bottom: 20px;
 }
+.article-footer img.comment-avatar {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+/* .article-footer .comment-body p {
+  margin-bottom: 5px;
+} */
