@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Chuyển hướng / → /index.php
+RewriteRule ^$ /index.php [L]
+
 # Chuyển hướng /article → /page/article.php
 RewriteRule ^article$ /page/article.php [L]
 
