@@ -28,7 +28,7 @@
 .hotline {
   display: inline;
   white-space: nowrap;
-  margin: auto;
+  margin: 0;
 }
 
 .top-bar input {

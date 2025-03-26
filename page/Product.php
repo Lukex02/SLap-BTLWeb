@@ -32,12 +32,12 @@
       const productName = urlParams.get("name");
       document.getElementById("product").innerHTML = productName;
 
-      fetch("../data/data.json")
+      fetch(`/admin/getProduct.php?name=${productName}`)
         .then((response) => response.json())
         .then((data) => {
-          const product = data.find((p) => p.name === productName);
-          if (product) {
-            displayProductDetail(product);
+          // Data ở đây là sản phẩm đã query từ database
+          if (data) {
+            displayProductDetail(data);
           } else {
             document.getElementById("product-detail").innerHTML =
               "<p>Không tìm thấy sản phẩm.</p>";
@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-6">
               <h1>${product.name}</h1>
-              <p><strong>Chip:</strong> ${product.core_chip}</p>
+              <p><strong>Chip:</strong> ${product.cpu}</p>
               <p><strong>RAM:</strong> ${product.ram}</p>
               <p><strong>Màn hình:</strong> ${product.screen}</p>
               <p><strong>Card:</strong> ${product.gpu}</p>

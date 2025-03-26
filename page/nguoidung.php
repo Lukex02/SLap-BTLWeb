@@ -12,7 +12,7 @@
     include "navbar.html"
     ?>
     <div class="content">
-      <img class="background" src="../hình ảnh/background.jpg" alt="" />
+      <img class="background" src="../pic/background.jpg" alt="" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>

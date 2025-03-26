@@ -1,5 +1,5 @@
 function fetchPosts() {
-  const posts = fetch("/data/example_article.json")
+  const posts = fetch("/admin/getProductList.php")
     .then((response) => response.json())
     .then((data) => {
       const container = document.getElementById("posts-container");
@@ -12,9 +12,7 @@ function fetchPosts() {
             <p class="post-meta">
                 <strong>Tác giả:</strong> ${post.author.name} |
                 <strong>Danh mục:</strong> ${post.category.name} |
-                <strong>Ngày đăng:</strong> ${new Date(
-                  post.published_at,
-                ).toLocaleDateString()} |
+                <strong>Ngày đăng:</strong> ${new Date(post.published_at).toLocaleDateString()} |
                 <strong>Lượt xem:</strong> ${post.views}
             </p>
             <p>${post.excerpt}</p>

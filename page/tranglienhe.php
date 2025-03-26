@@ -33,7 +33,7 @@
 
         <div class="contact-info">
           <div class="info-item">
-            <img src="../hình ảnh/placeholder.png" class="icon" alt="Địa chỉ" />
+            <img src="../pic/placeholder.png" class="icon" alt="Địa chỉ" />
             <div>
               <strong>Địa chỉ</strong><br />
               102 Thái Thịnh, Trung Liệt, Đống Đa, Hà Nội
@@ -42,7 +42,7 @@
 
           <div class="info-item">
             <img
-              src="../hình ảnh/phone-call.png"
+              src="../pic/phone-call.png"
               class="icon"
               alt="Điện thoại"
             />
@@ -53,7 +53,7 @@
           </div>
 
           <div class="info-item">
-            <img src="../hình ảnh/message.png" class="icon" alt="Email" />
+            <img src="../pic/message.png" class="icon" alt="Email" />
             <div>
               <strong>Email</strong><br />
               contact@nhanh.vn
