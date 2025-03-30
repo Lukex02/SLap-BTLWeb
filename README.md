@@ -13,7 +13,6 @@ File database của web được lưu trong folder data với 2 hình thức là
    - Mở XAMPP
    - Mục MySQL bấm "Config" -> "<Browse>" -> /data
    - Copy folder `slap` trong `/data/` vào thư mục trên (`/xampp/mysql/data`)
-   -
 
 2. Cách 2: Import database vào MySQL
 
