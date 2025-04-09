@@ -55,6 +55,19 @@
     </nav>
 
     <div class="container mt-4">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <input
+            type="text"
+            id="search-input"
+            class="form-control"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+        </div>
+        <div class="col-md-2">
+          <button id="search-btn" class="btn btn-primary">Tìm kiếm</button>
+        </div>
+      </div>
       <div class="row" id="product-list">
         <!-- Sản phẩm sẽ được hiển thị ở đây -->
       </div>
@@ -63,6 +76,7 @@
     <script>
       let products = [];
 
+      // Lấy dữ liệu từ file JSON
       fetch("../data/data.json")
         .then((response) => response.json())
         .then((data) => {
@@ -71,6 +85,7 @@
         })
         .catch((error) => console.error("Lỗi tải dữ liệu:", error));
 
+      // Hiển thị danh sách sản phẩm
       function displayProducts(products) {
         const productList = document.getElementById("product-list");
         productList.innerHTML = "";
@@ -94,6 +109,7 @@
           productList.innerHTML += productHTML;
         });
 
+        // Thêm sự kiện click vào từng sản phẩm
         document.querySelectorAll(".card").forEach((card) => {
           card.addEventListener("click", () => {
             const productName = card.getAttribute("data-name");
@@ -104,16 +120,29 @@
         });
       }
 
-      document.querySelectorAll(".nav-link").forEach((link) => {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          const brand = event.target.getAttribute("data-brand");
-          const filteredProducts = products.filter(
-            (product) => product.brand.toUpperCase() === brand.toUpperCase()
-          );
-          displayProducts(filteredProducts);
-        });
+      // Xử lý tìm kiếm
+      document.getElementById("search-btn").addEventListener("click", () => {
+        const keyword = document
+          .getElementById("search-input")
+          .value.toLowerCase();
+        const filteredProducts = products.filter((product) =>
+          product.name.toLowerCase().includes(keyword)
+        );
+        displayProducts(filteredProducts);
       });
+
+      // Tìm kiếm khi nhấn Enter
+      document
+        .getElementById("search-input")
+        .addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+            const keyword = event.target.value.toLowerCase();
+            const filteredProducts = products.filter((product) =>
+              product.name.toLowerCase().includes(keyword)
+            );
+            displayProducts(filteredProducts);
+          }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
