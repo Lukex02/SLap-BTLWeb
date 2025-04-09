@@ -151,7 +151,7 @@ function handleFormSubmit(e) {
   }
 
   // Giả lập gửi dữ liệu lên server
-  console.log("Dữ liệu cập nhật:", formData);
+  console.log("Dữ liập nhật:", formData);
 
   // Cập nhật lại dữ liệu người dùng (trong thực tế sẽ nhận từ server)
   userData.name = formData.name;
