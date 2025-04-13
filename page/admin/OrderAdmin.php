@@ -29,30 +29,27 @@
             </header>
 
             <div class="page-heading">
-                <h3>Chỉnh sửa sản phẩm</h3>
+                <h3>Quản lý đơn hàng</h3>
             </div>
             <div class="container mt-4">
-                <h1>Quản lý sản phẩm</h1>
-                <button class="btn btn-primary mb-3" id="add-product-btn">Thêm sản phẩm</button>
+                <h1 class="mt-5">Quản lý đơn hàng</h1>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Thương hiệu</th>
-                            <th>Giá</th>
+                            <th>Tên khách hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Trạng thái</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
-                    <tbody id="product-table">
-                        <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
+                    <tbody id="order-table">
+                        <!-- Danh sách đơn hàng sẽ được hiển thị ở đây -->
                     </tbody>
                 </table>
-
-
             </div>
 
-            <script src="/js/productAdmin.js"></script>
+            <script src="/js/orderAdmin.js"></script>
 
         </div>
     </div>
