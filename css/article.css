@@ -1,0 +1,37 @@
+.logo {
+  max-height: 60px;
+}
+.article-header {
+  margin-bottom: 30px;
+}
+.article-header h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.article-meta {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.article-content {
+  line-height: 1.8;
+  color: #333;
+}
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+.article-content p {
+  margin-bottom: 20px;
+}
+.article-footer img.comment-avatar {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+/* .article-footer .comment-body p {
+  margin-bottom: 5px;
+} */

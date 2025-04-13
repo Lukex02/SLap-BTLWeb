@@ -1,0 +1,61 @@
+.navbar {
+  border-bottom: 1px solid #eee;
+  margin: auto;
+}
+/* Logo & Menu */
+/* .logo-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 50px;
+  } */
+
+.logo {
+  height: 50px;
+}
+
+.top-bar {
+  background: #f0f0f0;
+  padding: 10px;
+  text-align: right;
+  font-size: 16px;
+}
+.xeday {
+  width: 2%;
+}
+
+.hotline {
+  display: inline;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.top-bar input {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.top-bar a {
+  text-decoration: none;
+  color: black;
+  margin: 0 20px;
+}
+
+.top-bar .cart {
+  color: red;
+}
+
+.top-bar .info {
+  display: inline-block;
+  /* width: max-content; */
+}
+
+.user_icon {
+  width: 2%;
+}
+.user_id {
+  margin: 5px 5px !important;
+}

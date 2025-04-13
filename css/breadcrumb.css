@@ -1,0 +1,11 @@
+.breadcrumb {
+  margin: 20px 0;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #000;
+  text-decoration: none;
+}
+.breadcrumb .active {
+  color: #6c757d;
+}

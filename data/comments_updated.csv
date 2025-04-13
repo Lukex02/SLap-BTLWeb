@@ -1,0 +1,16 @@
+﻿id,user_id,article_id,content,created_at
+9876,100001,2000,"Bài viết rất hay, cảm ơn tác giả!",2025-03-17T13:00:00Z
+9877,100002,2001,"Thông tin hữu ích, mong nhận thêm nhiều bài viết khác.",2025-03-17T13:01:00Z
+9878,100003,2002,"Rất bổ ích, mình đã học được nhiều điều.",2025-03-17T13:02:00Z
+9879,100004,2000,"Bài viết chi tiết và dễ hiểu, cảm ơn nhiều!",2025-03-17T13:03:00Z
+9880,100005,2001,"Nội dung rất thú vị, mong tác giả viết thêm.",2025-03-17T13:04:00Z
+9881,100001,2002,"Cách trình bày rõ ràng, rất đáng đọc.",2025-03-17T13:05:00Z
+9882,100002,2000,Tuyệt vời! Cảm ơn vì bài viết bổ ích.,2025-03-17T13:06:00Z
+9883,100003,2001,"Bài viết hay quá, mình sẽ chia sẻ với bạn bè.",2025-03-17T13:07:00Z
+9884,100004,2002,"Giải thích rất dễ hiểu, cám ơn tác giả.",2025-03-17T13:08:00Z
+9885,100005,2000,Mình rất thích phong cách viết của bạn!,2025-03-17T13:09:00Z
+9886,100001,2001,"Mình đã áp dụng và thấy rất hiệu quả, cảm ơn!",2025-03-17T13:10:00Z
+9887,100002,2002,"Chủ đề này rất quan trọng, cảm ơn đã chia sẻ.",2025-03-17T13:11:00Z
+9888,100003,2000,"Rất hữu ích, mong tác giả tiếp tục viết.",2025-03-17T13:12:00Z
+9889,100004,2001,"Bài viết giúp mình hiểu rõ hơn, tuyệt vời!",2025-03-17T13:13:00Z
+9890,100005,2002,"Không thể bỏ qua bài viết này, quá hay!",2025-03-17T13:14:00Z
