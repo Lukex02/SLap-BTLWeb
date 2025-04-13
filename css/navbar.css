@@ -1,25 +1,16 @@
-.navbar {
-  border-bottom: 1px solid #eee;
-  margin: auto;
-}
-/* Logo & Menu */
-/* .logo-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 15px 50px;
-  } */
-
-.logo {
-  height: 50px;
+/* Reset và base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
 .top-bar {
   background: #f0f0f0;
   padding: 10px;
   text-align: right;
-  font-size: 16px;
+  font-size: 1rem;
 }
 .xeday {
   width: 2%;
@@ -29,13 +20,6 @@
   display: inline;
   white-space: nowrap;
   margin: 0;
-}
-
-.top-bar input {
-  padding: 5px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
 }
 
 .top-bar a {
@@ -58,4 +42,95 @@
 }
 .user_id {
   margin: 5px 5px !important;
+}
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+}
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.nav-links a:hover:after {
+  width: 100%;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-buttons .login-btn {
+  color: #333;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  background: transparent;
+}
+
+.auth-buttons .login-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.auth-buttons .register-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.auth-buttons .register-btn:hover {
+  background-color: #0069d9;
 }

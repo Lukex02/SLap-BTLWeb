@@ -1,29 +1,14 @@
-/* * {
+/* Reset và base styles */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Times New Roman", Times, serif;
-} */
+  font-family: "Arial", sans-serif;
+}
 
 body {
   background-color: #f5f5f5;
 }
-
-/* Không cần vì chuyển hết về định dạng chung bên navbar.css rồi */
-/* nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold !important;
-} */
 
 .content {
   width: 100%;

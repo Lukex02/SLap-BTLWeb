@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="vi">
 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THÔNG TIN NGƯỜI DÙNG</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="../css/trangthongtin.css" />
-
+  <link rel="stylesheet" href="../css/breadcrumb.css" />
 </head>
 
+<!-- Navigation -->
+<?php include "navbar.html" ?>
+
 <body>
-  <!-- Navigation -->
-  <?php include "navbar.html" ?>
 
   <div class="container">
     <!-- Breadcrumb navigation -->
-    <nav class="breadcrumb-nav">
-      <ul>
-        <li><a href="../page/trangchu.html">Trang chủ</a></li>
-        <li>Thông tin người dùng</li>
-      </ul>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Thông tin cá nhân</li>
+      </ol>
     </nav>
 
     <h2>Thông tin cá nhân</h2>

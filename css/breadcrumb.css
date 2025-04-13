@@ -1,3 +1,11 @@
+/* Reset và base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
 .breadcrumb {
   margin: 20px 0;
   font-size: 14px;

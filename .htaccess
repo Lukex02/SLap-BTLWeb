@@ -20,3 +20,7 @@ RewriteRule ^contact$ /page/tranglienhe.php [L]
 
 # Chuyển hướng /user → /page/trangthongtin.php
 RewriteRule ^user$ /page/trangthongtin.php [L]
+
+# Chuyển hướng /signin → /page/trangdangnhap.html
+RewriteRule ^signin$ /page/trangdangnhap.html [L]
+
