@@ -31,7 +31,7 @@
     const productName = urlParams.get("name");
     document.getElementById("product").innerHTML = productName;
 
-    fetch(`/admin/getProduct.php?name=${productName}`)
+    fetch(`/server/getProduct.php?name=${productName}`)
       .then((response) => response.json())
       .then((data) => {
         // Data ở đây là sản phẩm đã query từ database

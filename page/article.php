@@ -36,7 +36,7 @@
     const articleSlug = urlParams.get("slug");
     document.getElementById("article-title").innerHTML = articleSlug;
 
-    fetch("/admin/getArticle.php?slug=" + articleSlug)
+    fetch("/server/getArticle.php?slug=" + articleSlug)
       .then((response) => response.json())
       .then((data) => {
         if (data) {

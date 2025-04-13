@@ -1,7 +1,7 @@
 let products = [];
 
 // Lấy danh sách sản phẩm từ file JSON
-fetch("/admin/getProductList.php")
+fetch("/server/getProductList.php")
   .then((response) => response.json())
   .then((data) => {
     products = data;

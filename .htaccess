@@ -24,3 +24,7 @@ RewriteRule ^user$ /page/trangthongtin.php [L]
 # Chuyển hướng /signin → /page/trangdangnhap.html
 RewriteRule ^signin$ /page/trangdangnhap.html [L]
 
+# Chuyển hướng /admin/index.php → /page/admin/index.php
+RewriteRule ^./page/admin/$ /page/admin/index.php [L]
+
+

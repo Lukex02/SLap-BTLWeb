@@ -1,5 +1,5 @@
 function fetchArticles() {
-  const articles = fetch("/admin/getArticleList.php")
+  const articles = fetch("/server/getArticleList.php")
     .then((response) => response.json())
     .then((data) => {
       const container = document.getElementById("articles-container");

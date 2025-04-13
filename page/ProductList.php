@@ -40,7 +40,7 @@
   <script>
     let products = [];
 
-    fetch("/admin/getProductList.php")
+    fetch("/server/getProductList.php")
       .then((response) => response.json())
       .then((data) => {
         products = data;
