@@ -21,7 +21,9 @@
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         <?php include "sidebar.html" ?>
+
         <div id="main">
+            <!-- Từ đây là code của phần nội dung chính -->
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -54,7 +56,10 @@
 
             <script src="/js/productAdmin.js"></script>
 
+            <!-- Hết phần phần nội dung chính -->
         </div>
+
+        <!-- Còn lại là template giữ nguyên -->
     </div>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
