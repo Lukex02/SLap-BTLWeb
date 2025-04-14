@@ -27,4 +27,28 @@ RewriteRule ^signin$ /page/trangdangnhap.html [L]
 # Chuyển hướng /admin → /admin/index.php
 RewriteRule ^admin$ /admin/index.php [L]
 
+# Chuyển hướng /admin/home → /admin/HomeAdmin.php
+RewriteRule ^admin/home$ /admin/HomeAdmin.php [L]
+
+# Chuyển hướng /admin/customer → /admin/CustomerAdmin.php
+RewriteRule ^admin/customer$ /admin/CustomerAdmin.php [L]
+
+# Chuyển hướng /admin/intro → /admin/IntroAdmin.php
+RewriteRule ^admin/intro$ /admin/IntroAdmin.php [L]
+
+# Chuyển hướng /admin/q_a → /admin/Q_AAdmin.php
+RewriteRule ^admin/q_a$ /admin/Q_AAdmin.php [L]
+
+# Chuyển hướng /admin/product → /admin/ProductAdmin.php
+RewriteRule ^admin/product$ /admin/ProductAdmin.php [L]
+
+# Chuyển hướng /admin/order → /admin/OrderAdmin.php
+RewriteRule ^admin/order$ /admin/OrderAdmin.php [L]
+
+# Chuyển hướng /admin/comment → /admin/CommentAdmin.php
+RewriteRule ^admin/comment$ /admin/CommentAdmin.php [L]
+
+# Chuyển hướng /admin/article → /admin/ArticleAdmin.php
+RewriteRule ^admin/article$ /admin/ArticleAdmin.php [L]
+
 
