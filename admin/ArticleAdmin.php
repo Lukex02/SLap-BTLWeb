@@ -32,11 +32,11 @@
             <section class="section">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card p-3">
                             <div class="card-header">
                                 <h2 class="card-title">Danh sách các bài viết</h2>
                             </div>
-                            <div class="m-3" id="articles-container"></div>
+                            <div id="articles-container"></div>
                             <button class="btn btn-primary m-3" id="new-article-btn">Thêm bài viết mới</button>
                         </div>
                     </div>
