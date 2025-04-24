@@ -6,7 +6,7 @@ header("Content-Type: application/json"); // Định dạng JSON
 $slug = isset($_GET["slug"]) ? $_GET["slug"] : "";
 $slug = $conn->real_escape_string($slug);
 
-$get_product = "SELECT articles.*,
+$get_article = "SELECT articles.*,
                         articles.content AS article_content,
                         comments.id AS comment_id,
                         comments.content AS comment_content,
@@ -19,7 +19,7 @@ $get_product = "SELECT articles.*,
                 LEFT JOIN users ON comments.user_id = users.id
                 WHERE articles.slug = '$slug'";
 
-$result = $conn->query($get_product);
+$result = $conn->query($get_article);
 
 $article = null;
 $comments = [];
