@@ -48,9 +48,9 @@ function slugify($string)
 // POST nếu như lưu bài viết mới hoặc ghi đè bài viết cũ
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $id = (int) $_POST['article-id'] ?? null;
-  $title = $_POST['title'] ?? "Không có tiêu đề " . $id;
+  $title = $_POST['title'];
   $slug = slugify($title);
-  $authorName = $_POST['author'] ?? "Ẩn danh";
+  $authorName = empty($_POST['author']) ? "Ẩn danh" : $_POST['author'];
   $authorAvatar = "/pic/def_author_ava.jpg";
   $category = $_POST['category'] ?? "";
   $tags = $_POST['tags'] ?? "";
@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $views = 0;
   $likes = 0; // Vì chỉ dùng khi Insert nên để 0 luôn
   $content = $_POST['tinymce_content'] ?? "";
-  $thumbnail = (string) $_POST['thumbnail-old'] ?? "/pic/prop_laptop.jpg";
-  // echo "Thumbnail: " . $thumbnail . "\n";
+  $thumbnail = empty($_POST['thumbnail-old']) ? "/pic/prop_laptop.jpg" : (string) $_POST['thumbnail-old'];
+
   if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
     $fileTmpPath = $_FILES['thumbnail']['tmp_name'];
     $fileName = $_FILES['thumbnail']['name'];
