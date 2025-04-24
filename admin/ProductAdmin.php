@@ -23,13 +23,12 @@
         <?php include "sidebar.html" ?>
 
         <div id="main">
-            <!-- Từ đây là code của phần nội dung chính -->
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
+            <!-- Từ đây là code của phần nội dung chính -->
             <div class="page-heading">
                 <h3>Chỉnh sửa sản phẩm</h3>
             </div>

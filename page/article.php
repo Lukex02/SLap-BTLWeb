@@ -31,7 +31,7 @@
     </div>
   </div>
   <script>
-    // Lấy thông tin sản phẩm từ URL
+    // Lấy thông tin bài viết từ URL
     const urlParams = new URLSearchParams(window.location.search);
     const articleSlug = urlParams.get("slug");
     document.getElementById("article-title").innerHTML = articleSlug;

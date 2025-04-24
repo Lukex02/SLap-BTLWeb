@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
+    <link rel="stylesheet" href="/css/articleList.css" />
 </head>
 
 
@@ -23,22 +23,321 @@
         <?php include "sidebar.html" ?>
 
         <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
             <!-- Từ đây là code của phần nội dung chính -->
-
-
-            <!-- Hết phần phần nội dung chính -->
+            <section class="section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Danh sách các bài viết</h2>
+                            </div>
+                            <div class="m-3" id="articles-container"></div>
+                            <button class="btn btn-primary m-3" id="new-article-btn">Thêm bài viết mới</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section" id="article-editor" style="display: none;">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Editor</h2>
+                            </div>
+                            <form id="edit-form" class="card-body" method="POST" enctype="multipart/form-data">
+                                <input id="article-id" name="article-id" type="hidden" />
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="title">Tiêu đề</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="title" class="form-control" name="title"
+                                            placeholder="Tiêu đề..." />
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="author">Tác giả</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="author" class="form-control" name="author"
+                                            placeholder="Nguyễn Văn A" />
+                                    </div>
+                                </div>
+                                <input id="thumbnail-old" name="thumbnail-old" type="hidden" />
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="thumbnail">Thumbnail</label>
+                                    </div>
+                                    <fieldset class="col-lg-10 col-9">
+                                        <div class="input-group">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="thumbnail"><i
+                                                        class="bi bi-upload"></i></label>
+                                                <input type="file" class="form-control" id="thumbnail" name="thumbnail"
+                                                    accept=".jpg,.jpeg,.png" />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="tag-input">Tags</label>
+                                        <div id="tag-container" class="mb-2"></div>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="tag-input" class="form-control" name="tags"
+                                            placeholder="Nhập tag và Enter (<16 ký tự)" maxlength="15" />
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="category">Chuyên mục</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="category" class="form-control" name="category"
+                                            placeholder="VD: Laptop, PC,..." />
+                                    </div>
+                                </div>
+                                <div class="form-group row align-items-center">
+                                    <div class="col-lg-2 col-3">
+                                        <label class="col-form-label" for="excerpt">Đoạn trích</label>
+                                    </div>
+                                    <div class="col-lg-10 col-9">
+                                        <input type="text" id="excerpt" class="form-control" name="excerpt"
+                                            placeholder="Tóm tắt về..." />
+                                    </div>
+                                </div>
+                                <label class="mb-3 fw-bold" for="default">Nội dung</label>
+                                <textarea name="edit-content" id="default" cols="30" rows="10"></textarea>
+                                <div class="d-flex justify-content-end mt-3 gap-3">
+                                    <button class="btn btn-danger" id="cancel-edit-btn">Hủy chỉnh sửa</button>
+                                    <button type="submit" class="btn btn-success" id="publish-btn">Đăng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <!-- Còn lại là template giữ nguyên -->
+        <!-- Hết phần phần nội dung chính -->
     </div>
+
+    <!-- Còn lại là template giữ nguyên -->
+    </div>
+    <script>
+        // Load on reload
+        document.addEventListener('DOMContentLoaded', function () {
+            const cancelBtn = document.getElementById("cancel-edit-btn");
+            const newBtn = document.getElementById("new-article-btn");
+
+            cancelBtn.addEventListener('click', function (event) {
+                event.preventDefault()
+                document.getElementById('article-editor').style.display = 'none';
+                tinymce.get('default').setContent("");
+            })
+            newBtn.addEventListener('click', function (event) {
+                event.preventDefault()
+                window.location.href = '#article-editor'
+                document.getElementById('article-editor').style.display = 'block';
+                uploadArticle()
+            })
+            // Lấy tiêu đề / thông tin chung của mọi bài viết
+            fetch("/server/getArticleList.php")
+                .then((response) => response.json())
+                .then((data) => {
+                    const container = document.getElementById("articles-container");
+                    container.innerHTML = data
+                        .map(
+                            (article, index) => `
+          <div class="article-item d-flex justify-content-between">
+            <img src="${article.thumbnail}" class="img-fluid" alt="${article.title}">
+            <div class="article-meta">
+              <h3><a href="#">${article.title}</a></h3>
+              <p>Đường dẫn: ${article.slug}<p>
+              <strong>Đăng vào: </strong> ${new Date(article.published_at).toLocaleString()} |
+              <strong>Cập nhật lần cuối:</strong> ${new Date(article.updated_at).toLocaleString()} |
+              <strong>Lượt xem:</strong> ${article.views} |
+              <strong>Tác giả:</strong> ${article.author_name}
+              <p class="article-excerpt mt-3">${article.excerpt}</p>
+            </div>
+            <div class="d-flex ms-auto my-auto flex-column gap-3">
+                <button class="btn btn-warning edit-btn text-nowrap" data-slug="${article.slug}">Chỉnh sửa</button>
+                <button class="btn btn-danger delete-btn" data-id="${article.id}">Xóa</button>
+            </div>
+          </div>
+        `,)
+                        .join("");
+                    const editBtn = document.querySelectorAll('.edit-btn')
+                    editBtn.forEach((btn) => {
+                        btn.addEventListener('click', function (event) {
+                            const slug = this.dataset.slug;
+                            editArticle(slug)
+                        })
+                    });
+                    const deleteBtn = document.querySelectorAll('.delete-btn')
+                    deleteBtn.forEach((btn) => {
+                        btn.addEventListener('click', function (event) {
+                            const id = this.dataset.id;
+                            deleteArticle(id)
+                            window.location.reload()
+                        })
+                    });
+                })
+                .catch((error) => console.error("Lỗi khi tải dữ liệu ở trang ArticleAdmin:", error));
+        })
+        // Process display specific article
+        function editArticle(articleSlug) {
+            fetch("/server/getArticle.php?slug=" + articleSlug)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data) {
+                        window.location.href = '#article-editor'
+                        const { article } = data
+                        const idElement = document.getElementById("article-id");
+                        idElement.value = article.id
+
+                        const titleElement = document.getElementById("title")
+                        titleElement.value = article.title
+
+                        const authorElement = document.getElementById("author")
+                        authorElement.value = article.author_name
+
+                        const thumbnailElement = document.getElementById("thumbnail-old")
+                        thumbnailElement.value = article.thumbnail
+
+                        tags.splice(0, tags.length);
+                        tags.push(...article.tags.split(','))
+                        renderTags()
+
+                        const categoryElement = document.getElementById("category")
+                        categoryElement.value = article.category
+
+                        const excerptElement = document.getElementById("excerpt")
+                        excerptElement.value = article.excerpt
+
+                        const articleDetail = `${article.content}`;
+                        document.getElementById('article-editor').style.display = 'block';
+
+                        // Set nội dung mới vào TinyMCE
+                        tinymce.get('default').setContent(articleDetail);
+                    }
+                })
+                .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+        }
+        // Process template for uploading new article
+        function uploadArticle() {
+            const idElement = document.getElementById("article-id");
+            idElement.value = null
+
+            const titleElement = document.getElementById("title")
+            titleElement.value = null
+
+            const authorElement = document.getElementById("author")
+            authorElement.value = null
+
+            const thumbnailElement = document.getElementById("thumbnail")
+            thumbnailElement.value = null
+
+            tags.splice(0, tags.length);
+            renderTags()
+
+            const categoryElement = document.getElementById("category")
+            categoryElement.value = null
+
+            const excerptElement = document.getElementById("excerpt")
+            excerptElement.value = null
+            document.getElementById('article-editor').style.display = 'block';
+            tinymce.get('default').setContent("");
+        }
+        // Delete Articles
+        function deleteArticle(id) {
+            fetch("/server/deleteArticle.php?id=" + id)
+                .then((response) => response.text())
+                .then((data) => {
+                    if (data) {
+                        console.log("Xóa thành công", data)
+                    }
+                })
+                .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+        }
+        // Edit Form process
+        document.getElementById('edit-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Input ẩn cho tags
+            const tagElement = document.createElement("input") // For store in form only
+            tagElement.setAttribute('type', 'hidden');
+            tagElement.setAttribute('name', 'tags')
+            tagElement.setAttribute('value', tags.reduce((prev, curr) => prev == "" ? curr : prev + "," + curr, "", tags));
+
+            // Content trong tinymce editor
+            const content = tinymce.get('default').getContent();
+            const hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'tinymce_content');
+            hiddenInput.setAttribute('value', content);
+
+            this.appendChild(hiddenInput);
+            this.appendChild(tagElement);
+            const formData = new FormData(this);
+
+            fetch("/server/setArticle.php", {
+                method: this.method,
+                body: formData
+            }).then(response => response.text())
+                .then(data => {
+                    console.log('Phản hồi từ server:', data);
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi form:', error);
+                })
+        })
+
+        // Tags process
+        const tagInput = document.getElementById('tag-input');
+        const tagContainer = document.getElementById('tag-container');
+        const tags = [];
+
+        function renderTags() {
+            tagContainer.innerHTML = '';
+            tags.forEach((tag, index) => {
+                const tagElement = document.createElement('p');
+                tagElement.className = 'badge bg-primary rounded-pill me-1 mb-1';
+                tagElement.innerHTML = `${tag} <span style="cursor: pointer;" onclick="removeTag(${index})">&times;</span>`;
+                tagContainer.appendChild(tagElement);
+            });
+        }
+
+        function removeTag(index) {
+            tags.splice(index, 1);
+            renderTags();
+        }
+
+        tagInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                e.preventDefault();
+                const value = this.value.trim();
+                if (!tags.includes(value)) {
+                    tags.push(value);
+                    renderTags();
+                }
+                this.value = '';
+            }
+        });
+    </script>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
     <script src="assets/compiled/js/app.js"></script>
 
     <!-- Need: Apexcharts -->
-    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/static/js/pages/dashboard.js"></script>
+    <script src="assets/extensions/tinymce/tinymce.min.js"></script>
+    <script src="assets/static/js/pages/tinymce.js"></script>
 </body>
 
 </html>

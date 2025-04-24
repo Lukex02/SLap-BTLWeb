@@ -37,26 +37,22 @@ while ($row = mysqli_fetch_assoc($result)) {
             'published_at' => $row['published_at'],
             'updated_at' => $row['updated_at'],
             'content' => $row['article_content'],
+            'thumbnail' => $row['thumbnail'],
+            'excerpt' => $row['excerpt'],
             'views' => $row['views'],
             'likes' => $row['likes'],
             'comments_count' => $row['comments_count'],
         ];
     }
-    
+
     if ($row['comment_id'] !== null) {
         $comments[] = [
             'id' => $row['comment_id'],
             'content' => $row['comment_content'],
             'created_at' => $row['comment_created_at'],
             'user_id' => $row['user_id'],
-            'commenter_name' => $row['commenter_name']            
+            'commenter_name' => $row['commenter_name']
         ];
-        // if ($row['user_id'] !== null) {
-        //     $comments[] = [
-        //         'user_id' => $row['user_id'],
-        //         'commenter_name' => $row['commenter_name']
-        //     ];
-        // }
     }
 
 }
