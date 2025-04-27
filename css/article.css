@@ -35,11 +35,7 @@
 .article-content p {
   margin-bottom: 20px;
 }
-.article-footer img.comment-avatar {
+.article-footer .comment-avatar {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
 }
-/* .article-footer .comment-body p {
-  margin-bottom: 5px;
-} */

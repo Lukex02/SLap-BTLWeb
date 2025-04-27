@@ -27,6 +27,8 @@ if ($id != null) {
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $id);
   $stmt->execute();
+
+  echo "OK";
 }
 
 $conn->close();

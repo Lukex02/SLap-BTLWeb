@@ -39,7 +39,6 @@ while ($row = mysqli_fetch_assoc($result)) {
             'content' => $row['article_content'],
             'thumbnail' => $row['thumbnail'],
             'excerpt' => $row['excerpt'],
-            'views' => $row['views'],
             'likes' => $row['likes'],
             'comments_count' => $row['comments_count'],
         ];
@@ -51,6 +50,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             'content' => $row['comment_content'],
             'created_at' => $row['comment_created_at'],
             'user_id' => $row['user_id'],
+            'commenter_avatar' => "/pic/def_author_avatar.png",
             'commenter_name' => $row['commenter_name']
         ];
     }
