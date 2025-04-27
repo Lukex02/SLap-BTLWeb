@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $publishedAt = gmdate("Y-m-d H:i:s", time());
   $updatedAt = gmdate("Y-m-d H:i:s", time());
   $excerpt = $_POST['excerpt'] ?? "";
-  $views = 0;
   $likes = 0; // Vì chỉ dùng khi Insert nên để 0 luôn
   $content = $_POST['tinymce_content'] ?? "";
   $thumbnail = empty($_POST['thumbnail-old']) ? "/pic/prop_laptop.jpg" : (string) $_POST['thumbnail-old'];
@@ -104,9 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Chưa chọn file hoặc file lỗi.";
   }
   // Đăng bài mới
-  $sql = "INSERT INTO articles (`title`, `slug`, `author_name`, `author_avatar`, `category`, `tags`, `published_at`, `updated_at`, `content`, `excerpt`, `thumbnail`, `views`, `likes`) VALUES
-    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  $types = "sssssssssssii";
+  $sql = "INSERT INTO articles (`title`, `slug`, `author_name`, `author_avatar`, `category`, `tags`, `published_at`, `updated_at`, `content`, `excerpt`, `thumbnail`, `likes`) VALUES
+    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $types = "sssssssssssi";
 
   if ($id) {
     // Cập nhật bài cũ
