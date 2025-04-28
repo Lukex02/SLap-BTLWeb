@@ -17,3 +17,6 @@ File database của web được lưu trong folder data với 2 hình thức là
 ### Password của mấy tài khoản dummy hiện tại
 
 > bonddef
+
+> admin@admin.com
+> admin
