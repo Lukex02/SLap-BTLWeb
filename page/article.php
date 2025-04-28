@@ -40,7 +40,6 @@
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log(data);
           displayArticle(data);
         } else {
           document.getElementById("article").innerHTML =
@@ -60,24 +59,38 @@
             <p><strong>Tác giả:</strong> ${article.author_name}</p>
             <p><strong>Ngày đăng:</strong> ${new Date(article.published_at).toLocaleDateString()}</p>
             <p><strong>Chuyên mục:</strong> ${article.category}</p>
-            <p><strong>Lượt xem:</strong> ${article.views} - <strong>Thích:</strong> ${article.likes}</p>
+            <p><strong>Lượt thích:</strong> ${article.likes}</p>
           </div>
           <div class="article-content">
             ${article.content}
           </div>
           <footer class="article-footer">
-            <h3>Bình luận (${article.comments_count})</h3>
-            <ul class="comment-list">
-              ${comments.map(comment => `
-                <li class="comment d-flex mt-4">
-                  <img src="/pic/user.png" alt="${comment.commenter_name}" class="comment-avatar">
+            <div class="card mb-3">
+              <div class="card-header">
+                <h3>Bình luận (${article.comments_count})</h3>
+              </div>
+              <div class="card-body">
+                <div class="d-flex mb-4">
+                  <div class="d-flex flex-column justify-content-start me-2">
+                    <img src="/pic/def_author_avatar.png" alt="Avatar của bạn" class="rounded-circle comment-avatar">
+                    <span class="text-center">Bạn</span>
+                  </div>
+                  <textarea class="form-control"  id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <button type="button" class="btn btn-primary">Primary</button>
+                </div>
+                <ul class="comment-list list-group list-group-flush">
+                ${comments.map(comment => `
+                <li class="comment list-group-item d-flex py-3">
+                  <img src="${comment.commenter_avatar}" alt="${comment.commenter_name}" class="rounded-circle comment-avatar me-2">
                   <div class="comment-body">
                     <p class="mb-1"><strong>${comment.commenter_name}</strong>: ${comment.content}</p>
                     <small>${new Date(comment.created_at).toLocaleString()}</small>
                   </div>
                 </li>
               `).join("")}
-            </ul>
+                </ul>
+              </div>
+            </div>
           </footer>
           `;
     }

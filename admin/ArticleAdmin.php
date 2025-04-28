@@ -14,11 +14,14 @@
     <link rel="stylesheet" href="/css/articleList.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/adminCheck.js"></script>
 </head>
 
 
 <body>
     <script src="assets/static/js/initTheme.js"></script>
+
     <div id="app">
         <?php include "sidebar.html" ?>
 

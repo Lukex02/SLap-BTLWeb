@@ -1,17 +1,23 @@
-// Giả lập dữ liệu người dùng từ database
-const userData = {
-  id: 1,
-  name: "Nguyễn Văn A",
-  email: "nguyenvana@example.com",
-  password: "mysecretpassword123",
-};
-
 // Khởi tạo trang
+var userData = {
+  name: "",
+  email: "",
+  password: "••••••••",
+};
 document.addEventListener("DOMContentLoaded", function () {
   // Hiển thị thông tin người dùng
-  document.getElementById("name").value = userData.name;
-  document.getElementById("email").value = userData.email;
-  document.getElementById("password").value = "••••••••";
+  fetch("/server/session.php")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        document.getElementById("name").value = data.username;
+        document.getElementById("email").value = data.email;
+        document.getElementById("password").value = "••••••••";
+        userData = { name: data.username, email: data.email };
+      } else {
+        console.log(data.message);
+      }
+    });
 
   // Xử lý nút chỉnh sửa thông tin
   const editInfoBtn = document.getElementById("editInfoBtn");
@@ -30,10 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
   userForm.addEventListener("submit", handleFormSubmit);
 
   // Xử lý đăng xuất
-  document.getElementById("logoutBtn").addEventListener("click", function () {
+  document.getElementById("logoutBtn").addEventListener("click", () => {
     if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
-      alert("Đăng xuất thành công!");
-      window.location.href = "login.html";
+      fetch("/server/logout.php")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            window.location.href = "/";
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.error("Lỗi đăng xuất:", error));
     }
   });
 });
@@ -42,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function enableEditing() {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
+  const oldPasswordInputContainer = document.getElementById("old-password-container");
+  const oldPasswordInput = document.getElementById("old-password");
   const passwordInput = document.getElementById("password");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
@@ -52,11 +68,13 @@ function enableEditing() {
   emailInput.readOnly = false;
   passwordInput.readOnly = false;
 
-  // Hiển thị mật khẩu thật khi vào chế độ chỉnh sửa
-  passwordInput.value = userData.password;
-  passwordInput.type = "text";
+  oldPasswordInput.value = "";
+  passwordInput.value = "";
+  passwordInput.type = "password";
 
   // Thêm style để người dùng biết có thể chỉnh sửa
+  oldPasswordInput.style.backgroundColor = "white";
+  oldPasswordInput.style.border = "1px solid #ddd";
   nameInput.style.backgroundColor = "white";
   nameInput.style.border = "1px solid #ddd";
   emailInput.style.backgroundColor = "white";
@@ -65,6 +83,7 @@ function enableEditing() {
   passwordInput.style.border = "1px solid #ddd";
 
   // Hiển thị nút Lưu/Hủy và ẩn nút Chỉnh sửa
+  oldPasswordInputContainer.classList.remove("hidden");
   editBtn.classList.add("hidden");
   saveBtn.classList.remove("hidden");
   cancelBtn.classList.remove("hidden");
@@ -74,6 +93,7 @@ function enableEditing() {
 function disableEditing() {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
+  const oldPasswordInputContainer = document.getElementById("old-password-container");
   const passwordInput = document.getElementById("password");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
@@ -99,6 +119,7 @@ function disableEditing() {
   passwordInput.style.border = "none";
 
   // Hiển thị nút Chỉnh sửa và ẩn nút Lưu/Hủy
+  oldPasswordInputContainer.classList.add("hidden");
   editBtn.classList.remove("hidden");
   saveBtn.classList.add("hidden");
   cancelBtn.classList.add("hidden");
@@ -115,7 +136,7 @@ function togglePasswordVisibility() {
 
     // Nếu ở chế độ xem, hiển thị mật khẩu thật
     if (passwordInput.readOnly) {
-      passwordInput.value = userData.password;
+      passwordInput.value = "hashedPass";
     }
   } else {
     passwordInput.type = "password";
@@ -136,11 +157,12 @@ function handleFormSubmit(e) {
   const formData = {
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
+    oldPassword: document.getElementById("old-password").value,
     password: document.getElementById("password").value,
   };
 
   // Validate dữ liệu
-  if (!formData.name || !formData.email || !formData.password) {
+  if (!formData.name || !formData.email || !formData.password || !formData.oldPassword) {
     alert("Vui lòng điền đầy đủ thông tin!");
     return;
   }
@@ -150,17 +172,28 @@ function handleFormSubmit(e) {
     return;
   }
 
-  // Giả lập gửi dữ liệu lên server
-  console.log("Dữ liệu cập nhật:", formData);
-
-  // Cập nhật lại dữ liệu người dùng (trong thực tế sẽ nhận từ server)
-  userData.name = formData.name;
-  userData.email = formData.email;
-  userData.password = formData.password;
-
-  // Tắt chế độ chỉnh sửa
-  disableEditing();
-
-  // Hiển thị thông báo
-  alert("Cập nhật thông tin thành công!");
+  fetch("/server/updateUser.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: formData.name,
+      email: formData.email,
+      oldPassword: formData.oldPassword,
+      password: formData.password,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data);
+      if (data.success) {
+        alert(data.message);
+        // Tắt chế độ chỉnh sửa
+        disableEditing();
+        window.location.reload();
+      } else {
+        alert(data.message);
+      }
+    });
 }

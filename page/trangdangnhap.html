@@ -2,55 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRANG ĐĂNG NHẬP</title>
+    <meta username="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="../css/trangdangnhap.css" />
   </head>
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form action="#">
-          <h1>Create Account</h1>
+        <form id="signup-form">
+          <h1>Đăng ký</h1>
           <div class="social-container">
-            <img class="login_icon" src="../pic/facebook.png" alt="" />
-            <img class="login_icon" src="../pic/google.png" alt="" />
-            <img class="login_icon" src="../pic/instagram.png" alt="" />
+            <img class="login_icon" src="/pic/facebook.png" alt="" />
+            <img class="login_icon" src="/pic/google.png" alt="" />
+            <img class="login_icon" src="/pic/instagram.png" alt="" />
           </div>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          <span>hoặc sử dụng email của bạn để đăng ký</span>
+          <input type="text" placeholder="Username" id="signup-username" username="signup-username" />
+          <input type="email" placeholder="Email" id="signup-email" username="signup-email" />
+          <input type="password" placeholder="Password" id="signup-password" username="signup-password" />
+          <button type="submit" id="submit-signup" username="signup">Tạo tài khoản</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
-        <form action="#">
-          <h1>Sign in</h1>
+        <form id="signin-form">
+          <h1>Đăng nhập</h1>
           <div class="social-container">
-            <img class="login_icon" src="../pic/facebook.png" alt="" />
-            <img class="login_icon" src="../pic/google.png" alt="" />
-            <img class="login_icon" src="../pic/instagram.png" alt="" />
+            <img class="login_icon" src="/pic/facebook.png" alt="" />
+            <img class="login_icon" src="/pic/google.png" alt="" />
+            <img class="login_icon" src="/pic/instagram.png" alt="" />
           </div>
-          <span>or use your account</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <span>hoặc sử dụng tài khoản của bạn</span>
+          <input type="email" placeholder="Email" id="signin-email" />
+          <input type="password" placeholder="Password" id="signin-password" />
+          <a href="#">Quên mật khẩu?</a>
+          <button type="submit" id="submit-signin" username="signin">Đăng nhập</button>
         </form>
       </div>
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us please login with your personal info
-            </p>
-            <button class="ghost" id="signIn">Sign In</button>
+            <h1>Chào mừng!</h1>
+            <p>Để kết nối với chúng tôi xin hãy đăng nhập với thông tin cá nhân của bạn</p>
+            <button class="ghost" id="signIn">Đăng nhập</button>
           </div>
           <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
+            <h1>Chào bạn!</h1>
+            <p>Hãy tạo tài khoản và tham gia cộng đồng cùng chúng tôi</p>
+            <button class="ghost" id="signUp">Tạo tài khoản</button>
           </div>
         </div>
       </div>
@@ -67,6 +65,68 @@
 
     signInButton.addEventListener("click", () => {
       container.classList.remove("right-panel-active");
+    });
+
+    const signInForm = document.getElementById("signin-form");
+    const signUpForm = document.getElementById("signup-form");
+
+    signInForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("signin-email").value;
+      const password = document.getElementById("signin-password").value;
+      if (email && password) {
+        fetch("/server/signin.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              window.location.href = "/";
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+      } else {
+        alert("Email và mật khẩu không được để trống");
+      }
+    });
+    signUpForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("signup-username").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      if (username && email && password) {
+        fetch("/server/signup.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              window.location.href = "/";
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+      } else {
+        alert("Email và mật khẩu không được để trống");
+      }
     });
   </script>
 </html>
