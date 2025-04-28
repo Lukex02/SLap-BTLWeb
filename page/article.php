@@ -70,29 +70,72 @@
                 <h3>Bình luận (${article.comments_count})</h3>
               </div>
               <div class="card-body">
-                <div class="d-flex mb-4">
+                <form class="d-flex mb-4" id="comment-form">
                   <div class="d-flex flex-column justify-content-start me-2">
                     <img src="/pic/def_author_avatar.png" alt="Avatar của bạn" class="rounded-circle comment-avatar">
                     <span class="text-center">Bạn</span>
                   </div>
-                  <textarea class="form-control"  id="exampleFormControlTextarea1" rows="3"></textarea>
-                  <button type="button" class="btn btn-primary">Primary</button>
-                </div>
-                <ul class="comment-list list-group list-group-flush">
-                ${comments.map(comment => `
-                <li class="comment list-group-item d-flex py-3">
-                  <img src="${comment.commenter_avatar}" alt="${comment.commenter_name}" class="rounded-circle comment-avatar me-2">
-                  <div class="comment-body">
-                    <p class="mb-1"><strong>${comment.commenter_name}</strong>: ${comment.content}</p>
-                    <small>${new Date(comment.created_at).toLocaleString()}</small>
+                  <div class="d-flex flex-column w-100 gap-3">
+                    <div class="form-floating">
+                      <textarea class="form-control" placeholder="Leave a comment here" id="comment-content"></textarea>
+                      <label for="comment-content">Comments</label>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary">Đăng</button>
+                    </div>
                   </div>
-                </li>
-              `).join("")}
+                </form>
+                <ul class="comment-list list-group list-group-flush flex-column-reverse">
+                  ${comments.map(comment => `
+                  <li class="comment list-group-item d-flex py-3">
+                    <img src="${comment.commenter_avatar}" alt="${comment.commenter_name}" class="rounded-circle comment-avatar me-2">
+                    <div class="comment-body">
+                      <p class="mb-1"><strong>${comment.commenter_name}</strong>: ${comment.content}</p>
+                      <small>${new Date(comment.created_at).toLocaleString()}</small>
+                    </div>
+                  </li>
+                `).join("")}
                 </ul>
               </div>
             </div>
           </footer>
           `;
+      const commentForm = document.getElementById("comment-form")
+      commentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const commentContent = document.getElementById("comment-content").value
+        if (commentContent.length <= 0) {
+          alert("Bạn chưa nhập nội dung bình luận")
+          return
+        }
+
+        // Lấy dữ liệu từ form
+        const commentFormData = {
+          content: commentContent,
+          article_id: article.id,
+        };
+        fetch("/server/setComment.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: commentFormData.content,
+            article_id: commentFormData.article_id,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert(data.message)
+              window.location.reload();
+            } else {
+              console.log(data.message)
+            }
+          })
+          .catch((err) => console.error(err))
+          .catch((err) => console.error(err))
+      })
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

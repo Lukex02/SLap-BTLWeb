@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2025 at 01:57 PM
+-- Generation Time: Apr 28, 2025 at 03:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,12 +63,13 @@ INSERT INTO `articles` (`id`, `title`, `slug`, `author_name`, `author_avatar`, `
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(4) DEFAULT NULL,
+  `id` int(4) NOT NULL AUTO_INCREMENT,
   `user_id` int(6) DEFAULT NULL,
   `article_id` int(4) DEFAULT NULL,
   `content` varchar(54) DEFAULT NULL,
-  `created_at` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9909 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `comments`
@@ -83,7 +84,8 @@ INSERT INTO `comments` (`id`, `user_id`, `article_id`, `content`, `created_at`) 
 (9886, 100001, 2001, 'Mình đã áp dụng và thấy rất hiệu quả, cảm ơn!', '2025-03-17T13:10:00Z'),
 (9887, 100002, 2002, 'Chủ đề này rất quan trọng, cảm ơn đã chia sẻ.', '2025-03-17T13:11:00Z'),
 (9889, 100004, 2001, 'Bài viết giúp mình hiểu rõ hơn, tuyệt vời!', '2025-03-17T13:13:00Z'),
-(9890, 100005, 2002, 'Không thể bỏ qua bài viết này, quá hay!', '2025-03-17T13:14:00Z');
+(9890, 100005, 2002, 'Không thể bỏ qua bài viết này, quá hay!', '2025-03-17T13:14:00Z'),
+(9908, 100008, 2000, 'wow nice one', '2025-04-28 13:35:53');
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `isAdmin` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=100008 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100009 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -155,7 +157,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`)
 (100004, 'MaxVer', 'max.ver@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
 (100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
 (100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0);
+(100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0),
+(100008, 'Admin', 'admin@admin.com', '$2y$10$1FgXvdFqI2Y9B9hIy84r/e2IxUA0xDw11JGeWZiXAdWWW/tSPAdoS', '/pic/def_author_avatar.png', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
