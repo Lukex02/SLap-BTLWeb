@@ -51,6 +51,9 @@
     function displayArticle({ article, comments }) {
       const articleDetail = document.getElementById("article");
       const title = document.title = article.title;
+
+
+
       articleDetail.innerHTML = `
           <header class="article-header">
             <h1>${article.title}</h1>
@@ -70,7 +73,7 @@
                 <h3>Bình luận (${article.comments_count})</h3>
               </div>
               <div class="card-body">
-                <form class="d-flex mb-4" id="comment-form">
+                <form class="d-flex mb-4 visually-hidden" id="comment-form">
                   <div class="d-flex flex-column justify-content-start me-2">
                     <img src="/pic/def_author_avatar.png" alt="Avatar của bạn" class="rounded-circle comment-avatar">
                     <span class="text-center">Bạn</span>
@@ -85,7 +88,10 @@
                     </div>
                   </div>
                 </form>
-                <ul class="comment-list list-group list-group-flush flex-column-reverse">
+                <div class="d-flex justify-content-end" id="signInToCommentBtn">
+                  <a role="button" href="/signin" class="btn btn-primary">Đăng nhập để bình luận</a>
+                </div>
+                <ul class="comment-list list-group list-group-flush">
                   ${comments.map(comment => `
                   <li class="comment list-group-item d-flex py-3">
                     <img src="${comment.commenter_avatar}" alt="${comment.commenter_name}" class="rounded-circle comment-avatar me-2">
@@ -100,42 +106,55 @@
             </div>
           </footer>
           `;
-      const commentForm = document.getElementById("comment-form")
-      commentForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const commentContent = document.getElementById("comment-content").value
-        if (commentContent.length <= 0) {
-          alert("Bạn chưa nhập nội dung bình luận")
-          return
-        }
+      fetch("/server/session.php")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            const commentForm = document.getElementById("comment-form")
+            commentForm.classList.remove("visually-hidden");
+            const signInToCommentBtn = document.getElementById("signInToCommentBtn")
+            signInToCommentBtn.classList.add("visually-hidden");
 
-        // Lấy dữ liệu từ form
-        const commentFormData = {
-          content: commentContent,
-          article_id: article.id,
-        };
-        fetch("/server/setComment.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            content: commentFormData.content,
-            article_id: commentFormData.article_id,
-          }),
+            commentForm.addEventListener("submit", (e) => {
+              e.preventDefault();
+              const commentContent = document.getElementById("comment-content").value
+              if (commentContent.length <= 0) {
+                alert("Bạn chưa nhập nội dung bình luận")
+                return
+              }
+
+              // Lấy dữ liệu từ form
+              const commentFormData = {
+                content: commentContent,
+                article_id: article.id,
+              };
+              fetch("/server/setComment.php", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  content: commentFormData.content,
+                  article_id: commentFormData.article_id,
+                }),
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.success) {
+                    alert(data.message)
+                    window.location.reload();
+                  } else {
+                    console.log(data.message)
+                  }
+                })
+                .catch((err) => console.error(err))
+                .catch((err) => console.error(err))
+            })
+          }
         })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert(data.message)
-              window.location.reload();
-            } else {
-              console.log(data.message)
-            }
-          })
-          .catch((err) => console.error(err))
-          .catch((err) => console.error(err))
-      })
+        .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+
+
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
