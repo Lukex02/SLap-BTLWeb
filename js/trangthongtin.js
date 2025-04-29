@@ -70,7 +70,7 @@ function enableEditing() {
   passwordInput.readOnly = false;
 
   oldPasswordInput.value = "";
-  passwordInput.value = "";
+  passwordInput.value = null;
   passwordInput.type = "password";
 
   // Thêm style để người dùng biết có thể chỉnh sửa
@@ -163,12 +163,12 @@ function handleFormSubmit(e) {
   };
 
   // Validate dữ liệu
-  if (!formData.name || !formData.email || !formData.password || !formData.oldPassword) {
+  if (!formData.name || !formData.email || !formData.oldPassword) {
     alert("Vui lòng điền đầy đủ thông tin!");
     return;
   }
 
-  if (formData.password.length < 6) {
+  if (formData.password && formData.password.length < 6) {
     alert("Mật khẩu phải có ít nhất 6 ký tự!");
     return;
   }
@@ -182,7 +182,7 @@ function handleFormSubmit(e) {
       username: formData.name,
       email: formData.email,
       oldPassword: formData.oldPassword,
-      password: formData.password,
+      password: formData.password ? formData.password : null,
     }),
   })
     .then((response) => response.json())

@@ -73,9 +73,9 @@
                 <h3>Bình luận (${article.comments_count})</h3>
               </div>
               <div class="card-body">
-                <form class="d-flex mb-4 visually-hidden" id="comment-form">
+                <form class="d-flex mb-3 visually-hidden" id="comment-form">
                   <div class="d-flex flex-column justify-content-start me-2">
-                    <img src="/pic/def_author_avatar.png" alt="Avatar của bạn" class="rounded-circle comment-avatar">
+                    <img alt="Avatar của bạn" class="rounded-circle comment-avatar" id="userAvatar">
                     <span class="text-center">Bạn</span>
                   </div>
                   <div class="d-flex flex-column w-100 gap-3">
@@ -114,6 +114,7 @@
             commentForm.classList.remove("visually-hidden");
             const signInToCommentBtn = document.getElementById("signInToCommentBtn")
             signInToCommentBtn.classList.add("visually-hidden");
+            document.getElementById("userAvatar").src = data.avatar // Add user avatar
 
             commentForm.addEventListener("submit", (e) => {
               e.preventDefault();

@@ -19,4 +19,4 @@ File database của web được lưu trong folder data với 2 hình thức là
 > bonddef
 
 > admin@admin.com
-> admin
+> admin123

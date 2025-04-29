@@ -21,7 +21,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($oldPassword, $row["password"])) {
-      $password = password_hash($password, PASSWORD_DEFAULT);
+      $password = password_hash($password != null ? $password : $oldPassword, PASSWORD_DEFAULT);
       $stmt = $conn->prepare("UPDATE users SET 
       `username` = ?, 
       `email` = ?,
