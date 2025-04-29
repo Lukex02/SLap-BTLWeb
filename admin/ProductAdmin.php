@@ -19,7 +19,7 @@
 </head>
 
 
-<body>
+<body style="font-family: Arial, sans-serif;">
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         <?php include "sidebar.html" ?>
