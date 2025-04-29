@@ -45,14 +45,17 @@
           <label for="password">Nhập lại mật khẩu</label>
           <div class="password-input">
             <input type="password" id="old-password" />
+            <button type="button" class="toggle-password visually-hidden" id="toggleOldPassword">
+              <i class="fas fa-eye"></i>
+            </button>
           </div>
         </div>
 
-        <div class="form-group password-group">
+        <div class="form-group password-group" id="new-password-container">
           <label for="password">Mật khẩu mới</label>
           <div class="password-input">
             <input type="password" id="password" readonly />
-            <button type="button" class="toggle-password" id="togglePassword">
+            <button type="button" class="toggle-password visually-hidden" id="toggleNewPassword">
               <i class="fas fa-eye"></i>
             </button>
           </div>

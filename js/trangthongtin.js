@@ -54,8 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
   cancelEditBtn.addEventListener("click", disableEditing);
 
   // Xử lý toggle password
-  const togglePasswordBtn = document.getElementById("togglePassword");
-  togglePasswordBtn.addEventListener("click", togglePasswordVisibility);
+  const passwordGroups = document.querySelectorAll(".password-group");
+  passwordGroups.forEach((group) => {
+    const passwordInput = group.querySelector('input[type="password"]');
+    const toggleButton = group.querySelector(".toggle-password");
+    const eyeIcon = group.querySelector(".toggle-password i");
+
+    toggleButton.addEventListener("click", () => togglePasswordVisibility(passwordInput, eyeIcon));
+  });
 
   // Xử lý submit form
   const userForm = document.getElementById("userInfoForm");
@@ -86,18 +92,25 @@ function enableEditing() {
   const oldPasswordInputContainer = document.getElementById("old-password-container");
   const oldPasswordInput = document.getElementById("old-password");
   const passwordInput = document.getElementById("password");
+  const eyeIcon = document.querySelectorAll(".toggle-password i");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
   const cancelBtn = document.getElementById("cancelEditBtn");
+
+  // Hiện nút preview password
+  document.getElementById("toggleNewPassword").classList.remove("visually-hidden");
+  document.getElementById("toggleOldPassword").classList.remove("visually-hidden");
 
   // Cho phép chỉnh sửa các trường
   nameInput.readOnly = false;
   emailInput.readOnly = false;
   passwordInput.readOnly = false;
 
-  oldPasswordInput.value = "";
+  oldPasswordInput.value = null;
+  oldPasswordInput.type = "password";
   passwordInput.value = null;
   passwordInput.type = "password";
+  eyeIcon.forEach((icon) => icon.classList.replace("fa-eye-slash", "fa-eye"));
 
   // Thêm style để người dùng biết có thể chỉnh sửa
   oldPasswordInput.style.backgroundColor = "white";
@@ -121,16 +134,25 @@ function disableEditing() {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
   const oldPasswordInputContainer = document.getElementById("old-password-container");
+  const oldPasswordInput = document.getElementById("old-password");
   const passwordInput = document.getElementById("password");
+  const eyeIcon = document.querySelectorAll(".toggle-password i");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
   const cancelBtn = document.getElementById("cancelEditBtn");
 
+  // Hiện nút preview password
+  document.getElementById("toggleNewPassword").classList.add("visually-hidden");
+  document.getElementById("toggleOldPassword").classList.add("visually-hidden");
+
   // Khôi phục giá trị ban đầu
   nameInput.value = userData.name;
   emailInput.value = userData.email;
+  oldPasswordInput.value = "••••••••";
+  oldPasswordInput.type = "password";
   passwordInput.value = "••••••••";
   passwordInput.type = "password";
+  eyeIcon.forEach((icon) => icon.classList.replace("fa-eye-slash", "fa-eye"));
 
   // Khóa các trường input
   nameInput.readOnly = true;
@@ -153,26 +175,13 @@ function disableEditing() {
 }
 
 // Hiển thị/ẩn mật khẩu
-function togglePasswordVisibility() {
-  const passwordInput = document.getElementById("password");
-  const eyeIcon = document.querySelector(".toggle-password i");
-
+function togglePasswordVisibility(passwordInput, eyeIcon) {
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
     eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
-
-    // Nếu ở chế độ xem, hiển thị mật khẩu thật
-    if (passwordInput.readOnly) {
-      passwordInput.value = "hashedPass";
-    }
   } else {
     passwordInput.type = "password";
     eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
-
-    // Nếu ở chế độ xem, hiển thị dấu sao
-    if (passwordInput.readOnly) {
-      passwordInput.value = "••••••••";
-    }
   }
 }
 
