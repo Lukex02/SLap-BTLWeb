@@ -63,10 +63,16 @@
     </div>
     <div class="sidebar-menu">
       <ul class="menu">
-        <li class="sidebar-item active">
+        <li class="sidebar-item">
           <a href="./" class="sidebar-link">
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="./account" class="sidebar-link">
+            <i class="bi bi-person-fill-gear"></i>
+            <span>Quản lý tài khoản</span>
           </a>
         </li>
 
@@ -144,30 +150,20 @@
             <span>Bình luận</span>
           </a>
         </li>
-
-        <!-- <li class="sidebar-title">Raise Support</li>
-
-            <li class="sidebar-item">
-              <a href="https://zuramai.github.io/mazer/docs" class="sidebar-link">
-                <i class="bi bi-life-preserver"></i>
-                <span>Documentation</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class="sidebar-link">
-                <i class="bi bi-puzzle"></i>
-                <span>Contribute</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a href="https://github.com/zuramai/mazer#donation" class="sidebar-link">
-                <i class="bi bi-cash"></i>
-                <span>Donate</span>
-              </a>
-            </li> -->
       </ul>
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebarItem = document.querySelectorAll(".sidebar-item");
+      const currentUrl = window.location.pathname;
+      sidebarItem.forEach((item) => {
+        const linkPath = new URL(item.querySelector("a").href, window.location.origin).pathname;
+        if (linkPath == currentUrl) {
+          item.classList.add("active");
+        }
+      });
+    });
+  </script>
+  <script src="assets/compiled/js/app.js"></script>
 </div>

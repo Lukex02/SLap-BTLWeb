@@ -3,18 +3,6 @@ include "import.php";
 
 header("Content-Type: application/json"); // Định dạng JSON
 
-// $get_comments = "SELECT articles.*,
-//                         articles.content AS article_content,
-//                         comments.id AS comment_id,
-//                         comments.content AS comment_content,
-//                         comments.created_at AS comment_created_at,
-//                         (SELECT COUNT(*) FROM comments WHERE comments.article_id = articles.id) AS comments_count,
-//                         users.id AS user_id,
-//                         users.username AS commenter_name
-//                 FROM articles
-//                 LEFT JOIN comments ON articles.id = comments.article_id
-//                 LEFT JOIN users ON comments.user_id = users.id
-//                 WHERE articles.slug = '$slug'";
 $get_comments = "SELECT comments.*,
                         articles.title AS article_title,
                         articles.id AS article_id,
@@ -23,6 +11,7 @@ $get_comments = "SELECT comments.*,
                         comments.created_at AS comment_created_at,
                         (SELECT COUNT(*) FROM comments WHERE comments.article_id = articles.id) AS comments_count,
                         users.id AS user_id,
+                        users.avatar AS commenter_avatar,
                         users.username AS commenter_name
                 FROM comments
                 LEFT JOIN articles ON comments.article_id = articles.id 
@@ -49,7 +38,7 @@ while ($row = mysqli_fetch_assoc($result)) {
       'content' => $row['comment_content'],
       'created_at' => $row['comment_created_at'],
       'user_id' => $row['user_id'],
-      'commenter_avatar' => '/pic/def_author_avatar.png',
+      'commenter_avatar' => $row['commenter_avatar'],
       'commenter_name' => $row['commenter_name']
     ];
   }
