@@ -76,7 +76,7 @@ CREATE TABLE `comments` (
   `id` int(4) DEFAULT NULL,
   `user_id` int(6) DEFAULT NULL,
   `article_id` int(4) DEFAULT NULL,
-  `content` varchar(54) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
   `created_at` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
