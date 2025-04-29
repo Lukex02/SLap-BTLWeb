@@ -181,7 +181,6 @@ function drawChartArticles() {
   fetch("/server/getArticleList.php")
     .then((response) => response.json())
     .then((articleData) => {
-      console.log(articleData);
       const articleCountsByTime = {};
       articleData.forEach((article) => {
         const articleTime = new Date(article.updated_at).toLocaleDateString();

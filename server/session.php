@@ -26,7 +26,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
       "isAdmin" => $isAdmin,
     ]);
   } else {
-    echo json_encode(["success" => false, "message" => "Lỗi database"]);
+    echo json_encode(["success" => false, "message" => "Không tìm thấy tài khoản"]);
   }
 } else {
   echo json_encode(["success" => false, "message" => "Người dùng chưa đăng nhập"]);

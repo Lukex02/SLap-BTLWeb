@@ -51,4 +51,6 @@ RewriteRule ^admin/comment$ /admin/CommentAdmin.php [L]
 # Chuyển hướng /admin/article → /admin/ArticleAdmin.php
 RewriteRule ^admin/article$ /admin/ArticleAdmin.php [L]
 
+# Chuyển hướng /admin/account → /admin/AccountAdmin.php
+RewriteRule ^admin/account$ /admin/AccountAdmin.php [L]
 
