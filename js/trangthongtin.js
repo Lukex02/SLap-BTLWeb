@@ -13,11 +13,37 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("name").value = data.username;
         document.getElementById("email").value = data.email;
         document.getElementById("password").value = "••••••••";
+        document.getElementById("avatar").src = data.avatar;
         userData = { name: data.username, email: data.email };
       } else {
         console.log(data.message);
       }
     });
+
+  // Xử lý tải avatar
+  const inputAvatar = document.getElementById("input-avatar");
+  document.getElementById("avatar-overlay").addEventListener("click", () => {
+    inputAvatar.click();
+  });
+  inputAvatar.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+      const formData = new FormData();
+      formData.append("avatar", this.files[0]);
+      fetch("/server/updateAvatar.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert(data.message);
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+    }
+  });
 
   // Xử lý nút chỉnh sửa thông tin
   const editInfoBtn = document.getElementById("editInfoBtn");

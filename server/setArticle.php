@@ -64,8 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
     $fileTmpPath = $_FILES['thumbnail']['tmp_name'];
     $fileName = $_FILES['thumbnail']['name'];
-    // $fileSize = $_FILES['thumbnail']['size'];
-    // $fileType = $_FILES['thumbnail']['type'];
 
     // Lấy đuôi file
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));

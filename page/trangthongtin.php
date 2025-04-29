@@ -66,7 +66,14 @@
       </form>
 
       <!-- Các action khác -->
-      <div class="d-flex">
+      <div class="d-flex justify-content-between flex-column">
+        <div class="avatar-container position-relative d-inline-flex" style="height: 10rem; width: 10rem;">
+          <img id="avatar" alt="Avatar của bạn" class="rounded-circle">
+          <div class="avatar-overlay rounded-circle" id="avatar-overlay">
+            Thay đổi avatar
+          </div>
+          <input type="file" id="input-avatar" class="visually-hidden" accept="image/*" name="avatar">
+        </div>
         <div class="user-actions">
           <div class="action-card" id="logoutBtn">
             <div class="action-icon">
