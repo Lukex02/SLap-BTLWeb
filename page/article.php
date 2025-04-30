@@ -52,8 +52,6 @@
       const articleDetail = document.getElementById("article");
       const title = document.title = article.title;
 
-
-
       articleDetail.innerHTML = `
           <header class="article-header">
             <h1>${article.title}</h1>
@@ -62,7 +60,9 @@
             <p><strong>Tác giả:</strong> ${article.author_name}</p>
             <p><strong>Ngày đăng:</strong> ${new Date(article.published_at).toLocaleDateString()}</p>
             <p><strong>Chuyên mục:</strong> ${article.category}</p>
-            <p><strong>Lượt thích:</strong> ${article.likes}</p>
+            <p><strong>Lượt thích:</strong> ${article.likes}
+              <a href="#" id="like"><i class="bi bi-hand-thumbs-up-fill"></i></a>
+            </p>
           </div>
           <div class="article-content">
             ${article.content}
@@ -106,6 +106,24 @@
             </div>
           </footer>
           `;
+
+      document.getElementById("like").addEventListener("click", function () {
+        const param = new URLSearchParams()
+        param.append("id", article.id)
+        fetch("/server/likeArticle.php", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded' // Quan trọng
+          },
+          body: param.toString(),
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            alert(data)
+            window.location.reload()
+          })
+      })
+
       fetch("/server/session.php")
         .then((response) => response.json())
         .then((data) => {

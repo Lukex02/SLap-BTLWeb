@@ -30,6 +30,9 @@
     <div class="row">
       <div class="col-md-9">
         <div class="container p-0" id="articles-container"></div>
+        <nav aria-label="Page Navigation" class="d-md-flex justify-content-md-end">
+          <ul class="pagination"></ul>
+        </nav>
       </div>
       <div class="col-md-3">
         <div class="container pe-0" id="topic-container"></div>
