@@ -150,16 +150,16 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`) VALUES
-(100000, 'ABC', 'abc@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100001, 'NoobMaster96', 'noob.master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100002, 'Master96', 'master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100003, 'Pro100', 'proo100@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100004, 'MaxVer', 'max.ver@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
-(100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0),
-(100008, 'Admin', 'admin@admin.com', '$2y$10$1FgXvdFqI2Y9B9hIy84r/e2IxUA0xDw11JGeWZiXAdWWW/tSPAdoS', '/pic/def_author_avatar.png', 1);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`, `isLock`) VALUES
+(100000, 'ABC', 'abc@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100001, 'NoobMaster96', 'noob.master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100002, 'Master96', 'master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100003, 'Pro100', 'proo100@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100004, 'MaxVer', 'max.ver@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0, 0),
+(100008, 'Admin', 'admin@admin.com', '$2y$10$1FgXvdFqI2Y9B9hIy84r/e2IxUA0xDw11JGeWZiXAdWWW/tSPAdoS', '/pic/def_author_avatar.png', 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
