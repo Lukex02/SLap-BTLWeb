@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->bind_param($types, $title, $slug, $authorName, $category, $tags, $updatedAt, $content, $excerpt, $thumbnail, $id);
     } else {
       // echo "New ";
-      $stmt->bind_param($types, $title, $slug, $authorName, $authorAvatar, $category, $tags, $publishedAt, $updatedAt, $content, $excerpt, $thumbnail, $views, $likes);
+      $stmt->bind_param($types, $title, $slug, $authorName, $authorAvatar, $category, $tags, $publishedAt, $updatedAt, $content, $excerpt, $thumbnail, $likes);
     }
     if ($stmt->execute()) {
       echo "Nội dung đã được lưu thành công vào cơ sở dữ liệu.<br>";

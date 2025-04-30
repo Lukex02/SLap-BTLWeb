@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
         .map(
           (article, index) => `
           <div class="article-item d-flex justify-content-between">
-            <img src="${article.thumbnail}" class="img-fluid" alt="${article.title}">
+            <img src="${article.thumbnail}" class="img-fluid img-square" alt="${article.title}">
             <div class="article-meta">
               <h3><a href="#">${article.title}</a></h3>
               <p>Đường dẫn: ${article.slug}<p>
               <strong>Đăng vào: </strong> ${new Date(article.published_at).toLocaleString()} |
               <strong>Cập nhật lần cuối:</strong> ${new Date(article.updated_at).toLocaleString()} |
-              <strong>Lượt xem:</strong> ${article.views} |
+              <strong>Lượt thích:</strong> ${article.likes} |
               <strong>Tác giả:</strong> ${article.author_name}
               <p class="article-excerpt mt-3">${article.excerpt}</p>
             </div>
