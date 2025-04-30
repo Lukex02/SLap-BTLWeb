@@ -47,7 +47,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
       if (move_uploaded_file($fileTmpPath, '..' . $destPath)) {
         // Xóa ảnh cũ nếu không phải là mặc định và tồn tại
-        if ($oldAvatarPath != "/pic/def_author_avatar.jpg" && !empty($oldAvatarPath) && file_exists(".." . $oldAvatarPath)) {
+        if ($oldAvatarPath != "/pic/def_author_avatar.png" && !empty($oldAvatarPath) && file_exists(".." . $oldAvatarPath)) {
           if (!unlink(".." . $oldAvatarPath)) {
             echo json_encode(["success" => false, "message" => "Không thể xóa file ảnh cũ."]);
             exit();

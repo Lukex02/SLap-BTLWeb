@@ -164,6 +164,9 @@ h2 {
 .avatar-container:hover .avatar-overlay {
   opacity: 1;
 }
+.avatar-overlay.drag-over {
+  opacity: 1;
+}
 
 /* User actions */
 .user-actions {

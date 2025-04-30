@@ -22,13 +22,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Xử lý tải avatar
   const inputAvatar = document.getElementById("input-avatar");
-  document.getElementById("avatar-overlay").addEventListener("click", () => {
+  const dropZone = document.getElementById("avatar-overlay");
+  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+  });
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  ["dragenter", "dragover"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, highlight, false);
+  });
+
+  ["dragleave", "drop"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, unhighlight, false);
+  });
+
+  function highlight(e) {
+    dropZone.classList.add("drag-over");
+  }
+
+  function unhighlight(e) {
+    dropZone.classList.remove("drag-over");
+  }
+
+  dropZone.addEventListener("drop", handleDrop);
+  function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+
+    handleAvatarChange(files);
+  }
+
+  dropZone.addEventListener("click", () => {
     inputAvatar.click();
   });
+
   inputAvatar.addEventListener("change", function () {
     if (this.files && this.files[0]) {
+      handleAvatarChange(this.files);
+    }
+  });
+
+  function handleAvatarChange(files) {
+    if (files && files[0]) {
       const formData = new FormData();
-      formData.append("avatar", this.files[0]);
+      formData.append("avatar", files[0]);
       fetch("/server/updateAvatar.php", {
         method: "POST",
         body: formData,
@@ -43,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => console.error("Lỗi tải dữ liệu:", error));
     }
-  });
+  }
 
   // Xử lý nút chỉnh sửa thông tin
   const editInfoBtn = document.getElementById("editInfoBtn");
