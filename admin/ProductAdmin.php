@@ -15,11 +15,22 @@
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
-    <script src="/js/adminCheck.js"></script>
+    <!-- <script src="/js/adminCheck.js"></script> -->
+    <style>
+        .product-thumbnail {
+            max-width: 60px;
+            max-height: 60px;
+            object-fit: cover;
+        }
+        #image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
-
-<body style="font-family: Arial, sans-serif;">
+<body>
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         <?php include "sidebar.html" ?>
@@ -32,44 +43,138 @@
             </header>
             <!-- Từ đây là code của phần nội dung chính -->
             <div class="page-heading">
-                <h3>Chỉnh sửa sản phẩm</h3>
+                <h3>Quản lý sản phẩm</h3>
             </div>
             <div class="container mt-4">
-                <h1>Quản lý sản phẩm</h1>
-                <button class="btn btn-primary mb-3" id="add-product-btn">Thêm sản phẩm</button>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Thương hiệu</th>
-                            <th>Giá</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody id="product-table">
-                        <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
-                    </tbody>
-                </table>
-
-
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="card-title">Danh sách sản phẩm</h4>
+                            <button class="btn btn-primary" id="add-product-btn">Thêm sản phẩm</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Thương hiệu</th>
+                                        <th>Giá</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="product-table">
+                                    <!-- Danh sách sản phẩm sẽ được hiển thị ở đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <script src="/js/productAdmin.js"></script>
+            <!-- Modal thêm/sửa sản phẩm -->
+            <div class="modal fade" id="product-modal" tabindex="-1" aria-labelledby="product-modal-title" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="product-modal-title">Thêm sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="product-form">
+                                <input type="hidden" id="product-id" name="id">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="product-name" class="form-label">Tên sản phẩm</label>
+                                        <input type="text" class="form-control" id="product-name" name="name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="product-brand" class="form-label">Thương hiệu</label>
+                                        <input type="text" class="form-control" id="product-brand" name="brand" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="product-price" class="form-label">Giá</label>
+                                        <input type="number" class="form-control" id="product-price" name="price" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="product-cpu" class="form-label">CPU</label>
+                                        <input type="text" class="form-control" id="product-cpu" name="cpu">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="product-ram" class="form-label">RAM</label>
+                                        <input type="text" class="form-control" id="product-ram" name="ram">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="product-screen" class="form-label">Màn hình</label>
+                                        <input type="text" class="form-control" id="product-screen" name="screen">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="product-gpu" class="form-label">Card đồ họa</label>
+                                        <input type="text" class="form-control" id="product-gpu" name="gpu">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="product-image" class="form-label">Đường dẫn hình ảnh</label>
+                                    <input type="text" class="form-control" id="product-image" name="image">
+                                    <img src="" id="image-preview" class="img-fluid mt-2 d-none">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-primary" id="product-submit">Lưu</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal xem chi tiết sản phẩm -->
+            <div class="modal fade" id="view-product-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chi tiết sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-5 text-center">
+                                    <img src="" id="view-product-image" class="img-fluid mb-3" alt="Sản phẩm">
+                                </div>
+                                <div class="col-md-7">
+                                    <h4 id="view-product-name" class="mb-3"></h4>
+                                    <div class="mb-2"><strong>Thương hiệu:</strong> <span id="view-product-brand"></span></div>
+                                    <div class="mb-2"><strong>Giá:</strong> <span id="view-product-price" class="text-danger fw-bold"></span></div>
+                                    <div class="mb-2"><strong>CPU:</strong> <span id="view-product-cpu"></span></div>
+                                    <div class="mb-2"><strong>RAM:</strong> <span id="view-product-ram"></span></div>
+                                    <div class="mb-2"><strong>Màn hình:</strong> <span id="view-product-screen"></span></div>
+                                    <div class="mb-2"><strong>Card đồ họa:</strong> <span id="view-product-gpu"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Hết phần phần nội dung chính -->
         </div>
-
-        <!-- Còn lại là template giữ nguyên -->
     </div>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
     <script src="assets/compiled/js/app.js"></script>
-
-    <!-- Need: Apexcharts -->
     <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
     <script src="assets/static/js/pages/dashboard.js"></script>
+    <script src="/js/productAdmin.js"></script>
 </body>
 
 </html>
