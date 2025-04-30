@@ -15,29 +15,34 @@ if ($email && $password) {
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($password, $row["password"])) {
-      $user_id = $row["id"];
-      $username = $row["username"];
-      $avatar = $row["avatar"];
+      $isLock = boolval($row["isLock"]);
+      if (!$isLock) {
+        $user_id = $row["id"];
+        $username = $row["username"];
+        $avatar = $row["avatar"];
 
-      session_start();
-      $sessionID = session_id();
+        session_start();
+        $sessionID = session_id();
 
-      // Setup cookies
-      $expire = time() + 86400; // Thời hạn 1 ngày
-      $path = '/';
-      $domain = $_SERVER['HTTP_HOST'];
-      $secure = true; // Chỉ gửi qua HTTPS
-      $httponly = true; // Ngăn JavaScript truy cập
-      setcookie(session_name(), $sessionID, $expire, $path, $domain, $secure, $httponly);
+        // Setup cookies
+        $expire = time() + 86400; // Thời hạn 1 ngày
+        $path = '/';
+        $domain = $_SERVER['HTTP_HOST'];
+        $secure = true; // Chỉ gửi qua HTTPS
+        $httponly = true; // Ngăn JavaScript truy cập
+        setcookie(session_name(), $sessionID, $expire, $path, $domain, $secure, $httponly);
 
-      // Setup session
-      $_SESSION['user_id'] = $user_id;
-      $_SESSION['loggedin'] = true;
+        // Setup session
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['loggedin'] = true;
 
-      echo json_encode([
-        "success" => true,
-        "message" => "Đăng nhập thành công"
-      ]);
+        echo json_encode([
+          "success" => true,
+          "message" => "Đăng nhập thành công"
+        ]);
+      } else {
+        echo json_encode(["success" => false, "message" => "Tải khoản đang bị khóa, vui lòng liên hệ admin"]);
+      }
     } else {
       echo json_encode(["success" => false, "message" => "Email hoặc mật khẩu không chính xác"]);
     }

@@ -9,17 +9,29 @@ document.addEventListener("DOMContentLoaded", function () {
           <tr>
             <td>${account.username}</td>
             <td>${account.email}</td>
-            <td id="isAdmin-${account.id}">${account.isAdmin == 1 ? "Admin" : "User"}</td>
+            <td>${account.isAdmin == 1 ? "Admin" : "User"}</td>
             <td>
-              <button class="btn btn-danger delete-btn" id="delete-btn-${account.id}">
-                <i class="bi bi-trash"></i>
-                Xóa
+              <button class="btn btn-warning text-nowrap admin-btn w-100" id="admin-btn-${account.id}">
+                <i class="bi bi-person-fill-lock"></i>
+                ${account.isAdmin == 0 ? "Cấp quyền Admin" : "Hủy quyền Admin"}
               </button>
             </td>
             <td>
-              <button class="btn btn-warning text-nowrap admin-btn" id="admin-btn-${account.id}">
-                <i class="bi bi-person-fill-lock"></i>
-                ${account.isAdmin == 0 ? "Cấp quyền Admin" : "Hủy quyền Admin"}
+              <button class="btn btn-primary text-nowrap reset-btn w-100" id="reset-btn-${account.id}">
+                <i class="bi bi-key-fill"></i>
+                Reset password
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-info text-nowrap lock-btn w-100" id="lock-btn-${account.id}">
+                <i class="bi bi-${account.isLock == 0 ? "" : "un"}lock-fill"></i>
+                ${account.isLock == 0 ? "Khóa " : "Mở"}
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger text-nowrap delete-btn w-100" id="delete-btn-${account.id}">
+                <i class="bi bi-trash"></i>
+                Xóa
               </button>
             </td>
           </tr>
@@ -27,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         )
         .join("");
 
+      // Delete button
       document.querySelectorAll(".delete-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
           const accountId = this.id.split("-")[2];
@@ -79,11 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
 
+      // Admin button
       const adminBtns = document.querySelectorAll(".admin-btn");
       adminBtns.forEach((btn) => {
         btn.addEventListener("click", function () {
           const accountId = this.id.split("-")[2];
-          const isAdmin = document.getElementById(`isAdmin-${accountId}`).innerHTML;
           fetch("/server/updateAccount.php", {
             method: "POST",
             headers: {
@@ -91,14 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify({
               account_id: accountId,
-              isAdmin: isAdmin == "User" ? 1 : 0,
+              isAdmin: 1, // Thiết lập 1 và so với database
+              isLock: 0,
             }),
           })
             .then((response) => response.json())
             .then((data) => {
               if (data.success) {
                 Swal.fire({
-                  title: `${isAdmin == "User" ? "Cấp quyền" : "Hủy quyền"} Admin thành công!`,
+                  title: `Thay đổi quyền Admin thành công!`,
                   icon: "success",
                   showCancelButton: false,
                   confirmButtonColor: "#3085d6",
@@ -110,7 +124,96 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
               } else {
                 Swal.fire({
-                  title: `${isAdmin == "User" ? "Cấp quyền" : "Hủy quyền"} Admin thất bại!`,
+                  title: `Thay đổi quyền Admin thất bại!`,
+                  icon: "error",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Đồng ý",
+                });
+              }
+            })
+            .catch((error) => console.error("Lỗi cấp quyền Admin:", error));
+        });
+      });
+
+      // Lock button
+      const lockBtns = document.querySelectorAll(".lock-btn");
+      lockBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const accountId = this.id.split("-")[2];
+          fetch("/server/updateAccount.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              account_id: accountId,
+              isLock: 1, // Thiết lập 1 và so với database
+              isAdmin: 0,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                Swal.fire({
+                  title: `Thay đổi trạng thái khóa tài khoản thành công!`,
+                  icon: "success",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Đồng ý",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.reload();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  title: `Thay đổi trạng thái khóa tài khoản thất bại!`,
+                  icon: "error",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Đồng ý",
+                });
+              }
+            })
+            .catch((error) => console.error("Lỗi cấp quyền Admin:", error));
+        });
+      });
+
+      // Reset button
+      const resetBtns = document.querySelectorAll(".reset-btn");
+      resetBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const accountId = this.id.split("-")[2];
+          fetch("/server/updateAccount.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              account_id: accountId,
+              isLock: 0, // Thiết lập 0
+              isAdmin: 0, // Thiết lập 0, và căn cứ vào 2 số 0 là reset password đối với api updateAccount.php
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                Swal.fire({
+                  title: `Reset mật khẩu thành công!`,
+                  text: "Mật khẩu đã được đặt lại thành 123456!",
+                  icon: "success",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Đồng ý",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.reload();
+                  }
+                });
+              } else {
+                Swal.fire({
+                  title: `Reset mật khẩu thất bại!`,
                   icon: "error",
                   showCancelButton: false,
                   confirmButtonColor: "#3085d6",

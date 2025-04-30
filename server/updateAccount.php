@@ -16,26 +16,35 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-    // Check quyền hạn của tài khoản này
-    if ($row["isAdmin"] === 1) {
-      $isAdmin = 1;
-    } else {
-      $isAdmin = 0;
-    }
-
-    // Bỏ qua nếu tài khoản này đã là admin
-    if ($data->isAdmin === $isAdmin) {
-      echo json_encode(["success" => false, "message" => "Tài khoản này đã có quyền tương đương"]);
-    } else {
+    if ($data->isAdmin == 1) {
+      // Đảo ngược trạng thái admin
+      $isAdminCurr = $row["isAdmin"];
       $stmt = $conn->prepare("UPDATE users SET 
       `isAdmin` = ?
         WHERE `id` = ?");
-      $stmt->bind_param("ii", $data->isAdmin, $userId);
-      if ($stmt->execute()) {
-        echo json_encode(["success" => true, "message" => "Cập nhật quyền hạn thành công"]);
-      } else {
-        echo json_encode(["success" => true, "message" => $stmt->error]);
-      }
+      $changeAdmin = !boolval($isAdminCurr);
+      $stmt->bind_param("ii", $changeAdmin, $userId);
+    } else if ($data->isLock == 1) {
+      // Đảo ngược trạng thái khóa
+      $isLockCurr = $row["isLock"];
+      $stmt = $conn->prepare("UPDATE users SET 
+      `isLock` = ?
+        WHERE `id` = ?");
+      $changeLock = !boolval($isLockCurr);
+      $stmt->bind_param("ii", $changeLock, $userId);
+    } else {
+      // Reset password
+      $stmt = $conn->prepare("UPDATE users SET 
+      `password` = ?
+        WHERE `id` = ?");
+      $newPass = password_hash("123456", PASSWORD_DEFAULT);
+      $stmt->bind_param("si", $newPass, $userId);
+    }
+
+    if ($stmt->execute()) {
+      echo json_encode(["success" => true, "message" => "Cập nhật quyền hạn thành công"]);
+    } else {
+      echo json_encode(["success" => true, "message" => $stmt->error]);
       $stmt->close();
     }
   } else {

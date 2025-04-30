@@ -66,6 +66,9 @@
           }
         } else {
           console.log(data.message);
+          if (data.message == "Lock") {
+            alert("Tải khoản đang bị khóa và sẽ tự động logout, vui lòng liên hệ admin");
+          }
         }
       })
       .catch((error) => console.error("Lỗi tải dữ liệu:", error));
