@@ -186,8 +186,10 @@
             <div class="card" id="user-info">
               <div class="card-body py-4 px-4">
                 <div class="d-flex align-items-center">
-                  <a href="/" role="button" class="btn btn-warning w-100 d-flex justify-content-evenly"><i
-                      class="bi bi-house-fill"></i>Về trang chủ</a>
+                  <a href="/" role="button" class="btn btn-warning w-100 d-flex justify-content-center">
+                    <i class="bi bi-house-fill me-2"></i>
+                    Về trang chủ
+                  </a>
                 </div>
               </div>
             </div>
