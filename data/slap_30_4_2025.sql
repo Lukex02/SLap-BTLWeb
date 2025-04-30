@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2025 at 07:08 AM
+-- Generation Time: Apr 30, 2025 at 10:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`, `isLock`) VALUES
-(100000, 'ABC', 'abc@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100000, 'ABC', 'abc@gmail.com', '$2y$10$FHQ2QzDj9lA9Uqn9eo.yhuQl9gs27T85DSD.hfvJDqmWklgN.0roq', '/pic/def_author_avatar.png', 0, 0),
 (100001, 'NoobMaster96', 'noob.master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100002, 'Master96', 'master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100003, 'Pro100', 'proo100@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
@@ -160,7 +160,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`,
 (100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0, 0),
-(100008, 'Admin', 'admin@admin.com', '$2y$10$1FgXvdFqI2Y9B9hIy84r/e2IxUA0xDw11JGeWZiXAdWWW/tSPAdoS', '/pic/def_author_avatar.png', 1, 0);
+(100008, 'Admin', 'admin@admin.com', '$2y$10$L5513u1vcMHDFxAGrgMsh.aWy2ds2cb4zNVdqL8Mtd8fl5LHfDYoi', '/pic/def_author_avatar.png', 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
