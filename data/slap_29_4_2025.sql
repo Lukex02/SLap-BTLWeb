@@ -160,7 +160,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`,
 (100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
 (100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0, 0),
-(100008, 'Admin', 'admin@admin.com', '$2y$10$1FgXvdFqI2Y9B9hIy84r/e2IxUA0xDw11JGeWZiXAdWWW/tSPAdoS', '/pic/def_author_avatar.png', 1, 0);
+(100008, 'Admin', 'admin@admin.com', '$2y$10$L5513u1vcMHDFxAGrgMsh.aWy2ds2cb4zNVdqL8Mtd8fl5LHfDYoi', '/pic/def_author_avatar.png', 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
