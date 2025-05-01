@@ -13,77 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("name").value = data.username;
         document.getElementById("email").value = data.email;
         document.getElementById("password").value = "••••••••";
-        document.getElementById("avatar").src = data.avatar;
         userData = { name: data.username, email: data.email };
       } else {
         console.log(data.message);
       }
     });
-
-  // Xử lý tải avatar
-  const inputAvatar = document.getElementById("input-avatar");
-  const dropZone = document.getElementById("avatar-overlay");
-  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-    dropZone.addEventListener(eventName, preventDefaults, false);
-  });
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  ["dragenter", "dragover"].forEach((eventName) => {
-    dropZone.addEventListener(eventName, highlight, false);
-  });
-
-  ["dragleave", "drop"].forEach((eventName) => {
-    dropZone.addEventListener(eventName, unhighlight, false);
-  });
-
-  function highlight(e) {
-    dropZone.classList.add("drag-over");
-  }
-
-  function unhighlight(e) {
-    dropZone.classList.remove("drag-over");
-  }
-
-  dropZone.addEventListener("drop", handleDrop);
-  function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-
-    handleAvatarChange(files);
-  }
-
-  dropZone.addEventListener("click", () => {
-    inputAvatar.click();
-  });
-
-  inputAvatar.addEventListener("change", function () {
-    if (this.files && this.files[0]) {
-      handleAvatarChange(this.files);
-    }
-  });
-
-  function handleAvatarChange(files) {
-    if (files && files[0]) {
-      const formData = new FormData();
-      formData.append("avatar", files[0]);
-      fetch("/server/updateAvatar.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert(data.message);
-          } else {
-            alert(data.message);
-          }
-        })
-        .catch((error) => console.error("Lỗi tải dữ liệu:", error));
-    }
-  }
 
   // Xử lý nút chỉnh sửa thông tin
   const editInfoBtn = document.getElementById("editInfoBtn");
@@ -94,14 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
   cancelEditBtn.addEventListener("click", disableEditing);
 
   // Xử lý toggle password
-  const passwordGroups = document.querySelectorAll(".password-group");
-  passwordGroups.forEach((group) => {
-    const passwordInput = group.querySelector('input[type="password"]');
-    const toggleButton = group.querySelector(".toggle-password");
-    const eyeIcon = group.querySelector(".toggle-password i");
-
-    toggleButton.addEventListener("click", () => togglePasswordVisibility(passwordInput, eyeIcon));
-  });
+  const togglePasswordBtn = document.getElementById("togglePassword");
+  togglePasswordBtn.addEventListener("click", togglePasswordVisibility);
 
   // Xử lý submit form
   const userForm = document.getElementById("userInfoForm");
@@ -114,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert(data.message);
             window.location.href = "/";
           } else {
             alert(data.message);
@@ -132,25 +59,18 @@ function enableEditing() {
   const oldPasswordInputContainer = document.getElementById("old-password-container");
   const oldPasswordInput = document.getElementById("old-password");
   const passwordInput = document.getElementById("password");
-  const eyeIcon = document.querySelectorAll(".toggle-password i");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
   const cancelBtn = document.getElementById("cancelEditBtn");
-
-  // Hiện nút preview password
-  document.getElementById("toggleNewPassword").classList.remove("visually-hidden");
-  document.getElementById("toggleOldPassword").classList.remove("visually-hidden");
 
   // Cho phép chỉnh sửa các trường
   nameInput.readOnly = false;
   emailInput.readOnly = false;
   passwordInput.readOnly = false;
 
-  oldPasswordInput.value = null;
-  oldPasswordInput.type = "password";
-  passwordInput.value = null;
+  oldPasswordInput.value = "";
+  passwordInput.value = "";
   passwordInput.type = "password";
-  eyeIcon.forEach((icon) => icon.classList.replace("fa-eye-slash", "fa-eye"));
 
   // Thêm style để người dùng biết có thể chỉnh sửa
   oldPasswordInput.style.backgroundColor = "white";
@@ -174,25 +94,16 @@ function disableEditing() {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
   const oldPasswordInputContainer = document.getElementById("old-password-container");
-  const oldPasswordInput = document.getElementById("old-password");
   const passwordInput = document.getElementById("password");
-  const eyeIcon = document.querySelectorAll(".toggle-password i");
   const editBtn = document.getElementById("editInfoBtn");
   const saveBtn = document.getElementById("saveInfoBtn");
   const cancelBtn = document.getElementById("cancelEditBtn");
 
-  // Hiện nút preview password
-  document.getElementById("toggleNewPassword").classList.add("visually-hidden");
-  document.getElementById("toggleOldPassword").classList.add("visually-hidden");
-
   // Khôi phục giá trị ban đầu
   nameInput.value = userData.name;
   emailInput.value = userData.email;
-  oldPasswordInput.value = "••••••••";
-  oldPasswordInput.type = "password";
   passwordInput.value = "••••••••";
   passwordInput.type = "password";
-  eyeIcon.forEach((icon) => icon.classList.replace("fa-eye-slash", "fa-eye"));
 
   // Khóa các trường input
   nameInput.readOnly = true;
@@ -215,13 +126,26 @@ function disableEditing() {
 }
 
 // Hiển thị/ẩn mật khẩu
-function togglePasswordVisibility(passwordInput, eyeIcon) {
+function togglePasswordVisibility() {
+  const passwordInput = document.getElementById("password");
+  const eyeIcon = document.querySelector(".toggle-password i");
+
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
     eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+
+    // Nếu ở chế độ xem, hiển thị mật khẩu thật
+    if (passwordInput.readOnly) {
+      passwordInput.value = "hashedPass";
+    }
   } else {
     passwordInput.type = "password";
     eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+
+    // Nếu ở chế độ xem, hiển thị dấu sao
+    if (passwordInput.readOnly) {
+      passwordInput.value = "••••••••";
+    }
   }
 }
 
@@ -238,12 +162,12 @@ function handleFormSubmit(e) {
   };
 
   // Validate dữ liệu
-  if (!formData.name || !formData.email || !formData.oldPassword) {
+  if (!formData.name || !formData.email || !formData.password || !formData.oldPassword) {
     alert("Vui lòng điền đầy đủ thông tin!");
     return;
   }
 
-  if (formData.password && formData.password.length < 6) {
+  if (formData.password.length < 6) {
     alert("Mật khẩu phải có ít nhất 6 ký tự!");
     return;
   }
@@ -257,7 +181,7 @@ function handleFormSubmit(e) {
       username: formData.name,
       email: formData.email,
       oldPassword: formData.oldPassword,
-      password: formData.password ? formData.password : null,
+      password: formData.password,
     }),
   })
     .then((response) => response.json())

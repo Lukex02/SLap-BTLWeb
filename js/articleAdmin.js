@@ -21,28 +21,22 @@ document.addEventListener("DOMContentLoaded", function () {
       container.innerHTML = data
         .map(
           (article, index) => `
-          <div class="row article-item py-3">
-            <div class="col">
-              <img src="${article.thumbnail}" class="img-fluid w-100" alt="${article.title}">              
+          <div class="article-item d-flex justify-content-between">
+            <img src="${article.thumbnail}" class="img-fluid" alt="${article.title}">
+            <div class="article-meta">
+              <h3><a href="#">${article.title}</a></h3>
+              <p>Đường dẫn: ${article.slug}<p>
+              <strong>Đăng vào: </strong> ${new Date(article.published_at).toLocaleString()} |
+              <strong>Cập nhật lần cuối:</strong> ${new Date(article.updated_at).toLocaleString()} |
+              <strong>Lượt xem:</strong> ${article.views} |
+              <strong>Tác giả:</strong> ${article.author_name}
+              <p class="article-excerpt mt-3">${article.excerpt}</p>
             </div>
-            <div class="col-9">
-              <div class="article-meta">
-                <h3><a href="#">${article.title}</a></h3>
-                <p>Đường dẫn: ${article.slug}<p>
-                <strong>Đăng vào: </strong> ${new Date(article.published_at).toLocaleString()} |
-                <strong>Cập nhật lần cuối:</strong> ${new Date(article.updated_at).toLocaleString()} |
-                <strong>Lượt thích:</strong> ${article.likes} |
-                <strong>Tác giả:</strong> ${article.author_name}
-                <p class="article-excerpt mt-3">${article.excerpt}</p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="d-flex ms-auto my-auto flex-column gap-3">
-                  <button class="btn btn-warning edit-btn text-nowrap" data-slug="${
-                    article.slug
-                  }">Chỉnh sửa</button>
-                  <button class="btn btn-danger delete-btn" data-id="${article.id}">Xóa</button>
-              </div>
+            <div class="d-flex ms-auto my-auto flex-column gap-3">
+                <button class="btn btn-warning edit-btn text-nowrap" data-slug="${
+                  article.slug
+                }">Chỉnh sửa</button>
+                <button class="btn btn-danger delete-btn" data-id="${article.id}">Xóa</button>
             </div>
           </div>
         `,
