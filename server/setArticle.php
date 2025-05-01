@@ -64,6 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
     $fileTmpPath = $_FILES['thumbnail']['tmp_name'];
     $fileName = $_FILES['thumbnail']['name'];
+    // $fileSize = $_FILES['thumbnail']['size'];
+    // $fileType = $_FILES['thumbnail']['type'];
 
     // Lấy đuôi file
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
@@ -128,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->bind_param($types, $title, $slug, $authorName, $category, $tags, $updatedAt, $content, $excerpt, $thumbnail, $id);
     } else {
       // echo "New ";
-      $stmt->bind_param($types, $title, $slug, $authorName, $authorAvatar, $category, $tags, $publishedAt, $updatedAt, $content, $excerpt, $thumbnail, $likes);
+      $stmt->bind_param($types, $title, $slug, $authorName, $authorAvatar, $category, $tags, $publishedAt, $updatedAt, $content, $excerpt, $thumbnail, $views, $likes);
     }
     if ($stmt->execute()) {
       echo "Nội dung đã được lưu thành công vào cơ sở dữ liệu.<br>";

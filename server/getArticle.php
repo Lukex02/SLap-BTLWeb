@@ -17,8 +17,7 @@ $get_article = "SELECT articles.*,
                 FROM articles
                 LEFT JOIN comments ON articles.id = comments.article_id
                 LEFT JOIN users ON comments.user_id = users.id
-                WHERE articles.slug = '$slug'
-                ORDER BY STR_TO_DATE(comments.created_at, '%Y-%m-%d %H:%i:%s') DESC";
+                WHERE articles.slug = '$slug'";
 
 $result = $conn->query($get_article);
 
