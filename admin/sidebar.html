@@ -31,12 +31,19 @@
               <g transform="translate(-210 -1)">
                 <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
                 <circle cx="220.5" cy="11.5" r="4"></circle>
-                <path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"></path>
+                <path
+                  d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"
+                ></path>
               </g>
             </g>
           </svg>
           <div class="form-check form-switch fs-6">
-            <input class="form-check-input me-0" type="checkbox" id="toggle-dark" style="cursor: pointer" />
+            <input
+              class="form-check-input me-0"
+              type="checkbox"
+              id="toggle-dark"
+              style="cursor: pointer"
+            />
             <label class="form-check-label"></label>
           </div>
           <svg
@@ -57,33 +64,39 @@
           </svg>
         </div>
         <div class="sidebar-toggler x">
-          <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+          <a href="#" class="sidebar-hide d-xl-none d-block"
+            ><i class="bi bi-x bi-middle"></i
+          ></a>
         </div>
       </div>
     </div>
     <div class="sidebar-menu">
       <ul class="menu">
-        <li class="sidebar-item">
+        <li class="sidebar-item active">
           <a href="./" class="sidebar-link">
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a href="./account" class="sidebar-link">
-            <i class="bi bi-person-fill-gear"></i>
-            <span>Quản lý tài khoản</span>
           </a>
         </li>
 
         <!-- Trang chủ -->
         <li class="sidebar-title">Trang chủ &amp; Liên hệ</li>
 
-        <li class="sidebar-item">
-          <a href="./home" class="sidebar-link">
-            <i class="bi bi-pencil-square"></i>
-            <span>Chỉnh sửa</span>
+        <li class="sidebar-item has-sub">
+          <a href="" class="sidebar-link">
+            <i class="bi bi-person-rolodex"></i>
+            <span>Trang chủ</span>
           </a>
+          <ul class="submenu">
+            <li class="submenu-item">
+              <a href="./HomeAdmin.php" class="submenu-link"
+                >Sản phẩm nổi bật</a
+              >
+            </li>
+            <li class="submenu-item">
+              <a href="./HomeAdmin.php" class="submenu-link">Tin tức chung</a>
+            </li>
+          </ul>
         </li>
 
         <li class="sidebar-item has-sub">
@@ -94,11 +107,7 @@
 
           <ul class="submenu">
             <li class="submenu-item">
-              <a href="#" class="submenu-link">Thông tin</a>
-            </li>
-
-            <li class="submenu-item">
-              <a href="#" class="submenu-link">Phản hồi</a>
+              <a href="./contactAdmin.php" class="submenu-link">Thông tin</a>
             </li>
           </ul>
         </li>
@@ -150,20 +159,30 @@
             <span>Bình luận</span>
           </a>
         </li>
+
+        <!-- <li class="sidebar-title">Raise Support</li>
+
+            <li class="sidebar-item">
+              <a href="https://zuramai.github.io/mazer/docs" class="sidebar-link">
+                <i class="bi bi-life-preserver"></i>
+                <span>Documentation</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class="sidebar-link">
+                <i class="bi bi-puzzle"></i>
+                <span>Contribute</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="https://github.com/zuramai/mazer#donation" class="sidebar-link">
+                <i class="bi bi-cash"></i>
+                <span>Donate</span>
+              </a>
+            </li> -->
       </ul>
     </div>
   </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const sidebarItem = document.querySelectorAll(".sidebar-item");
-      const currentUrl = window.location.pathname;
-      sidebarItem.forEach((item) => {
-        const linkPath = new URL(item.querySelector("a").href, window.location.origin).pathname;
-        if (linkPath == currentUrl) {
-          item.classList.add("active");
-        }
-      });
-    });
-  </script>
-  <script src="assets/compiled/js/app.js"></script>
 </div>
