@@ -4,14 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang Chủ</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-lists.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="/css/trangchu.css" />
+    <link rel="stylesheet" href="../css/trangchu.css" />
   </head>
   <body>
-    <!-- Phần Banner chính -->
     <section class="main-banner">
       <div class="container">
         <h1>Chào mừng đến với Website của chúng tôi</h1>
@@ -19,27 +29,22 @@
       </div>
     </section>
 
-    <!-- Phần Danh mục sản phẩm -->
     <section class="product-section">
       <div class="container">
-        <h2 class="section-title">Sản phẩm nổi bật</h2>
-        <div class="product-grid" id="product-list">
-          <!-- Sản phẩm sẽ được tải từ database bằng JavaScript -->
+        <h2 class="section-title">SẢN PHẨM NỔI BẬT</h2>
+        <div id="product-list">
+          <p>Loading products...</p>
         </div>
       </div>
     </section>
 
-    <!-- Phần Quảng cáo -->
     <section class="promotion-section">
       <div class="container">
-        <h2 class="section-title">Khuyến mãi & Ưu đãi</h2>
-        <div class="promotion-grid" id="promotion-list">
-          <!-- Quảng cáo sẽ được tải từ database bằng JavaScript -->
-        </div>
+        <h2 class="section-title">TIN TỨC CHUNG</h2>
+        <div class="promotion-grid" id="promotion-list"></div>
       </div>
     </section>
 
-    <!-- Phần Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
