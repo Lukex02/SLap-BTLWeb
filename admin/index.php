@@ -33,7 +33,7 @@
       </header>
 
       <div class="page-heading">
-        <h3>Số liệu thống kê</h3>
+        <h3>Bảng điều khiển</h3>
       </div>
       <div class="page-content">
         <section class="row">
@@ -112,7 +112,7 @@
               <div class="col-12 col-xl-4">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Thống kê</h4>
+                    <h4>Số liệu thống kê</h4>
                   </div>
                   <div class="card-body">
                     <div class="row">
