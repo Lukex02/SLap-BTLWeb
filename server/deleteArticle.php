@@ -28,6 +28,11 @@ if ($id != null) {
   $stmt->bind_param("i", $id);
   $stmt->execute();
 
+  $comment_sql = "DELETE FROM comments WHERE article_id = ?";
+  $stmt = $conn->prepare($comment_sql);
+  $stmt->bind_param("i", $id);
+  $stmt->execute();
+
   echo "OK";
 }
 
