@@ -38,6 +38,9 @@
                         <div class="card p-3">
                             <div class="card-header">
                                 <h2 class="card-title">Danh sách các bài viết</h2>
+                                <nav aria-label="Page Navigation" class="d-md-flex justify-content-md-end">
+                                    <ul class="pagination pagination-primary"></ul>
+                                </nav>
                             </div>
                             <div id="articles-container"></div>
                             <button class="btn btn-primary m-3" id="new-article-btn">Thêm bài viết mới</button>

@@ -52,7 +52,7 @@ function displayArticle(data) {
     }
     content += `
         <div class="row article-item py-3">
-          <div class="${index < 3 && data.length > 3 ? "col-xxl-3" : "col-3"}"> 
+          <div class="${index < 3 && data.length > 3 ? "row-3" : "col-3"}"> 
             <img src="${article.thumbnail}" class="img-fluid w-100" alt="${article.title}">              
           </div>
           <div class="col">
