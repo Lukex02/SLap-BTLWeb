@@ -109,7 +109,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-xl-4">
+              <div class="col-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Số liệu thống kê</h4>
@@ -144,7 +144,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-xl-8">
+              <div class="col-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Comments gần đây</h4>
