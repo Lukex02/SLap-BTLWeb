@@ -9,84 +9,36 @@ const Toast = Swal.mixin({
     toast.addEventListener("mouseleave", Swal.resumeTimer);
   },
 });
+let articles = {};
+const commentContainer = document.getElementById("comment-container");
+const sidebarArticle = document.getElementById("list-article");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Lấy tiêu đề và những comment của bài viết đó
   fetch("/server/getCommentList.php")
     .then((response) => response.json())
     .then((data) => {
-      const commentContainer = document.getElementById("comment-container");
+      articles = data;
       commentContainer.innerHTML = Object.keys(data)
         .map((articleId) => {
           const { article_title, comments } = data[articleId];
 
+          const article = document.createElement("a");
+          article.href = `#article-${articleId}`;
+          article.classList.add("list-group-item");
+          article.id = `article-${articleId}`;
+          article.innerHTML = `
+            <span class="text-truncate"><i class="bi bi-arrow-return-right"></i> ${article_title}</span>
+          `;
+          sidebarArticle.appendChild(article);
           // return comments
-          const commentsInArticle = comments
-            .map(
-              (comment) => `
-              <li class="media">
-                <div class="user-action">
-                    <div class="checkbox-con me-3">
-                        <div class="checkbox checkbox-shadow checkbox-sm">
-                            <input type="checkbox" id="checkboxsmall${comment.id}"
-                                class="form-check-input itemCheckBox" />
-                            <label for="checkboxsmall${comment.id}"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="pr-50">
-                    <div class="avatar">
-                        <img src=${comment.commenter_avatar}
-                            alt="avtar img holder" />
-                    </div>
-                </div>
-                <div class="media-body">
-                    <div class="user-details">
-                        <div class="mail-items">
-                            <span
-                                class="list-group-item-text text-truncate">${comment.commenter_name}</span>
-                        </div>
-                        <div class="mail-meta-item">
-                            <span class="float-right">
-                                <span class="mail-date">${new Date(
-                                  comment.created_at,
-                                ).toLocaleString()}</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mail-message">
-                        <p class="list-group-item-text truncate mb-0">
-                            ${comment.content}
-                        </p>
-                        <div class="mail-meta-item">
-                            <span class="float-right">
-                                <span
-                                    class="bullet bullet-success bullet-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-          `,
-            )
-            .join("");
-
-          return `
-            <div class="accordion accordion-flush" id="accordion${articleId}">
-              <div class="accordion-item">
-                <h2 class="accordion-header bg-body-tertiary">
-                  <button class="accordion-button collapsed bg-body" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${articleId}" aria-expanded="false" aria-controls="flush-collapse${articleId}">
-                    <span class="fst-italic text-body">${article_title}</span>
-                  </button>
-                </h2>
-                <div id="flush-collapse${articleId}" class="accordion-collapse collapse show" data-bs-parent="#accordion${articleId}">
-                ${commentsInArticle}
-                </div>
-              </div>
-            </div>
-            `;
+          return displayComment(articleId);
         })
         .join("");
+      document.querySelectorAll(".accordion-button").forEach((button) => {
+        const listeners = getEventListeners(button);
+        console.log(listeners);
+      });
       addCheckBoxFunc();
     })
     .catch((error) => console.error("Lỗi khi tải dữ liệu ở trang CommentAdmin:", error));
@@ -150,3 +102,87 @@ function deleteComment() {
     });
   }
 }
+
+function displayComment(article_id) {
+  const article = articles[article_id];
+  const comments = article.comments;
+  const commentsInArticle = comments
+    .map(
+      (comment) => `
+              <li class="media">
+                <div class="user-action">
+                    <div class="checkbox-con me-3">
+                        <div class="checkbox checkbox-shadow checkbox-sm">
+                            <input type="checkbox" id="checkboxsmall${comment.id}"
+                                class="form-check-input itemCheckBox" />
+                            <label for="checkboxsmall${comment.id}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-50">
+                    <div class="avatar">
+                        <img src=${comment.commenter_avatar}
+                            alt="avtar img holder" />
+                    </div>
+                </div>
+                <div class="media-body">
+                    <div class="user-details">
+                        <div class="mail-items">
+                            <span
+                                class="list-group-item-text text-truncate text-secondary">${
+                                  comment.commenter_name
+                                }</span>
+                        </div>
+                        <div class="mail-meta-item">
+                            <span class="float-right">
+                                <span class="mail-date">${new Date(
+                                  comment.created_at,
+                                ).toLocaleString()}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mail-message">
+                        <p class="list-group-item-text truncate mb-0">
+                            ${comment.content}
+                        </p>
+                        <div class="mail-meta-item">
+                            <span class="float-right">
+                                <span
+                                    class="bullet bullet-success bullet-sm"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+          `,
+    )
+    .join("");
+  return commentsInArticle;
+}
+
+function filterComments(article_id) {
+  sidebarArticle.querySelector(".active").classList.remove("active");
+  sidebarArticle.querySelector(`#article-${article_id}`).classList.add("active");
+  commentContainer.innerHTML = displayComment(article_id);
+}
+
+window.addEventListener("hashchange", function (e) {
+  const hash = window.location.hash;
+  const prefix = "#article-";
+
+  if (hash.startsWith(prefix)) {
+    const articleIdString = hash.substring(prefix.length);
+    const articleIdNumber = parseInt(articleIdString, 10);
+    filterComments(articleIdNumber);
+  } else {
+    // Nếu không có hash, có thể hiển thị tất cả item hoặc trạng thái mặc định
+    sidebarArticle.querySelector(".active").classList.remove("active");
+    sidebarArticle.querySelector("#menu-all").classList.add("active");
+
+    commentContainer.innerHTML = Object.keys(articles)
+      .map((articleId) => {
+        return displayComment(articleId);
+      })
+      .join("");
+  }
+});

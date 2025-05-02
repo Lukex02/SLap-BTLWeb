@@ -53,8 +53,8 @@
                                         <i class="bi bi-menu-button-wide-fill me-3"></i>
                                         <label class="sidebar-label">Menu</label>
                                         <!-- sidebar menu  -->
-                                        <div class="list-group list-group-messages py-3">
-                                            <a href="#" class="list-group-item pt-0 active" id="inbox-menu">
+                                        <div class="list-group list-group-messages py-3" id="list-article">
+                                            <a href="#" class="list-group-item pt-0 active" id="menu-all">
                                                 <i class="bi bi-archive me-3"></i>
                                                 Tất cả
                                             </a>
