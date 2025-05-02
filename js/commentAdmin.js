@@ -35,10 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
           return displayComment(articleId);
         })
         .join("");
-      document.querySelectorAll(".accordion-button").forEach((button) => {
-        const listeners = getEventListeners(button);
-        console.log(listeners);
-      });
       addCheckBoxFunc();
     })
     .catch((error) => console.error("Lỗi khi tải dữ liệu ở trang CommentAdmin:", error));
@@ -157,6 +153,7 @@ function displayComment(article_id) {
           `,
     )
     .join("");
+
   return commentsInArticle;
 }
 
@@ -164,6 +161,7 @@ function filterComments(article_id) {
   sidebarArticle.querySelector(".active").classList.remove("active");
   sidebarArticle.querySelector(`#article-${article_id}`).classList.add("active");
   commentContainer.innerHTML = displayComment(article_id);
+  addCheckBoxFunc();
 }
 
 window.addEventListener("hashchange", function (e) {
@@ -184,5 +182,6 @@ window.addEventListener("hashchange", function (e) {
         return displayComment(articleId);
       })
       .join("");
+    addCheckBoxFunc();
   }
 });
