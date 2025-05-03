@@ -45,7 +45,7 @@ if ($action === "add") {
         echo json_encode(["success" => false, "message" => "Lỗi khi cập nhật bài viết!"]);
     }
     $stmt->close();
-} elseif ($action === "delete") {
+} elseif ($action === "toggle_visibility") {
     $id = $input["id"] ?? 0;
 
     if ($id <= 0) {
@@ -53,12 +53,12 @@ if ($action === "add") {
         exit;
     }
 
-    $stmt = $conn->prepare("DELETE FROM articles WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE articles SET is_visible = !is_visible WHERE id = ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         echo json_encode(["success" => true]);
     } else {
-        echo json_encode(["success" => false, "message" => "Lỗi khi xóa bài viết!"]);
+        echo json_encode(["success" => false, "message" => "Lỗi khi thay đổi trạng thái hiển thị!"]);
     }
     $stmt->close();
 } else {
