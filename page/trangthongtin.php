@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="/css/trangthongtin.css" />
   <link rel="stylesheet" href="/css/breadcrumb.css" />
+  <?php session_start() ?>
 </head>
 
 <!-- Navigation -->
 <?php include "navbar.html" ?>
-<?php session_start() ?>
 <body>
 
   <div class="container">
