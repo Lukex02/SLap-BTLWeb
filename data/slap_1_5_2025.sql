@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2025 at 01:57 PM
+-- Generation Time: May 03, 2025
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `excerpt` varchar(47) DEFAULT NULL,
   `thumbnail` varchar(60) DEFAULT NULL,
   `likes` int(5) DEFAULT NULL,
+  `is_visible` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2050 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -94,14 +95,15 @@ INSERT INTO `comments` (`id`, `user_id`, `article_id`, `content`, `created_at`) 
 
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
-  `brand` varchar(6) DEFAULT NULL,
+  `brand` varchar(50) DEFAULT NULL,
   `name` varchar(32) DEFAULT NULL,
-  `price` int(8) DEFAULT NULL,
-  `cpu` varchar(21) DEFAULT NULL,
-  `ram` varchar(12) DEFAULT NULL,
-  `screen` varchar(5) DEFAULT NULL,
-  `gpu` varchar(23) DEFAULT NULL,
+  `price` varchar(50) DEFAULT NULL,
+  `cpu` varchar(100) DEFAULT NULL,
+  `ram` varchar(50) DEFAULT NULL,
+  `screen` varchar(20) DEFAULT NULL,
+  `gpu` varchar(100) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `is_visible` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -110,22 +112,22 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `brand`, `name`, `price`, `cpu`, `ram`, `screen`, `gpu`, `image`) VALUES
-(1, 'LENOVO', 'Laptop Lenovo Legion 5', 25990000, 'Intel Core i7-12700H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3060 6GB', 'https://www.czone.com.pk/images/products/2-czone.com.pk-1540-15972-130524091332.jpg'),
-(2, 'LENOVO', 'Laptop Lenovo IdeaPad Gaming 3', 19990000, 'AMD Ryzen 5 5600H', '8GB DDR4', '120Hz', 'NVIDIA GTX 1650 4GB', 'https://i5.walmartimages.com/asr/34d78811-9da7-40fe-bafb-0a7aa8b502b1.b3d84a8004ebf89d1e054d167e285e40.jpeg'),
-(3, 'LENOVO', 'Laptop Lenovo ThinkPad X1 Gen 10', 42990000, 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://www.notebookcheck.it/fileadmin/Notebooks/News/_nc3/Legion_Slim_5_Misty_Grey_RGB_03.jpg'),
-(4, 'MSI', 'Laptop MSI Katana GF66', 23490000, 'Intel Core i7-12650H', '16GB DDR4', '144Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://nguyencongpc.vn/media/lib/29-10-2022/laptopmsigamingkatanagf6612uck-804vn5.jpeg'),
-(5, 'MSI', 'Laptop MSI Stealth 15M', 37990000, 'Intel Core i7-12700H', '16GB DDR5', '240Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://www.tncstore.vn/media/product/4907-laptop-msi-gaming-stealth-a11sdk-061vn-1.jpg'),
-(6, 'MSI', 'Laptop MSI Modern 14', 14990000, 'Intel Core i5-1155G7', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/304539/msi-modern-14-c11m-i3-011vn-040523-124356-600x600.jpg'),
-(7, 'DELL', 'Laptop Dell XPS 15', 39990000, 'Intel Core i9-12900HK', '32GB DDR5', '120Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://tramanh.vn/wp-content/uploads/2023/09/dell-xps-15-9530-2023-2.jpg'),
-(8, 'DELL', 'Laptop Dell Inspiron 16', 17990000, 'Intel Core i5-1240P', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/303834/dell-inspiron-16 prostitu5620-i5-p1wkn-thumb-600x600.jpg'),
-(9, 'DELL', 'Laptop Dell Alienware m15 R6', 45990000, 'Intel Core i9-12900H', '32GB DDR5', '240Hz', 'NVIDIA RTX 3080 Ti 12GB', 'https://ttcenter.com.vn/uploads/product/8zceq6pa-1277-dell-alienware-m15-r6-p109f001cbl-core-i7-11800h-rtx-3060-6gb-ram-32gb-ssd-1tb-15-6-240hz-qhd-new.jpeg'),
-(10, 'HP', 'Laptop HP Omen 16', 27490000, 'AMD Ryzen 7 6800H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://ttcenter.com.vn/uploads/photos/1712223903_2760_576e5550635fd8081c3d041e2b977bb8.jpg'),
-(11, 'HP', 'Laptop HP Victus 15', 18990000, 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA GTX 1650 4GB', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtryeE9tb0O3BnyBxCC6kpnNkT8qQRqnje2g&s'),
-(12, 'HP', 'Laptop HP Envy 13', 21490000, 'Intel Core i7-1165G7', '16GB LPDDR4X', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/232172/hp-envy-13-ba1028tu-i5-2k0b2pa-080921-085147-600x600.jpg'),
-(13, 'ASUS', 'Laptop ASUS ROG Strix G15', 29990000, 'AMD Ryzen 9 6900HX', '32GB DDR5', '300Hz', 'NVIDIA RTX 3080 10GB', 'https://gamalaptop.vn/wp-content/uploads/2021/10/ASUS-ROG-Strix-G15-G513QC-Ryzen-7-5800H-RTX-3050-01.jpg'),
-(14, 'ASUS', 'Laptop ASUS TUF Gaming F15', 19990000, 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA RTX 3050 4GB', 'https://cdn.tgdd.vn/Products/Images/44/304867/asus-tuf-gaming-f15-fx506hf-i5-hn014w-thumb-600x600.jpg'),
-(15, 'ASUS', 'Laptop ASUS ZenBook 14', 23490000, 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn2.cellphones.com.vn/x/media/catalog/product/a/s/asus-zenbook-14-oled-ux3405ma-ultra-5-pp151w-3_1_2.jpg');
+INSERT INTO `products` (`id`, `brand`, `name`, `price`, `cpu`, `ram`, `screen`, `gpu`, `image`, `is_visible`) VALUES
+(1, 'LENOVO', 'Laptop Lenovo Legion 5', '25.990.000', 'Intel Core i7-12700H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3060 6GB', 'https://www.czone.com.pk/images/products/2-czone.com.pk-1540-15972-130524091332.jpg', 1),
+(2, 'LENOVO', 'Laptop Lenovo IdeaPad Gaming 3', '25.990.000', 'AMD Ryzen 5 5600H', '8GB DDR4', '120Hz', 'NVIDIA GTX 1650 4GB', 'https://i5.walmartimages.com/asr/34d78811-9da7-40fe-bafb-0a7aa8b502b1.b3d84a8004ebf89d1e054d167e285e40.jpeg', 1),
+(3, 'LENOVO', 'Laptop Lenovo ThinkPad X1 Gen 10', '25.990.000', 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://www.notebookcheck.it/fileadmin/Notebooks/News/_nc3/Legion_Slim_5_Misty_Grey_RGB_03.jpg', 1),
+(4, 'MSI', 'Laptop MSI Katana GF66', '25.990.000', 'Intel Core i7-12650H', '16GB DDR4', '144Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://nguyencongpc.vn/media/lib/29-10-2022/laptopmsigamingkatanagf6612uck-804vn5.jpeg', 1),
+(5, 'MSI', 'Laptop MSI Stealth 15M', '25.990.000', 'Intel Core i7-12700H', '16GB DDR5', '240Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://www.tncstore.vn/media/product/4907-laptop-msi-gaming-stealth-a11sdk-061vn-1.jpg', 1),
+(6, 'MSI', 'Laptop MSI Modern 14', '25.990.000', 'Intel Core i5-1155G7', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/304539/msi-modern-14-c11m-i3-011vn-040523-124356-600x600.jpg', 1),
+(7, 'DELL', 'Laptop Dell XPS 15', '25.990.000', 'Intel Core i9-12900HK', '32GB DDR5', '120Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://tramanh.vn/wp-content/uploads/2023/09/dell-xps-15-9530-2023-2.jpg', 1),
+(8, 'DELL', 'Laptop Dell Inspiron 16', '25.990.000', 'Intel Core i5-1240P', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/303834/dell-inspiron-16-prostitu5620-i5-p1wkn-thumb-600x600.jpg', 1),
+(9, 'DELL', 'Laptop Dell Alienware m15 R6', '25.990.000', 'Intel Core i9-12900H', '32GB DDR5', '240Hz', 'NVIDIA RTX 3080 Ti 12GB', 'https://ttcenter.com.vn/uploads/product/8zceq6pa-1277-dell-alienware-m15-r6-p109f001cbl-core-i7-11800h-rtx-3060-6gb-ram-32gb-ssd-1tb-15-6-240hz-qhd-new.jpeg', 1),
+(10, 'HP', 'Laptop HP Omen 16', '25.990.000', 'AMD Ryzen 7 6800H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://ttcenter.com.vn/uploads/photos/1712223903_2760_576e5550635fd8081c3d041e2b977bb8.jpg', 1),
+(11, 'HP', 'Laptop HP Victus 15', '25.990.000', 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA GTX 1650 4GB', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtryeE9tb0O3BnyBxCC6kpnNkT8qQRqnje2g&s', 1),
+(12, 'HP', 'Laptop HP Envy 13', '25.990.000', 'Intel Core i7-1165G7', '16GB LPDDR4X', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/232172/hp-envy-13-ba1028tu-i5-2k0b2pa-080921-085147-600x600.jpg', 1),
+(13, 'ASUS', 'Laptop ASUS ROG Strix G15', '25.990.000', 'AMD Ryzen 9 6900HX', '32GB DDR5', '300Hz', 'NVIDIA RTX 3080 10GB', 'https://gamalaptop.vn/wp-content/uploads/2021/10/ASUS-ROG-Strix-G15-G513QC-Ryzen-7-5800H-RTX-3050-01.jpg', 1),
+(14, 'ASUS', 'Laptop ASUS TUF Gaming F15', '25.990.000', 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA RTX 3050 4GB', 'https://cdn.tgdd.vn/Products/Images/44/304867/asus-tuf-gaming-f15-fx506hf-i5-hn014w-thumb-600x600.jpg', 1),
+(15, 'ASUS', 'Laptop ASUS ZenBook 14', '25.990.000', 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn2.cellphones.com.vn/x/media/catalog/product/a/s/asus-zenbook-14-oled-ux3405ma-ultra-5-pp151w-3_1_2.jpg', 1);
 
 -- --------------------------------------------------------
 
