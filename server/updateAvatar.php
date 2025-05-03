@@ -30,7 +30,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
       $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
       $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-      $maxFileSize = 2 * 1024 * 1024; // 2MB (ví dụ)
+      $maxFileSize = 2 * 1024 * 1024; // 2MB
 
       if (!in_array($fileExtension, $allowedExtensions)) {
         echo json_encode(["success" => false, "message" => "Chỉ chấp nhận các định dạng: " . implode(", ", $allowedExtensions)]);
