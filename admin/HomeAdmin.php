@@ -42,6 +42,7 @@
                             <th>Tên Sản Phẩm</th>
                             <th>Giá</th>
                             <th>Hình Ảnh</th>
+                            <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </thead>
@@ -54,12 +55,12 @@
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
-                        $count_sql = "SELECT COUNT(*) as total FROM products";
+                        $count_sql = "SELECT COUNT(*) as total FROM products WHERE is_visible = 1";
                         $count_result = $conn->query($count_sql);
                         $total_records = $count_result->fetch_assoc()['total'];
                         $total_pages = ceil($total_records / $records_per_page);
 
-                        $sql = "SELECT * FROM products ORDER BY id DESC LIMIT ? OFFSET ?";
+                        $sql = "SELECT * FROM products WHERE is_visible = 1 ORDER BY id DESC LIMIT ? OFFSET ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("ii", $records_per_page, $offset);
                         $stmt->execute();
@@ -73,14 +74,15 @@
                                 echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['price']) . "</td>";
                                 echo "<td><img src='" . htmlspecialchars($row['image']) . "' alt='Product' width='50' /></td>";
+                                echo "<td>" . ($row['is_visible'] ? "Hiển thị" : "Ẩn") . "</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning btn-sm edit-product' data-id='" . $row['id'] . "'>Sửa</button> ";
-                                echo "<button class='btn btn-danger btn-sm delete-product' data-id='" . $row['id'] . "'>Xóa</button>";
+                                echo "<button class='btn btn-secondary btn-sm toggle-product-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='5' class='text-center'>Không có sản phẩm nào.</td></tr>";
+                            echo "<tr><td colspan='6' class='text-center'>Không có sản phẩm nào.</td></tr>";
                         }
 
                         $stmt->close();
@@ -117,6 +119,7 @@
                             <th>Mô Tả Ngắn</th>
                             <th>Hình Ảnh</th>
                             <th>Slug</th>
+                            <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </thead>
@@ -126,12 +129,12 @@
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
-                        $count_sql = "SELECT COUNT(*) as total FROM articles";
+                        $count_sql = "SELECT COUNT(*) as total FROM articles WHERE is_visible = 1";
                         $count_result = $conn->query($count_sql);
                         $total_records = $count_result->fetch_assoc()['total'];
                         $total_pages = ceil($total_records / $records_per_page);
 
-                        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT ? OFFSET ?";
+                        $sql = "SELECT * FROM articles WHERE is_visible = 1 ORDER BY id DESC LIMIT ? OFFSET ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("ii", $records_per_page, $offset);
                         $stmt->execute();
@@ -146,14 +149,15 @@
                                 echo "<td>" . htmlspecialchars($row['excerpt']) . "</td>";
                                 echo "<td><img src='" . htmlspecialchars($row['thumbnail']) . "' alt='Article' width='50' /></td>";
                                 echo "<td>" . htmlspecialchars($row['slug']) . "</td>";
+                                echo "<td>" . ($row['is_visible'] ? "Hiển thị" : "Ẩn") . "</td>";
                                 echo "<td>";
                                 echo "<button class='btn btn-warning btn-sm edit-article' data-id='" . $row['id'] . "'>Sửa</button> ";
-                                echo "<button class='btn btn-danger btn-sm delete-article' data-id='" . $row['id'] . "'>Xóa</button>";
+                                echo "<button class='btn btn-secondary btn-sm toggle-article-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='6' class='text-center'>Không có tin tức nào.</td></tr>";
+                            echo "<tr><td colspan='7' class='text-center'>Không có tin tức nào.</td></tr>";
                         }
 
                         $stmt->close();
