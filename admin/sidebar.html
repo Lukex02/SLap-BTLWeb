@@ -163,6 +163,10 @@
           item.classList.add("active");
         }
       });
+      document.querySelector(".sidebar-hide").addEventListener("click", () => {
+        document.querySelector("#sidebar").classList.remove("active");
+        document.querySelector(".sidebar-backdrop").remove();
+      });
     });
   </script>
   <script src="assets/compiled/js/app.js"></script>
