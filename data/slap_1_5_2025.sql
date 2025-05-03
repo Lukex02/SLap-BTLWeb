@@ -118,7 +118,7 @@ INSERT INTO `products` (`id`, `brand`, `name`, `price`, `cpu`, `ram`, `screen`, 
 (5, 'MSI', 'Laptop MSI Stealth 15M', 37990000, 'Intel Core i7-12700H', '16GB DDR5', '240Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://www.tncstore.vn/media/product/4907-laptop-msi-gaming-stealth-a11sdk-061vn-1.jpg'),
 (6, 'MSI', 'Laptop MSI Modern 14', 14990000, 'Intel Core i5-1155G7', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/304539/msi-modern-14-c11m-i3-011vn-040523-124356-600x600.jpg'),
 (7, 'DELL', 'Laptop Dell XPS 15', 39990000, 'Intel Core i9-12900HK', '32GB DDR5', '120Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://tramanh.vn/wp-content/uploads/2023/09/dell-xps-15-9530-2023-2.jpg'),
-(8, 'DELL', 'Laptop Dell Inspiron 16', 17990000, 'Intel Core i5-1240P', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/303834/dell-inspiron-16-5620-i5-p1wkn-thumb-600x600.jpg'),
+(8, 'DELL', 'Laptop Dell Inspiron 16', 17990000, 'Intel Core i5-1240P', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/303834/dell-inspiron-16 prostitu5620-i5-p1wkn-thumb-600x600.jpg'),
 (9, 'DELL', 'Laptop Dell Alienware m15 R6', 45990000, 'Intel Core i9-12900H', '32GB DDR5', '240Hz', 'NVIDIA RTX 3080 Ti 12GB', 'https://ttcenter.com.vn/uploads/product/8zceq6pa-1277-dell-alienware-m15-r6-p109f001cbl-core-i7-11800h-rtx-3060-6gb-ram-32gb-ssd-1tb-15-6-240hz-qhd-new.jpeg'),
 (10, 'HP', 'Laptop HP Omen 16', 27490000, 'AMD Ryzen 7 6800H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://ttcenter.com.vn/uploads/photos/1712223903_2760_576e5550635fd8081c3d041e2b977bb8.jpg'),
 (11, 'HP', 'Laptop HP Victus 15', 18990000, 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA GTX 1650 4GB', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtryeE9tb0O3BnyBxCC6kpnNkT8qQRqnje2g&s'),
@@ -172,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `address` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -179,17 +180,17 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `full_name`, `email`, `phone`, `address`, `message`, `created_at`) VALUES
-(1, 'Nguyễn Văn An', 'nguyenvanan@gmail.com', '0905123456', '123 Đường Láng, Đống Đa, Hà Nội', 'Tôi muốn hỏi về dịch vụ của bạn.', '2025-04-01 10:00:00'),
-(2, 'Trần Thị Bình', 'tranbinh123@yahoo.com', '0987654321', '45 Nguyễn Huệ, TP Huế', 'Vui lòng liên hệ tôi để tư vấn.', '2025-04-02 14:30:00'),
-(3, 'Lê Minh Châu', 'leminhchau@outlook.com', '0912345678', '78 Trần Phú, Nha Trang, Khánh Hòa', 'Tôi cần hỗ trợ kỹ thuật gấp!', '2025-04-03 09:15:00'),
-(4, 'Phạm Quốc Đạt', 'phamquocdat@gmail.com', '0935123456', '12 Lê Lợi, Quận 1, TP.HCM', 'Dịch vụ rất tốt, tôi muốn hợp tác lâu dài.', '2025-04-04 16:20:00'),
-(5, 'Hoàng Thị E', 'hoangthie@hotmail.com', '0978123456', '56 Phạm Văn Đồng, Đà Nẵng', 'Tôi có thắc mắc về giá cả sản phẩm.', '2025-04-05 11:45:00'),
-(6, 'Đỗ Văn Phong', 'dovanphong@gmail.com', '0923456789', '89 Nguyễn Trãi, Thanh Hóa', 'Làm thế nào để đăng ký dịch vụ?', '2025-04-06 13:00:00'),
-(7, 'Nguyễn Thị Hồng', 'nguyenhong99@gmail.com', '0965432109', '34 Hùng Vương, Hải Phòng', 'Tôi cần thêm thông tin chi tiết.', '2025-04-07 08:30:00'),
-(8, 'Trần Quốc Khánh', 'tranquockhanh@outlook.com', '0941234567', '67 Điện Biên Phủ, Bình Thạnh, TP.HCM', 'Dịch vụ của bạn có giao hàng không?', '2025-04-08 15:10:00'),
-(9, 'Lê Thị Mai', 'lethimai@yahoo.com', '0956789012', '23 Nguyễn Văn Cừ, Cần Thơ', 'Tôi muốn hủy đơn hàng đã đặt.', '2025-04-09 17:00:00'),
-(10, 'Vũ Văn Nam', 'vuvannam@gmail.com', '0919876543', '90 Lý Thường Kiệt, Đà Lạt', 'Cảm ơn đội ngũ hỗ trợ rất nhiệt tình!', '2025-04-10 12:25:00');
+INSERT INTO `contacts` (`id`, `full_name`, `email`, `phone`, `address`, `message`, `created_at`, `is_read`) VALUES
+(1, 'Nguyễn Văn An', 'nguyenvanan@gmail.com', '0905123456', '123 Đường Láng, Đống Đa, Hà Nội', 'Tôi muốn hỏi về dịch vụ của bạn.', '2025-04-01 10:00:00', 0),
+(2, 'Trần Thị Bình', 'tranbinh123@yahoo.com', '0987654321', '45 Nguyễn Huệ, TP Huế', 'Vui lòng liên hệ tôi để tư vấn.', '2025-04-02 14:30:00', 0),
+(3, 'Lê Minh Châu', 'leminhchau@outlook.com', '0912345678', '78 Trần Phú, Nha Trang, Khánh Hòa', 'Tôi cần hỗ trợ kỹ thuật gấp!', '2025-04-03 09:15:00', 0),
+(4, 'Phạm Quốc Đạt', 'phamquocdat@gmail.com', '0935123456', '12 Lê Lợi, Quận 1, TP.HCM', 'Dịch vụ rất tốt, tôi muốn hợp tác lâu dài.', '2025-04-04 16:20:00', 0),
+(5, 'Hoàng Thị E', 'hoangthie@hotmail.com', '0978123456', '56 Phạm Văn Đồng, Đà Nẵng', 'Tôi có thắc mắc về giá cả sản phẩm.', '2025-04-05 11:45:00', 0),
+(6, 'Đỗ Văn Phong', 'dovanphong@gmail.com', '0923456789', '89 Nguyễn Trãi, Thanh Hóa', 'Làm thế nào để đăng ký dịch vụ?', '2025-04-06 13:00:00', 0),
+(7, 'Nguyễn Thị Hồng', 'nguyenhong99@gmail.com', '0965432109', '34 Hùng Vương, Hải Phòng', 'Tôi cần thêm thông tin chi tiết.', '2025-04-07 08:30:00', 0),
+(8, 'Trần Quốc Khánh', 'tranquockhanh@outlook.com', '0941234567', '67 Điện Biên Phủ, Bình Thạnh, TP.HCM', 'Dịch vụ của bạn có giao hàng không?', '2025-04-08 15:10:00', 0),
+(9, 'Lê Thị Mai', 'lethimai@yahoo.com', '0956789012', '23 Nguyễn Văn Cừ, Cần Thơ', 'Tôi muốn hủy đơn hàng đã đặt.', '2025-04-09 17:00:00', 0),
+(10, 'Vũ Văn Nam', 'vuvannam@gmail.com', '0919876543', '90 Lý Thường Kiệt, Đà Lạt', 'Cảm ơn đội ngũ hỗ trợ rất nhiệt tình!', '2025-04-10 12:25:00', 0);
 
 COMMIT;
 
