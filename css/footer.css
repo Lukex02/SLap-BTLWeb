@@ -1,0 +1,124 @@
+#footer {
+    background-color: #000000; /* Footer nền đen */
+    color: #ffffff; /* Chữ trắng */
+    padding: 40px 0;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    clear: both;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.footer-left,
+.footer-middle,
+.footer-right {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-left h2 {
+    color: #e60000; /* Tên website màu đỏ */
+    margin-bottom: 15px;
+}
+
+.footer-left p {
+    font-size: 14px;
+}
+
+.footer-middle h3,
+.footer-right h3 {
+    color: #e60000; /* Tiêu đề Links, Follow Us màu đỏ */
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-middle ul,
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-middle li,
+.footer-right li {
+    margin-bottom: 10px;
+}
+
+.footer-middle a,
+.footer-right a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-middle a:hover,
+.footer-right a:hover {
+    color: #e60000; /* Hover link màu đỏ */
+    text-decoration: underline;
+}
+
+.footer__list-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer__list-social img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer__list-social img:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-middle,
+    .footer-right {
+        margin-bottom: 30px;
+    }
+}
+
+/* Thêm CSS để đảm bảo footer luôn ở dưới cùng */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main, .container, .content {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: 0;
+}
