@@ -11,7 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -54,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
 INSERT INTO `articles` (`id`, `title`, `slug`, `author_name`, `author_avatar`, `category`, `tags`, `published_at`, `updated_at`, `content`, `excerpt`, `thumbnail`, `likes`) VALUES
 (2000, 'Hướng dẫn chọn Laptop', 'huong-dan-chon-laptop', 'Mã Thiên Lý', '/pic/def_author_ava.jpg', 'Laptop', 'laptop,giá rẻ,sinh viên', '2025-04-18 15:59:59', '2025-04-18 16:04:03', '<p>Đừng mua</p>', 'Chọn mua laptop cho sinh viên...', '/pic/prop_laptop.jpg', 0),
 (2001, 'abc', 'abc', 'Ẩn danh', '/pic/def_author_ava.jpg', '', '', '2025-04-24 04:16:47', '2025-04-24 04:16:47', '', '', '/pic/prop_laptop.jpg', 0),
-(2002, 'Build PC 2025', 'build-pc-2025', 'A Liet', '/pic/def_author_ava.jpg', 'PC', 'pc,build', '2025-04-24 05:28:27', '2025-04-24 05:28:27', '<h1>Wait till 2028 for DDR6</h1>\r\n<h4>Intel might be good</h4>\r\n<p>Maybe atleast <em>32GB</em> <strong>RAM</strong></p>', 'How to build pc in 2025', '/pic/prop_laptop.jpg', 0);
-(2003, 'Mẹo chọn máy tính hay', '123', 'NguyenVanA', '','','','')
+(2002, 'Build PC 2025', 'build-pc-2025', 'A Liet', '/pic/def_author_ava.jpg', 'PC', 'pc,build', '2025-04-24 05:28:27', '2025-04-24 05:28:27', '<h1>Wait till 2028 for DDR6</h1>\r\n<h4>Intel might be good</h4>\r\n<p>Maybe atleast <em>32GB</em> <strong>RAM</strong></p>', 'How to build pc in 2025', '/pic/prop_laptop.jpg', 0),
+(2003, 'Mẹo chọn máy tính', 'meo-chon-may-tinh', 'A Liet', '/pic/def_author_ava.jpg', 'PC', 'pc,build', '2025-04-24 05:28:27', '2025-04-24 05:28:27', '<h1>Wait till 2028 for DDR6</h1>\r\n<h4>Intel might be good</h4>\r\n<p>Maybe atleast <em>32GB</em> <strong>RAM</strong></p>', 'How to build pc in 2025', '/pic/prop_laptop.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -64,12 +63,13 @@ INSERT INTO `articles` (`id`, `title`, `slug`, `author_name`, `author_avatar`, `
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(4) DEFAULT NULL,
+  `id` int(4) NOT NULL AUTO_INCREMENT,
   `user_id` int(6) DEFAULT NULL,
   `article_id` int(4) DEFAULT NULL,
   `content` varchar(54) DEFAULT NULL,
-  `created_at` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9900 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `comments`
@@ -157,31 +157,41 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`)
 (100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
 (100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0),
 (100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `full_name`, `email`, `phone`, `address`, `message`, `created_at`) VALUES
+(1, 'Nguyễn Văn An', 'nguyenvanan@gmail.com', '0905123456', '123 Đường Láng, Đống Đa, Hà Nội', 'Tôi muốn hỏi về dịch vụ của bạn.', '2025-04-01 10:00:00'),
+(2, 'Trần Thị Bình', 'tranbinh123@yahoo.com', '0987654321', '45 Nguyễn Huệ, TP Huế', 'Vui lòng liên hệ tôi để tư vấn.', '2025-04-02 14:30:00'),
+(3, 'Lê Minh Châu', 'leminhchau@outlook.com', '0912345678', '78 Trần Phú, Nha Trang, Khánh Hòa', 'Tôi cần hỗ trợ kỹ thuật gấp!', '2025-04-03 09:15:00'),
+(4, 'Phạm Quốc Đạt', 'phamquocdat@gmail.com', '0935123456', '12 Lê Lợi, Quận 1, TP.HCM', 'Dịch vụ rất tốt, tôi muốn hợp tác lâu dài.', '2025-04-04 16:20:00'),
+(5, 'Hoàng Thị E', 'hoangthie@hotmail.com', '0978123456', '56 Phạm Văn Đồng, Đà Nẵng', 'Tôi có thắc mắc về giá cả sản phẩm.', '2025-04-05 11:45:00'),
+(6, 'Đỗ Văn Phong', 'dovanphong@gmail.com', '0923456789', '89 Nguyễn Trãi, Thanh Hóa', 'Làm thế nào để đăng ký dịch vụ?', '2025-04-06 13:00:00'),
+(7, 'Nguyễn Thị Hồng', 'nguyenhong99@gmail.com', '0965432109', '34 Hùng Vương, Hải Phòng', 'Tôi cần thêm thông tin chi tiết.', '2025-04-07 08:30:00'),
+(8, 'Trần Quốc Khánh', 'tranquockhanh@outlook.com', '0941234567', '67 Điện Biên Phủ, Bình Thạnh, TP.HCM', 'Dịch vụ của bạn có giao hàng không?', '2025-04-08 15:10:00'),
+(9, 'Lê Thị Mai', 'lethimai@yahoo.com', '0956789012', '23 Nguyễn Văn Cừ, Cần Thơ', 'Tôi muốn hủy đơn hàng đã đặt.', '2025-04-09 17:00:00'),
+(10, 'Vũ Văn Nam', 'vuvannam@gmail.com', '0919876543', '90 Lý Thường Kiệt, Đà Lạt', 'Cảm ơn đội ngũ hỗ trợ rất nhiệt tình!', '2025-04-10 12:25:00');
+
 COMMIT;
-
-CREATE TABLE IF NOT EXISTS contacts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO contacts (full_name, email, phone, address, message, created_at) VALUES
-('Nguyễn Văn An', 'nguyenvanan@gmail.com', '0905123456', '123 Đường Láng, Đống Đa, Hà Nội', 'Tôi muốn hỏi về dịch vụ của bạn.', '2025-04-01 10:00:00'),
-('Trần Thị Bình', 'tranbinh123@yahoo.com', '0987654321', '45 Nguyễn Huệ, TP Huế', 'Vui lòng liên hệ tôi để tư vấn.', '2025-04-02 14:30:00'),
-('Lê Minh Châu', 'leminhchau@outlook.com', '0912345678', '78 Trần Phú, Nha Trang, Khánh Hòa', 'Tôi cần hỗ trợ kỹ thuật gấp!', '2025-04-03 09:15:00'),
-('Phạm Quốc Đạt', 'phamquocdat@gmail.com', '0935123456', '12 Lê Lợi, Quận 1, TP.HCM', 'Dịch vụ rất tốt, tôi muốn hợp tác lâu dài.', '2025-04-04 16:20:00'),
-('Hoàng Thị E', 'hoangthie@hotmail.com', '0978123456', '56 Phạm Văn Đồng, Đà Nẵng', 'Tôi có thắc mắc về giá cả sản phẩm.', '2025-04-05 11:45:00'),
-('Đỗ Văn Phong', 'dovanphong@gmail.com', '0923456789', '89 Nguyễn Trãi, Thanh Hóa', 'Làm thế nào để đăng ký dịch vụ?', '2025-04-06 13:00:00'),
-('Nguyễn Thị Hồng', 'nguyenhong99@gmail.com', '0965432109', '34 Hùng Vương, Hải Phòng', 'Tôi cần thêm thông tin chi tiết.', '2025-04-07 08:30:00'),
-('Trần Quốc Khánh', 'tranquockhanh@outlook.com', '0941234567', '67 Điện Biên Phủ, Bình Thạnh, TP.HCM', 'Dịch vụ của bạn có giao hàng không?', '2025-04-08 15:10:00'),
-('Lê Thị Mai', 'lethimai@yahoo.com', '0956789012', '23 Nguyễn Văn Cừ, Cần Thơ', 'Tôi muốn hủy đơn hàng đã đặt.', '2025-04-09 17:00:00'),
-('Vũ Văn Nam', 'vuvannam@gmail.com', '0919876543', '90 Lý Thường Kiệt, Đà Lạt', 'Cảm ơn đội ngũ hỗ trợ rất nhiệt tình!', '2025-04-10 12:25:00');
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
