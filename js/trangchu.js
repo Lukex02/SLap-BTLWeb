@@ -1,6 +1,6 @@
 async function fetchProducts() {
   try {
-    const response = await fetch("/server/getProductList.php", {
+    const response = await fetch("/server/getProductListHome.php", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ async function fetchProducts() {
 
 async function fetchPromotions() {
   try {
-    const response = await fetch("/server/getArticleList.php", {
+    const response = await fetch("/server/getArticleListHome.php", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
