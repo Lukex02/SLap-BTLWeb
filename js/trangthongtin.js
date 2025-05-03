@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (files && files[0]) {
       const formData = new FormData();
       formData.append("avatar", files[0]);
+      formData.append("csrf_token", document.getElementById("csrf_token").value);
       fetch("/server/updateAvatar.php", {
         method: "POST",
         body: formData,
@@ -77,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           if (data.success) {
             alert(data.message);
+            window.location.reload();
           } else {
             alert(data.message);
           }
@@ -231,6 +233,7 @@ function handleFormSubmit(e) {
 
   // Lấy dữ liệu từ form
   const formData = {
+    csrf_token: document.getElementById("csrf_token").value,
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
     oldPassword: document.getElementById("old-password").value,
@@ -254,6 +257,7 @@ function handleFormSubmit(e) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      csrf_token: formData.csrf_token,
       username: formData.name,
       email: formData.email,
       oldPassword: formData.oldPassword,

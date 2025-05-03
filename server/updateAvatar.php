@@ -3,6 +3,13 @@ session_start();
 require "import.php";
 header("Content-Type: application/json"); // Định dạng JSON
 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+  if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    echo json_encode(["success" => false, "message" => "Token CSRF không hợp lệ"]);
+    exit;
+  }
+}
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['user_id'])) {
   $loggedInUserId = $_SESSION['user_id'];
 

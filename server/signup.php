@@ -1,5 +1,6 @@
 <?php
 require_once "import.php";
+session_start();
 header("Content-Type: application/json"); // Định dạng JSON
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data);
@@ -23,12 +24,6 @@ if ($username && $email && $password) {
     $stmt->execute();
     $user_id = $conn->insert_id;
 
-    // $token = bin2hex(random_bytes(16));
-    // $stmt = $conn->prepare("INSERT INTO tokens (user_id, token) VALUES (?, ?)");
-    // $stmt->bind_param("ss", $user_id, $token);
-    // $stmt->execute();
-
-    session_start();
     $sessionID = session_id();
 
     // Setup cookies
@@ -42,6 +37,7 @@ if ($username && $email && $password) {
 
     // Setup session
     $_SESSION['user_id'] = $user_id;
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     $_SESSION['loggedin'] = true;
 
     echo json_encode([

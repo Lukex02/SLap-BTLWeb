@@ -1,7 +1,9 @@
 <?php
 include "import.php";
-$id = isset($_GET["id"]) ? (int) $_GET["id"] : null;
-$id = $conn->real_escape_string($id);
+$json_data = file_get_contents('php://input');
+$data = json_decode($json_data);
+
+$id = $data->id;
 
 if ($id != null) {
   // header("Content-Type: application/json"); // Định dạng JSON

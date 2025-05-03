@@ -97,7 +97,15 @@ function uploadArticle() {
 }
 // Delete Articles
 function deleteArticle(id) {
-  fetch("/server/deleteArticle.php?id=" + id)
+  fetch("/server/deleteArticle.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+  })
     .then((response) => response.text())
     .then((data) => {
       if (data) {
@@ -136,6 +144,7 @@ document.getElementById("edit-form").addEventListener("submit", function (event)
   this.appendChild(hiddenInput);
   this.appendChild(tagElement);
   const formData = new FormData(this);
+  formData.append("csrf_token", "<?php echo $_SESSION['csrf_token']; ?>");
 
   fetch("/server/setArticle.php", {
     method: this.method,
