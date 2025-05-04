@@ -45,7 +45,6 @@ async function fetchPromotions() {
 }
 
 async function displayProducts() {
-  console.log("displayProducts called");
   const productList = document.getElementById("product-list");
   productList.innerHTML = ""; // Xóa nội dung cũ
 
@@ -98,9 +97,7 @@ async function displayProducts() {
   document.querySelectorAll(".product-card .btn").forEach((button) => {
     button.addEventListener("click", () => {
       const productName = button.getAttribute("data-name");
-      window.location.href = `/page/Product.php?name=${encodeURIComponent(
-        productName
-      )}`;
+      window.location.href = `/page/Product.php?name=${encodeURIComponent(productName)}`;
     });
   });
 
@@ -109,7 +106,6 @@ async function displayProducts() {
 }
 
 async function displayPromotions() {
-  console.log("displayPromotions called");
   const promotionGrid = document.getElementById("promotion-list");
   promotionGrid.innerHTML = ""; // Xóa nội dung cũ
 
@@ -141,9 +137,7 @@ async function displayPromotions() {
   document.querySelectorAll(".promotion-card .btn").forEach((button) => {
     button.addEventListener("click", () => {
       const promoSlug = button.getAttribute("data-slug");
-      window.location.href = `/page/article.php?slug=${encodeURIComponent(
-        promoSlug
-      )}`;
+      window.location.href = `/page/article.php?slug=${encodeURIComponent(promoSlug)}`;
     });
   });
 }
@@ -185,7 +179,6 @@ window.addEventListener("resize", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOMContentLoaded triggered");
   displayProducts();
   displayPromotions();
 });
