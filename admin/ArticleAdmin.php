@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/css/articleList.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
-    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
+    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
     <script src="/js/adminCheck.js"></script>
 </head>
 
