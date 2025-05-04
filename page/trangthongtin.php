@@ -46,14 +46,17 @@
           <label for="password">Nhập lại mật khẩu</label>
           <div class="password-input">
             <input type="password" id="old-password" />
+            <button type="button" class="toggle-password visually-hidden" id="toggleOldPassword">
+              <i class="fas fa-eye"></i>
+            </button>
           </div>
         </div>
 
-        <div class="form-group password-group">
+        <div class="form-group password-group" id="new-password-container">
           <label for="password">Mật khẩu mới</label>
           <div class="password-input">
             <input type="password" id="password" readonly />
-            <button type="button" class="toggle-password" id="togglePassword">
+            <button type="button" class="toggle-password visually-hidden" id="toggleNewPassword">
               <i class="fas fa-eye"></i>
             </button>
           </div>
@@ -67,7 +70,14 @@
       </form>
 
       <!-- Các action khác -->
-      <div class="d-flex">
+      <div class="d-flex justify-content-between flex-column">
+        <div class="avatar-container position-relative d-inline-flex" style="height: 10rem; width: 10rem;">
+          <img id="avatar" alt="Avatar của bạn" class="rounded-circle">
+          <div class="avatar-overlay rounded-circle" id="avatar-overlay">
+            Thay đổi avatar
+          </div>
+          <input type="file" id="input-avatar" class="visually-hidden" accept="image/*" name="avatar">
+        </div>
         <div class="user-actions">
           <div class="action-card" id="logoutBtn">
             <div class="action-icon">
