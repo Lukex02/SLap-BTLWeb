@@ -8,48 +8,23 @@
   <div class="d-flex justify-content-between top-bar">
     <span class="hotline">Hotline: 09xxxxxx</span>
     <div class="info" style="display: none" id="info">
-      <a
-        class="user_id"
-        href="/user"
-        id="username"
-        onmouseover="this.style.color='#007bff'"
-        onmouseout="this.style.color='#333'"
-        aria-label="To account page"
-      ></a>
-      <a
-        href="/cart"
-        onmouseover="this.style.color='#007bff'"
-        onmouseout="this.style.color='#333'"
-        aria-label="To cart page"
-        ><i class="bi bi-cart4"></i
-      ></a>
-      <a
-        href="/admin"
-        id="adminLink"
-        class="visually-hidden"
-        onmouseover="this.style.color='#007bff'"
-        onmouseout="this.style.color='#333'"
-        aria-label="To admin page"
+      <i class="bi bi-person-circle"></i>
+      <a class="user_id" href="/user" id="username"></a>
+      <a href="#" style="margin: 0"><i class="bi bi-cart4"></i></a>
+      <a href="/admin" style="margin: 0" id="adminLink" class="visually-hidden"
         ><i class="bi bi-person-fill-lock"></i
       ></a>
     </div>
   </div>
   <nav class="navbar">
     <div class="container">
-      <a href="/"
-        ><img
-          class="logo"
-          src="/pic/blockchain.png"
-          alt=""
-          onmouseover="this.style.transform='scale(1.05)'"
-          onmouseout="this.style.transform='scale(1)'"
-          aria-label="To home page"
-      /></a>
+      <a href="/"><img class="logo" src="/pic/blockchain.png" alt="" /></a>
       <div class="nav-links">
         <a href="/">Trang chủ</a>
         <a href="/productList">Sản phẩm</a>
         <a href="/articleList">Tin tức chung</a>
-        <a href="#">Giới thiệu</a>
+        <a href="/page/gioithieu.php">Giới thiệu</a>
+        <a href="/page/forum.php">Forum</a>
         <a href="/contact">Liên hệ</a>
       </div>
       <div class="auth-buttons">
@@ -63,9 +38,7 @@
       .then((data) => {
         if (data.success) {
           document.getElementById("info").style.display = "block";
-          document.getElementById("username").innerHTML =
-            `<i class="bi bi-person-circle"></i
-          > ` + data.username;
+          document.getElementById("username").innerHTML = data.username;
 
           // Đổi nút đăng nhập/đăng ký theo người dùng đã đăng nhập hay không sang đăng xuất
           const authBtn = document.getElementById("auth-btn");
