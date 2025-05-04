@@ -9,6 +9,9 @@ RewriteRule ^article$ /page/article.php [L]
 # Chuyển hướng /articleList → /page/articleList.php
 RewriteRule ^articleList$ /page/articleList.php [L]
 
+# Chuyển hướng /forum → /page/forum.php
+RewriteRule ^forum$ /page/forum.php [L]
+
 # Chuyển hướng /intro → /page/gioithieu.php
 RewriteRule ^intro$ /page/gioithieu.php [L]
 
