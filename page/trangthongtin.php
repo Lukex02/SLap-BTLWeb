@@ -13,9 +13,9 @@
   <?php session_start() ?>
 </head>
 
-<!-- Navigation -->
-<?php include "navbar.html" ?>
 <body>
+  <!-- Navigation -->
+  <?php include "navbar.html" ?>
 
   <div class="container">
     <!-- Breadcrumb navigation -->
@@ -91,6 +91,7 @@
       </div>
     </div>
   </div>
+  <!-- Footer --><?php include "footer.html" ?>
 
   <script src="/js/trangthongtin.js"></script>
 </body>

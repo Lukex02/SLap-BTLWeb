@@ -25,6 +25,8 @@
       <!-- Chi tiết sản phẩm sẽ được hiển thị ở đây -->
     </div>
   </div>
+  <!-- Footer -->
+  <?php include "footer.html" ?>
 
   <script>
     // Lấy thông tin sản phẩm từ URL

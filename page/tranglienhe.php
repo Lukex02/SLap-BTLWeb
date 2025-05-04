@@ -23,12 +23,14 @@
 
     <!-- Hiển thị thông báo -->
     <?php if (isset($_GET['status'])): ?>
-      <div class="alert <?php echo $_GET['status'] === 'success' ? 'alert-success' : 'alert-danger'; ?> alert-dismissible fade show" role="alert">
+      <div
+        class="alert <?php echo $_GET['status'] === 'success' ? 'alert-success' : 'alert-danger'; ?> alert-dismissible fade show"
+        role="alert">
         <?php
         if ($_GET['status'] === 'success') {
-            echo "Đã gửi liên hệ thành công!";
+          echo "Đã gửi liên hệ thành công!";
         } else {
-            echo htmlspecialchars(urldecode($_GET['message']));
+          echo htmlspecialchars(urldecode($_GET['message']));
         }
         ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -36,7 +38,7 @@
     <?php endif; ?>
 
     <div class="contact-form">
-      <form action="/page/process_contact.php" method="POST">
+      <form action="/server/process_contact.php" method="POST">
         <input type="text" name="full_name" placeholder="Họ tên*" required />
         <input type="email" name="email" placeholder="Email*" required />
         <input type="tel" name="phone" placeholder="Điện thoại*" required />
@@ -72,6 +74,9 @@
       </div>
     </div>
   </div>
+  <!-- Footer -->
+  <?php include "footer.html" ?>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

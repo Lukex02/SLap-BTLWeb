@@ -30,6 +30,8 @@
       </article>
     </div>
   </div>
+  <!-- Footer -->
+  <?php include "footer.html" ?>
   <script>
     // Lấy thông tin bài viết từ URL
     const urlParams = new URLSearchParams(window.location.search);

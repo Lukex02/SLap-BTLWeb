@@ -36,6 +36,8 @@
       <!-- Sản phẩm sẽ được hiển thị ở đây -->
     </div>
   </div>
+  <!-- Footer -->
+  <?php include "footer.html" ?>
 
   <script>
     let products = [];

@@ -13,6 +13,7 @@
   <?php
   include 'page/navbar.html';
   include 'page/trangchu.html';
+  include 'page/footer.html';
   ?>
 </body>
 
