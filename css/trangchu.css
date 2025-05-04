@@ -111,10 +111,16 @@ body {
   color: #333;
 }
 
+.product-details {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  color: #666;
+}
+
 .product-price {
   font-weight: bold;
   color: #e63946;
-  margin-bottom: 15px;
   font-size: 1.2rem;
 }
 

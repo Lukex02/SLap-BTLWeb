@@ -3,7 +3,7 @@ include "import.php";
 
 header("Content-Type: application/json"); // Định dạng JSON
 
-$get_all = "SELECT * FROM articles";
+$get_all = "SELECT * FROM products";
 $result = $conn->query($get_all);
 
 $data = [];
