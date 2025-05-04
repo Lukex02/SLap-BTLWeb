@@ -3,6 +3,13 @@ session_start();
 require "import.php";
 header("Content-Type: application/json"); // Định dạng JSON
 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+  if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    echo json_encode(["success" => false, "message" => "Token CSRF không hợp lệ"]);
+    exit;
+  }
+}
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['user_id'])) {
   $loggedInUserId = $_SESSION['user_id'];
 
@@ -23,7 +30,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
 
       $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
       $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-      $maxFileSize = 2 * 1024 * 1024; // 2MB (ví dụ)
+      $maxFileSize = 2 * 1024 * 1024; // 2MB
 
       if (!in_array($fileExtension, $allowedExtensions)) {
         echo json_encode(["success" => false, "message" => "Chỉ chấp nhận các định dạng: " . implode(", ", $allowedExtensions)]);

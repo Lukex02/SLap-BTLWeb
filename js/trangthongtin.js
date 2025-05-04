@@ -19,6 +19,73 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+  // Xử lý tải avatar
+  const inputAvatar = document.getElementById("input-avatar");
+  const dropZone = document.getElementById("avatar-overlay");
+  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+  });
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  ["dragenter", "dragover"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, highlight, false);
+  });
+
+  ["dragleave", "drop"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, unhighlight, false);
+  });
+
+  function highlight(e) {
+    dropZone.classList.add("drag-over");
+  }
+
+  function unhighlight(e) {
+    dropZone.classList.remove("drag-over");
+  }
+
+  dropZone.addEventListener("drop", handleDrop);
+  function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+
+    handleAvatarChange(files);
+  }
+
+  dropZone.addEventListener("click", () => {
+    inputAvatar.click();
+  });
+
+  inputAvatar.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+      handleAvatarChange(this.files);
+    }
+  });
+
+  function handleAvatarChange(files) {
+    if (files && files[0]) {
+      const formData = new FormData();
+      formData.append("avatar", files[0]);
+      formData.append("csrf_token", document.getElementById("csrf_token").value);
+      fetch("/server/updateAvatar.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert(data.message);
+            window.location.reload();
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.error("Lỗi tải dữ liệu:", error));
+    }
+  }
+
   // Xử lý nút chỉnh sửa thông tin
   const editInfoBtn = document.getElementById("editInfoBtn");
   editInfoBtn.addEventListener("click", enableEditing);
@@ -155,6 +222,7 @@ function handleFormSubmit(e) {
 
   // Lấy dữ liệu từ form
   const formData = {
+    csrf_token: document.getElementById("csrf_token").value,
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
     oldPassword: document.getElementById("old-password").value,
@@ -178,6 +246,7 @@ function handleFormSubmit(e) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      csrf_token: formData.csrf_token,
       username: formData.name,
       email: formData.email,
       oldPassword: formData.oldPassword,

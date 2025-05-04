@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="/css/trangthongtin.css" />
   <link rel="stylesheet" href="/css/breadcrumb.css" />
+  <?php session_start() ?>
 </head>
 
 <!-- Navigation -->
 <?php include "navbar.html" ?>
-
 <body>
 
   <div class="container">
@@ -31,6 +31,7 @@
     <div class="profile-container">
       <!-- Form thông tin người dùng -->
       <form class="user-info-form" id="userInfoForm">
+        <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <div class="form-group">
           <label for="name">Họ và tên</label>
           <input type="text" id="name" name="name" readonly />

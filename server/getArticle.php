@@ -13,6 +13,7 @@ $get_article = "SELECT articles.*,
                         comments.created_at AS comment_created_at,
                         (SELECT COUNT(*) FROM comments WHERE comments.article_id = articles.id) AS comments_count,
                         users.id AS user_id,
+                        users.avatar AS commenter_avatar,
                         users.username AS commenter_name
                 FROM articles
                 LEFT JOIN comments ON articles.id = comments.article_id
@@ -50,7 +51,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             'content' => $row['comment_content'],
             'created_at' => $row['comment_created_at'],
             'user_id' => $row['user_id'],
-            'commenter_avatar' => "/pic/def_author_avatar.png",
+            'commenter_avatar' => $row['commenter_avatar'],
             'commenter_name' => $row['commenter_name']
         ];
     }

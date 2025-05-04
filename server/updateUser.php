@@ -5,6 +5,13 @@ header("Content-Type: application/json"); // Định dạng JSON
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data);
 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+  if (!hash_equals($_SESSION['csrf_token'], $data->csrf_token)) {
+    echo json_encode(["success" => false, "message" => "Token CSRF không hợp lệ"]);
+    exit;
+  }
+}
+
 $username = $data->username;
 $email = $data->email;
 $oldPassword = $data->oldPassword;

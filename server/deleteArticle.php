@@ -1,7 +1,9 @@
 <?php
 include "import.php";
-$id = isset($_GET["id"]) ? (int) $_GET["id"] : null;
-$id = $conn->real_escape_string($id);
+$json_data = file_get_contents('php://input');
+$data = json_decode($json_data);
+
+$id = $data->id;
 
 if ($id != null) {
   // header("Content-Type: application/json"); // Định dạng JSON
@@ -25,6 +27,11 @@ if ($id != null) {
 
   $sql = "DELETE FROM articles WHERE id = ?";
   $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $id);
+  $stmt->execute();
+
+  $comment_sql = "DELETE FROM comments WHERE article_id = ?";
+  $stmt = $conn->prepare($comment_sql);
   $stmt->bind_param("i", $id);
   $stmt->execute();
 

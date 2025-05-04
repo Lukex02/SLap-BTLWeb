@@ -23,11 +23,12 @@
         <a href="/">Trang chủ</a>
         <a href="/productList">Sản phẩm</a>
         <a href="/articleList">Tin tức chung</a>
-        <a href="#">Giới thiệu</a>
+        <a href="/page/gioithieu.php">Giới thiệu</a>
+        <a href="/page/forum.php">Forum</a>
         <a href="/contact">Liên hệ</a>
       </div>
       <div class="auth-buttons">
-        <a href="/signin" class="btn register-btn">Đăng nhập/Đăng ký</a>
+        <a href="/signin" class="btn register-btn" id="auth-btn">Đăng nhập/Đăng ký</a>
       </div>
     </div>
   </nav>
@@ -38,6 +39,26 @@
         if (data.success) {
           document.getElementById("info").style.display = "block";
           document.getElementById("username").innerHTML = data.username;
+
+          // Đổi nút đăng nhập/đăng ký theo người dùng đã đăng nhập hay không sang đăng xuất
+          const authBtn = document.getElementById("auth-btn");
+          authBtn.innerHTML = "Đăng xuất";
+          authBtn.href = "/";
+          authBtn.addEventListener("click", () => {
+            if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+              fetch("/server/logout.php")
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.success) {
+                    alert(data.message);
+                  } else {
+                    alert(data.message);
+                  }
+                })
+                .catch((error) => console.error("Lỗi đăng xuất:", error));
+            }
+          });
+
           const adminLink = document.getElementById("adminLink");
           if (data.isAdmin) {
             adminLink.classList.remove("visually-hidden");
@@ -46,6 +67,9 @@
           }
         } else {
           console.log(data.message);
+          if (data.message == "Lock") {
+            alert("Tải khoản đang bị khóa và sẽ tự động logout, vui lòng liên hệ admin");
+          }
         }
       })
       .catch((error) => console.error("Lỗi tải dữ liệu:", error));

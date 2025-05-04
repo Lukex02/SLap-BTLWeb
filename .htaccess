@@ -9,6 +9,9 @@ RewriteRule ^article$ /page/article.php [L]
 # Chuyển hướng /articleList → /page/articleList.php
 RewriteRule ^articleList$ /page/articleList.php [L]
 
+# Chuyển hướng /cart → /page/Cart.php
+RewriteRule ^cart$ /page/Cart.php [L]
+
 # Chuyển hướng /product → /page/Product.php
 RewriteRule ^product$ /page/Product.php [L]
 

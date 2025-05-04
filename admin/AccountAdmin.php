@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product - SLap Admin Dashboard</title>
+  <title>Account - SLap Admin Dashboard</title>
 
   <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" />
   <link rel="shortcut icon"
@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css" />
 
   <link rel="stylesheet" href="assets/compiled/css/table-datatable.css" />
+  <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
+  <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
 
   <link rel="stylesheet" href="./assets/compiled/css/app.css" />
   <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
   <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
-  <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
   <script src="/js/adminCheck.js"></script>
 </head>
 
@@ -34,7 +35,7 @@
         </a>
       </header>
       <div class="page-heading">
-        <div class="page-title">
+        <div class="page-title mb-3">
           <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
               <h3>Quản lý tài khoản</h3>
@@ -60,15 +61,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Graiden</td>
-                    <td>vehicula.aliquet@semconsequat.co.uk</td>
-                    <td>076 4820 8838</td>
-                    <td>Offenburg</td>
-                    <td>
-                      <span class="badge bg-success">Active</span>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -84,9 +76,9 @@
   <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
   <script src="assets/compiled/js/app.js"></script>
+  <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 
   <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-  <script src="assets/static/js/pages/simple-datatables.js"></script>
   <script src="/js/adminAccount.js"></script>
 
 </body>

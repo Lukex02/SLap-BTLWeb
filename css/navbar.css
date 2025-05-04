@@ -17,12 +17,14 @@
   display: inline;
   white-space: nowrap;
   margin: 0;
+  font-size: 1rem;
 }
 
 .top-bar a {
   text-decoration: none;
   color: black;
-  margin: 0 20px;
+  margin: 0 5px;
+  font-size: 1rem;
 }
 
 .top-bar .cart {

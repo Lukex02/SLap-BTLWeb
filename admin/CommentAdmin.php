@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product - SLap Admin Dashboard</title>
+    <title>Comment - SLap Admin Dashboard</title>
 
     <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" />
     <link rel="shortcut icon"
@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
-    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
+    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
+
     <script src="/js/adminCheck.js"></script>
 </head>
 
@@ -53,8 +55,8 @@
                                         <i class="bi bi-menu-button-wide-fill me-3"></i>
                                         <label class="sidebar-label">Menu</label>
                                         <!-- sidebar menu  -->
-                                        <div class="list-group list-group-messages py-3">
-                                            <a href="#" class="list-group-item pt-0 active" id="inbox-menu">
+                                        <div class="list-group list-group-messages py-3" id="list-article">
+                                            <a href="#" class="list-group-item pt-0 active" id="menu-all">
                                                 <i class="bi bi-archive me-3"></i>
                                                 Tất cả
                                             </a>
@@ -152,6 +154,7 @@
     </script>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 
     <script src="assets/compiled/js/app.js"></script>
     <script src="/js/commentAdmin.js"></script>

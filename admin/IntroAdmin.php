@@ -19,7 +19,7 @@
 </head>
 
 
-<body>
+<body style="font-family: Arial, sans-serif;">
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         <?php include "sidebar.html" ?>
@@ -31,13 +31,52 @@
                 </a>
             </header>
             <!-- Từ đây là code của phần nội dung chính -->
+            <?php
+include "../server/import.php"; // File kết nối DB
 
+// Lấy dữ liệu hiện tại
+$result = $conn->query("SELECT * FROM intro_content WHERE id = 1");
+$data = $result->fetch_assoc();
+?>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý Giới Thiệu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="container mt-4">
+  <h1 class="mb-4">Chỉnh sửa Trang Giới Thiệu</h1>
+
+  <form action="../server/gioithieuUpdate.php" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Tiêu đề</label>
+      <input type="text" class="form-control" id="title" name="title" value="<?php echo htmlspecialchars($data['title']); ?>" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Ảnh hiện tại</label><br>
+      <img src="../pic/<?php echo htmlspecialchars($data['image']); ?>" width="200" class="mb-2"><br>
+      <input type="file" class="form-control" id="image" name="image">
+    </div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Nội dung</label>
+      <textarea class="form-control" id="content" name="content" rows="10" required><?php echo htmlspecialchars($data['content']); ?></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+  </form>
+</body>
+</html>
 
             <!-- Hết phần phần nội dung chính -->
         </div>
 
         <!-- Còn lại là template giữ nguyên -->
     </div>
+
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
