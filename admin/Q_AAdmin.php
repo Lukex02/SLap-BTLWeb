@@ -7,7 +7,7 @@ include '../server/import.php'; // Kết nối cơ sở dữ liệu
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product - SLap Admin Dashboard</title>
+    <title>Forum - SLap Admin Dashboard</title>
 
     <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />

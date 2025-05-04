@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page-heading email-application">
+            <div class="page-heading email-application overflow-auto">
                 <section class="section content-area-wrapper">
                     <div class="sidebar-left">
                         <div class="sidebar">
@@ -47,12 +47,13 @@
                                     <i class="bi bi-x"></i>
                                 </span>
                                 <!-- sidebar close icon -->
-                                <div class="email-app-menu">
+                                <div class="email-app-menu ">
                                     <div class="sidebar-menu-list ps">
                                         <i class="bi bi-menu-button-wide-fill me-3"></i>
                                         <label class="sidebar-label">Menu</label>
                                         <!-- sidebar menu  -->
-                                        <div class="list-group list-group-messages py-3" id="list-article">
+                                        <div class="list-group list-group-messages py-3 overflow-auto"
+                                            id="list-article">
                                             <a href="#" class="list-group-item pt-0 active" id="menu-all">
                                                 <i class="bi bi-archive me-3"></i>
                                                 Tất cả
@@ -61,6 +62,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; right: 0px">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div>
                         </div>
                     </div>
                     <div class="content-right col-9">
@@ -111,7 +118,8 @@
 
                                             <!-- email user list start -->
                                             <div class="email-user-list list-group ps ps--active-y bg-light">
-                                                <ul class="users-list-wrapper media-list" id="comment-container">
+                                                <ul class="users-list-wrapper media-list overflow-auto"
+                                                    id="comment-container">
 
                                                 </ul>
                                                 <!-- email user list end -->
@@ -152,9 +160,9 @@
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="assets/compiled/js/app.js"></script>
     <script src="/js/adminCheck.js"></script>
 
-    <script src="assets/compiled/js/app.js"></script>
     <script src="/js/commentAdmin.js"></script>
 </body>
 

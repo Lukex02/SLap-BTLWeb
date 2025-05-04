@@ -45,8 +45,8 @@ RewriteRule ^admin/contact$ /admin/contactAdmin.php [L]
 # Chuyển hướng /admin/intro → /admin/IntroAdmin.php
 RewriteRule ^admin/intro$ /admin/IntroAdmin.php [L]
 
-# Chuyển hướng /admin/q_a → /admin/Q_AAdmin.php
-RewriteRule ^admin/q_a$ /admin/Q_AAdmin.php [L]
+# Chuyển hướng /admin/forum → /admin/Q_AAdmin.php
+RewriteRule ^admin/forum$ /admin/Q_AAdmin.php [L]
 
 # Chuyển hướng /admin/product → /admin/ProductAdmin.php
 RewriteRule ^admin/product$ /admin/ProductAdmin.php [L]
