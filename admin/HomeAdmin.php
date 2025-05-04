@@ -35,8 +35,8 @@
             <!-- Products Section -->
             <div class="mt-4">
                 <h4>Danh Sách Sản Phẩm</h4>
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản
-                    Phẩm</button>
+                <!-- <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản
+                    Phẩm</button> -->
                 <table class="table table-bordered" id="product-table">
                     <thead>
                         <tr>
@@ -78,8 +78,8 @@
                                 echo "<td><img src='" . htmlspecialchars($row['image']) . "' alt='Product' width='50' /></td>";
                                 echo "<td>" . ($row['is_visible'] ? "Hiển thị" : "Ẩn") . "</td>";
                                 echo "<td>";
-                                echo "<button class='btn btn-warning btn-sm edit-product' data-id='" . $row['id'] . "'>Sửa</button> ";
-                                echo "<button class='btn btn-secondary btn-sm toggle-product-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
+                                // echo "<button class='btn btn-warning btn-sm edit-product' data-id='" . $row['id'] . "'>Sửa</button> ";
+                                echo "<button class='btn " . ($row['is_visible'] ? "btn-secondary" : "btn-primary") . " btn-sm toggle-product-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
@@ -115,8 +115,8 @@
             <!-- Articles Section -->
             <div class="mt-4">
                 <h4>Danh Sách Tin Tức</h4>
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addArticleModal">Thêm Tin
-                    Tức</button>
+                <!-- <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addArticleModal">Thêm Tin
+                    Tức</button> -->
                 <table class="table table-bordered" id="article-table">
                     <thead>
                         <tr>
@@ -157,8 +157,8 @@
                                 echo "<td>" . htmlspecialchars($row['slug']) . "</td>";
                                 echo "<td>" . ($row['is_visible'] ? "Hiển thị" : "Ẩn") . "</td>";
                                 echo "<td>";
-                                echo "<button class='btn btn-warning btn-sm edit-article' data-id='" . $row['id'] . "'>Sửa</button> ";
-                                echo "<button class='btn btn-secondary btn-sm toggle-article-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
+                                // echo "<button class='btn btn-warning btn-sm edit-article' data-id='" . $row['id'] . "'>Sửa</button> ";
+                                echo "<button class='btn " . ($row['is_visible'] ? "btn-secondary" : "btn-primary") . " btn-sm toggle-article-visibility' data-id='" . $row['id'] . "' data-visible='" . $row['is_visible'] . "'>" . ($row['is_visible'] ? "Ẩn" : "Hiển thị") . "</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
