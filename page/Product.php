@@ -63,7 +63,7 @@
           <p><strong><i class="bi bi-tag"></i> Giá:</strong> ${product.price}</p>
           <div class="d-flex">
             <button style="background-color:rgb(47, 125, 65); color: white; border-radius: 5px;border: none;padding: 10px 20px; margin-right: 10px;" onclick="addToCart('${product.name}', '${product.image}', '${product.price}')">Thêm vào giỏ hàng</button>
-            <button class="btn btn-primary">Mua ngay</button>
+            <button class="btn btn-primary" onclick="addToCart('${product.name}', '${product.image}', '${product.price}')">Mua ngay</button>
           </div>
         </div>
       </div>
