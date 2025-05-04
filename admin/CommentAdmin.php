@@ -43,18 +43,17 @@
                         <div class="sidebar">
                             <div class="sidebar-content email-app-sidebar d-flex" style="width: 260px;">
                                 <!-- sidebar close icon -->
-                                <span class="sidebar-close-icon">
+                                <span class="sidebar-close-icon me-3">
                                     <i class="bi bi-x"></i>
                                 </span>
                                 <!-- sidebar close icon -->
                                 <div class="email-app-menu ">
-                                    <div class="sidebar-menu-list ps">
+                                    <div class="sidebar-menu-list ps h-100 overflow-y-auto">
                                         <i class="bi bi-menu-button-wide-fill me-3"></i>
                                         <label class="sidebar-label">Menu</label>
                                         <!-- sidebar menu  -->
-                                        <div class="list-group list-group-messages py-3 overflow-auto"
-                                            id="list-article">
-                                            <a href="#" class="list-group-item pt-0 active" id="menu-all">
+                                        <div class="list-group list-group-messages py-3" id="list-article">
+                                            <a href="#" class="list-group-item pt-0 active selected" id="menu-all">
                                                 <i class="bi bi-archive me-3"></i>
                                                 Tất cả
                                             </a>
@@ -63,12 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps__rail-x" style="left: 0px; bottom: 0px">
-                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
-                        </div>
-                        <div class="ps__rail-y" style="top: 0px; right: 0px">
-                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div>
-                        </div>
+
                     </div>
                     <div class="content-right col-9">
                         <div class="content-wrapper">
@@ -98,6 +92,9 @@
                                                                     </svg>
                                                                 </span>
                                                             </button>
+                                                        </li>
+                                                        <li class="list-inline-item mail-unread my-auto">
+                                                            <span id="article-title-display"></span>
                                                         </li>
                                                     </ul>
                                                 </div>

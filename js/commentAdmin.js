@@ -15,6 +15,13 @@ const sidebarArticle = document.getElementById("list-article");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Lấy tiêu đề và những comment của bài viết đó
+  document.getElementById("menu-all").onmouseover = function () {
+    this.style.color = "#007bff";
+  };
+  document.getElementById("menu-all").onmouseout = function () {
+    const propertyName = this.style[0];
+    this.style.removeProperty(propertyName);
+  };
   fetch("/server/getCommentList.php")
     .then((response) => response.json())
     .then((data) => {
@@ -26,9 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
           const article = document.createElement("a");
           article.href = `#article-${articleId}`;
           article.classList.add("list-group-item");
+          article.onmouseover = function () {
+            this.style.color = "#007bff";
+          };
+          article.onmouseout = function () {
+            const propertyName = this.style[0];
+            this.style.removeProperty(propertyName);
+          };
           article.id = `article-${articleId}`;
           article.innerHTML = `
-            <span class="text-truncate"><i class="bi bi-arrow-return-right"></i> ${article_title}</span>
+            <span class="d-inline-block text-truncate" style="max-width: 200px;"><i class="bi bi-arrow-return-right"></i> ${article_title}</span>
           `;
           sidebarArticle.appendChild(article);
           // return comments
@@ -160,6 +174,8 @@ function displayComment(article_id) {
 function filterComments(article_id) {
   sidebarArticle.querySelector(".active").classList.remove("active");
   sidebarArticle.querySelector(`#article-${article_id}`).classList.add("active");
+  const articleTitle = document.getElementById("article-title-display");
+  articleTitle.innerHTML = articles[article_id].article_title;
   commentContainer.innerHTML = displayComment(article_id);
   addCheckBoxFunc();
 }
