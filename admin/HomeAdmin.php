@@ -57,12 +57,12 @@
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
-                        $count_sql = "SELECT COUNT(*) as total FROM products WHERE is_visible = 1";
+                        $count_sql = "SELECT COUNT(*) as total FROM products";
                         $count_result = $conn->query($count_sql);
                         $total_records = $count_result->fetch_assoc()['total'];
                         $total_pages = ceil($total_records / $records_per_page);
 
-                        $sql = "SELECT * FROM products WHERE is_visible = 1 ORDER BY id DESC LIMIT ? OFFSET ?";
+                        $sql = "SELECT * FROM products ORDER BY id DESC LIMIT ? OFFSET ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("ii", $records_per_page, $offset);
                         $stmt->execute();
@@ -140,7 +140,7 @@
                         $total_records = $count_result->fetch_assoc()['total'];
                         $total_pages = ceil($total_records / $records_per_page);
 
-                        $sql = "SELECT * FROM articles WHERE is_visible = 1 ORDER BY id DESC LIMIT ? OFFSET ?";
+                        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT ? OFFSET ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("ii", $records_per_page, $offset);
                         $stmt->execute();
