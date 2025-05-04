@@ -138,6 +138,36 @@ h2 {
   display: none !important;
 }
 
+.avatar-container img {
+  display: block;
+  width: 10rem; /* Điều chỉnh kích thước ảnh */
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.avatar-container:hover .avatar-overlay {
+  opacity: 1;
+}
+.avatar-overlay.drag-over {
+  opacity: 1;
+}
+
 /* User actions */
 .user-actions {
   width: 100%;
