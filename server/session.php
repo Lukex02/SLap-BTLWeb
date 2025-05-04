@@ -19,6 +19,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     $isLocked = boolval($row["isLock"]);
 
     if ($isLocked) {
+        session_unset();
+        session_destroy();
+
+        // Hủy cookie
+        setcookie(session_name(), '', time() - 86400, '/');
+
         echo json_encode(["success" => false, "message" => "Tài khoản bị khóa"]);
         exit;
     }
