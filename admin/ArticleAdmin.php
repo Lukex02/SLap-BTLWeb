@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
-    <script src="/js/adminCheck.js"></script>
 </head>
 
 
@@ -145,6 +143,7 @@
 
     <script src="assets/compiled/js/app.js"></script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/adminCheck.js"></script>
 
     <script src="assets/extensions/tinymce/tinymce.min.js"></script>
     <script src="assets/static/js/pages/tinymce.js"></script>

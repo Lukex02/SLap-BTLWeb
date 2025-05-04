@@ -16,9 +16,6 @@
   <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
   <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
   <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-  <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
-
-  <script src="/js/adminCheck.js"></script>
   <script src="/js/adminIndex.js"></script>
 </head>
 
@@ -213,7 +210,9 @@
   <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
   <script src="assets/compiled/js/app.js"></script>
+
   <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+  <script src="/js/adminCheck.js"></script>
 
 </body>
 

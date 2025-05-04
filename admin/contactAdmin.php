@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
     <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
-    <script src="/js/adminCheck.js"></script>
 </head>
 
 <body style="font-family: Arial, sans-serif;">
@@ -33,7 +31,7 @@
             <div class="page-heading">
                 <h3>Quản lý thông tin liên lạc</h3>
             </div>
-            <div class="container mt-4">
+            <div class="container-fluid mt-4">
                 <h1>Danh sách liên hệ</h1>
                 <table class="table table-bordered">
                     <thead>
@@ -168,6 +166,7 @@
         });
     </script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/adminCheck.js"></script>
 
 </body>
 </html>

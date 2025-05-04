@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
     <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
-    <script src="/js/adminCheck.js"></script>
 </head>
 
 
@@ -34,7 +32,7 @@
             <div class="page-heading">
                 <h3>Quản lý đơn hàng</h3>
             </div>
-            <div class="container mt-4">
+            <div class="container-fluid mt-4">
                 <h1 class="mt-5">Quản lý đơn hàng</h1>
                 <table class="table table-bordered">
                     <thead>
@@ -58,9 +56,9 @@
     </div>
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-    <script src="assets/compiled/js/app.js"></script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/adminCheck.js"></script>
+    <script src="assets/compiled/js/app.js"></script>
 
 </body>
 

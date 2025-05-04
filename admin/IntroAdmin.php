@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
   <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
   <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-  <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
-  <script src="/js/adminCheck.js"></script>
 </head>
 
 
@@ -39,14 +37,7 @@
       $result = $conn->query("SELECT * FROM intro_content WHERE id = 1");
       $data = $result->fetch_assoc();
       ?>
-
-      <!DOCTYPE html>
-      <html lang="vi">
-      <head>
-        <meta charset="UTF-8">
-        <title>Quản lý Giới Thiệu</title>
-      </head>
-      <body class="container mt-4">
+      <div class="container mt-4">
         <h1 class="mb-4">Chỉnh sửa Trang Giới Thiệu</h1>
 
         <form action="../server/gioithieuUpdate.php" method="POST" enctype="multipart/form-data">
@@ -70,8 +61,7 @@
 
           <button type="submit" class="btn btn-primary">Cập nhật</button>
         </form>
-      </body>
-      </html>
+      </div>
 
       <!-- Hết phần phần nội dung chính -->
     </div>
@@ -84,6 +74,7 @@
 
   <script src="assets/compiled/js/app.js"></script>
   <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+  <script src="/js/adminCheck.js"></script>
 
 </body>
 

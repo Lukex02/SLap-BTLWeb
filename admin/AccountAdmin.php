@@ -14,12 +14,10 @@
 
   <link rel="stylesheet" href="assets/compiled/css/table-datatable.css" />
   <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-  <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
 
   <link rel="stylesheet" href="./assets/compiled/css/app.css" />
   <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
   <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
-  <script src="/js/adminCheck.js"></script>
 </head>
 
 
@@ -77,6 +75,7 @@
 
   <script src="assets/compiled/js/app.js"></script>
   <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+  <script src="/js/adminCheck.js"></script>
 
   <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
   <script src="/js/adminAccount.js"></script>

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
     <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
 </head>
 
 <body style="font-family: Arial, sans-serif;">
@@ -355,6 +354,7 @@
         });
     </script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="/js/adminCheck.js"></script>
 
     <script src="../js/admin.js"></script>
 </body>
