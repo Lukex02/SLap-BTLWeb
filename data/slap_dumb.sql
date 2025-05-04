@@ -1,0 +1,280 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 03, 2025 at 05:13 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `slap`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` int(4) NOT NULL,
+  `title` varchar(35) DEFAULT NULL,
+  `slug` varchar(32) NOT NULL,
+  `author_name` varchar(12) DEFAULT NULL,
+  `author_avatar` varchar(23) DEFAULT NULL,
+  `category` varchar(6) DEFAULT NULL,
+  `tags` mediumtext DEFAULT NULL,
+  `published_at` varchar(20) DEFAULT NULL,
+  `updated_at` varchar(20) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `excerpt` varchar(47) DEFAULT NULL,
+  `thumbnail` varchar(60) DEFAULT NULL,
+  `likes` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `slug`, `author_name`, `author_avatar`, `category`, `tags`, `published_at`, `updated_at`, `content`, `excerpt`, `thumbnail`, `likes`) VALUES
+(2000, 'Hướng dẫn chọn Laptop', 'huong-dan-chon-laptop', 'Mã Thiên Lý', '/pic/def_author_ava.jpg', 'Laptop', 'laptop,giá rẻ,sinh viên', '2025-04-18 15:59:59', '2025-04-18 16:04:03', '<p>Đừng mua</p>', 'Chọn mua laptop cho sinh viên...', '/pic/prop_laptop.jpg', 0),
+(2001, 'abc', 'abc', 'Ẩn danh', '/pic/def_author_ava.jpg', '', '', '2025-04-24 04:16:47', '2025-04-24 04:16:47', '', '', '/pic/prop_laptop.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(4) NOT NULL,
+  `user_id` int(6) DEFAULT NULL,
+  `article_id` int(4) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `created_at` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `article_id`, `content`, `created_at`) VALUES
+(9876, 100001, 2000, 'Bài viết rất hay, cảm ơn tác giả!', '2025-03-17T13:00:00Z'),
+(9877, 100002, 2001, 'Thông tin hữu ích, mong nhận thêm nhiều bài viết khác.', '2025-03-17T13:01:00Z'),
+(9878, 100003, 2002, 'Rất bổ ích, mình đã học được nhiều điều.', '2025-03-17T13:02:00Z'),
+(9879, 100004, 2000, 'Bài viết chi tiết và dễ hiểu, cảm ơn nhiều!', '2025-03-17T13:03:00Z'),
+(9882, 100002, 2000, 'Tuyệt vời! Cảm ơn vì bài viết bổ ích.', '2025-03-17T13:06:00Z'),
+(9886, 100001, 2001, 'Mình đã áp dụng và thấy rất hiệu quả, cảm ơn!', '2025-03-17T13:10:00Z'),
+(9887, 100002, 2002, 'Chủ đề này rất quan trọng, cảm ơn đã chia sẻ.', '2025-03-17T13:11:00Z'),
+(9889, 100004, 2001, 'Bài viết giúp mình hiểu rõ hơn, tuyệt vời!', '2025-03-17T13:13:00Z'),
+(9890, 100005, 2002, 'Không thể bỏ qua bài viết này, quá hay!', '2025-03-17T13:14:00Z'),
+(9908, 100008, 2000, 'wow nice one', '2025-04-28 13:35:53'),
+(9909, 100008, 2000, 'thiệt luôn', '2025-04-29 04:31:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `intro_content`
+--
+
+CREATE TABLE `intro_content` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `intro_content`
+--
+
+INSERT INTO `intro_content` (`id`, `title`, `content`, `image`) VALUES
+(1, 'Chào mừng đến với Slap', 'hello yammy u are handsome', 'blockchain.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(2) NOT NULL,
+  `brand` varchar(6) DEFAULT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `price` int(8) DEFAULT NULL,
+  `cpu` varchar(21) DEFAULT NULL,
+  `ram` varchar(12) DEFAULT NULL,
+  `screen` varchar(5) DEFAULT NULL,
+  `gpu` varchar(23) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `brand`, `name`, `price`, `cpu`, `ram`, `screen`, `gpu`, `image`) VALUES
+(1, 'LENOVO', 'Laptop Lenovo Legion 5', 25990000, 'Intel Core i7-12700H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3060 6GB', 'https://www.czone.com.pk/images/products/2-czone.com.pk-1540-15972-130524091332.jpg'),
+(2, 'LENOVO', 'Laptop Lenovo IdeaPad Gaming 3', 19990000, 'AMD Ryzen 5 5600H', '8GB DDR4', '120Hz', 'NVIDIA GTX 1650 4GB', 'https://i5.walmartimages.com/asr/34d78811-9da7-40fe-bafb-0a7aa8b502b1.b3d84a8004ebf89d1e054d167e285e40.jpeg'),
+(3, 'LENOVO', 'Laptop Lenovo ThinkPad X1 Gen 10', 42990000, 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://www.notebookcheck.it/fileadmin/Notebooks/News/_nc3/Legion_Slim_5_Misty_Grey_RGB_03.jpg'),
+(4, 'MSI', 'Laptop MSI Katana GF66', 23490000, 'Intel Core i7-12650H', '16GB DDR4', '144Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://nguyencongpc.vn/media/lib/29-10-2022/laptopmsigamingkatanagf6612uck-804vn5.jpeg'),
+(5, 'MSI', 'Laptop MSI Stealth 15M', 37990000, 'Intel Core i7-12700H', '16GB DDR5', '240Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://www.tncstore.vn/media/product/4907-laptop-msi-gaming-stealth-a11sdk-061vn-1.jpg'),
+(6, 'MSI', 'Laptop MSI Modern 14', 14990000, 'Intel Core i5-1155G7', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/304539/msi-modern-14-c11m-i3-011vn-040523-124356-600x600.jpg'),
+(7, 'DELL', 'Laptop Dell XPS 15', 39990000, 'Intel Core i9-12900HK', '32GB DDR5', '120Hz', 'NVIDIA RTX 3050 Ti 4GB', 'https://tramanh.vn/wp-content/uploads/2023/09/dell-xps-15-9530-2023-2.jpg'),
+(8, 'DELL', 'Laptop Dell Inspiron 16', 17990000, 'Intel Core i5-1240P', '8GB DDR4', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/303834/dell-inspiron-16-5620-i5-p1wkn-thumb-600x600.jpg'),
+(9, 'DELL', 'Laptop Dell Alienware m15 R6', 45990000, 'Intel Core i9-12900H', '32GB DDR5', '240Hz', 'NVIDIA RTX 3080 Ti 12GB', 'https://ttcenter.com.vn/uploads/product/8zceq6pa-1277-dell-alienware-m15-r6-p109f001cbl-core-i7-11800h-rtx-3060-6gb-ram-32gb-ssd-1tb-15-6-240hz-qhd-new.jpeg'),
+(10, 'HP', 'Laptop HP Omen 16', 27490000, 'AMD Ryzen 7 6800H', '16GB DDR5', '165Hz', 'NVIDIA RTX 3070 Ti 8GB', 'https://ttcenter.com.vn/uploads/photos/1712223903_2760_576e5550635fd8081c3d041e2b977bb8.jpg'),
+(11, 'HP', 'Laptop HP Victus 15', 18990000, 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA GTX 1650 4GB', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtryeE9tb0O3BnyBxCC6kpnNkT8qQRqnje2g&s'),
+(12, 'HP', 'Laptop HP Envy 13', 21490000, 'Intel Core i7-1165G7', '16GB LPDDR4X', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn.tgdd.vn/Products/Images/44/232172/hp-envy-13-ba1028tu-i5-2k0b2pa-080921-085147-600x600.jpg'),
+(13, 'ASUS', 'Laptop ASUS ROG Strix G15', 29990000, 'AMD Ryzen 9 6900HX', '32GB DDR5', '300Hz', 'NVIDIA RTX 3080 10GB', 'https://gamalaptop.vn/wp-content/uploads/2021/10/ASUS-ROG-Strix-G15-G513QC-Ryzen-7-5800H-RTX-3050-01.jpg'),
+(14, 'ASUS', 'Laptop ASUS TUF Gaming F15', 19990000, 'Intel Core i5-12500H', '8GB DDR4', '144Hz', 'NVIDIA RTX 3050 4GB', 'https://cdn.tgdd.vn/Products/Images/44/304867/asus-tuf-gaming-f15-fx506hf-i5-hn014w-thumb-600x600.jpg'),
+(15, 'ASUS', 'Laptop ASUS ZenBook 14', 23490000, 'Intel Core i7-1260P', '16GB LPDDR5', '60Hz', 'Intel Iris Xe Graphics', 'https://cdn2.cellphones.com.vn/x/media/catalog/product/a/s/asus-zenbook-14-oled-ux3405ma-ultra-5-pp151w-3_1_2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_data`
+--
+
+CREATE TABLE `tb_data` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `comment` varchar(150) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `reply_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_data`
+--
+
+INSERT INTO `tb_data` (`id`, `name`, `comment`, `date`, `reply_id`) VALUES
+(99, 'long', 'CPU là trái tim của laptop, khả năng sẽ khác nhau tùy thuộc vào model. Ví dụ, một số laptop có thể quản lý các tài liệu Word và trình duyệt web đơn gi', '2025-05-02 19:19:41', 95),
+(100, 'tú', 'Chọn  phần cứng laptop phù hợp', '2025-05-02 19:19:57', 0),
+(101, 'admin', 'CPU là trái tim của laptop, khả năng sẽ khác nhau tùy thuộc vào model', '2025-05-02 19:20:31', 100),
+(102, 'blonk', 'hello', '2025-05-02 20:15:55', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `avatar` varchar(100) NOT NULL DEFAULT '/pic/def_author_avatar.png',
+  `isAdmin` tinyint(1) NOT NULL DEFAULT 0,
+  `isLock` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `isAdmin`, `isLock`) VALUES
+(100000, 'ABC', 'abc@gmail.com', '$2y$10$FHQ2QzDj9lA9Uqn9eo.yhuQl9gs27T85DSD.hfvJDqmWklgN.0roq', '/pic/def_author_avatar.png', 0, 0),
+(100001, 'NoobMaster96', 'noob.master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100002, 'Master96', 'master96@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100003, 'Pro100', 'proo100@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100004, 'MaxVer', 'max.ver@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100005, 'Jem Bon', 'jem.bon@jmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100006, 'Oscar', 'oscar@gmail.com', '$2y$10$/m4grDcPA1MWGwcLn.PGkOPzjz0mLqq/TpZb1Q3pM0X/YpLGnguFe', '/pic/def_author_avatar.png', 0, 0),
+(100007, 'Bond', 'bond@gmail.com', '$2y$10$IQyx6FwkAf5fEC6ynpsPvu67gaFUEJ6Ioj/qvuhr9gotYcpwdpIIy', '/pic/def_author_avatar.png', 0, 0),
+(100008, 'Admin', 'admin@admin.com', '$2y$10$L5513u1vcMHDFxAGrgMsh.aWy2ds2cb4zNVdqL8Mtd8fl5LHfDYoi', '/pic/def_author_avatar.png', 1, 0),
+(100009, 'blonk', 'thaibaolong2202@gmail.com', '$2y$10$teEuIF0QJWLeGwa6./n9IOLGa4ZToRQnmWL4d0ZDpQ1VlAOQ6ivSG', '/pic/def_author_avatar.png', 0, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `intro_content`
+--
+ALTER TABLE `intro_content`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `tb_data`
+--
+ALTER TABLE `tb_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2050;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9910;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `tb_data`
+--
+ALTER TABLE `tb_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100010;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
