@@ -15,18 +15,18 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     $username = $row["username"];
     $avatar = $row["avatar"];
     $email = $row["email"];
-    $isAdmin  = boolval($row["isAdmin"]);
+    $isAdmin = boolval($row["isAdmin"]);
     $isLocked = boolval($row["isLock"]);
 
     if ($isLocked) {
-        session_unset();
-        session_destroy();
+      session_unset();
+      session_destroy();
 
-        // Hủy cookie
-        setcookie(session_name(), '', time() - 86400, '/');
+      // Hủy cookie
+      setcookie(session_name(), '', time() - 86400, '/');
 
-        echo json_encode(["success" => false, "message" => "Tài khoản bị khóa"]);
-        exit;
+      echo json_encode(["success" => false, "message" => "Lock"]);
+      exit;
     }
 
     echo json_encode([

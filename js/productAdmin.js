@@ -64,16 +64,11 @@ function showProductModal(product = null) {
     document.getElementById("product-ram").value = product.ram;
     document.getElementById("product-screen").value = product.screen;
     document.getElementById("product-gpu").value = product.gpu;
-    document.getElementById("product-image").value = product.image;
-
-    // Show preview of current image
-    document.getElementById("image-preview").src = product.image;
-    document.getElementById("image-preview").style.display = "block";
+    document.getElementById("image-old").value = product.image;
   } else {
     modalTitle.textContent = "Thêm sản phẩm mới";
     submitBtn.textContent = "Thêm sản phẩm";
     document.getElementById("product-id").value = "";
-    document.getElementById("image-preview").style.display = "none";
   }
 
   // Show modal
@@ -115,7 +110,6 @@ function editProduct(id) {
     showAlert("Không tìm thấy sản phẩm!", "error");
     return;
   }
-
   showProductModal(product);
 }
 
@@ -128,7 +122,6 @@ document.getElementById("product-form").addEventListener("submit", function (e) 
 
   // API endpoint based on whether we're adding or updating
   const url = productId ? "/server/updateProduct.php" : "/server/addProduct.php";
-
   fetch(url, {
     method: "POST",
     body: formData,
@@ -206,16 +199,3 @@ function showAlert(message, type) {
     timer: 1500,
   });
 }
-
-// Preview image when URL is entered
-document.getElementById("product-image").addEventListener("input", function () {
-  const imageUrl = this.value;
-  const imagePreview = document.getElementById("image-preview");
-
-  if (imageUrl) {
-    imagePreview.src = imageUrl;
-    imagePreview.style.display = "block";
-  } else {
-    imagePreview.style.display = "none";
-  }
-});

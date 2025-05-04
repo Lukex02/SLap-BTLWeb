@@ -144,7 +144,6 @@ document.getElementById("edit-form").addEventListener("submit", function (event)
   this.appendChild(hiddenInput);
   this.appendChild(tagElement);
   const formData = new FormData(this);
-  formData.append("csrf_token", "<?php echo $_SESSION['csrf_token']; ?>");
 
   fetch("/server/setArticle.php", {
     method: this.method,

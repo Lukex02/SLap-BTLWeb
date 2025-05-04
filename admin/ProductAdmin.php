@@ -13,11 +13,9 @@
 
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
     <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css" />
-    <link rel="stylesheet" crossorigin="" href="./assets/compiled/css/extra-component-sweetalert.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
 
-    <script src="/js/adminCheck.js"></script>
     <style>
         .product-thumbnail {
             max-width: 60px;
@@ -48,7 +46,7 @@
             <div class="page-heading">
                 <h3>Quản lý sản phẩm</h3>
             </div>
-            <div class="container mt-4">
+            <div class="container-fluid mt-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -127,9 +125,10 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="product-image" class="form-label">Đường dẫn hình ảnh</label>
-                                    <input type="text" class="form-control" id="product-image" name="image">
-                                    <img src="" id="image-preview" class="img-fluid mt-2 d-none">
+                                    <label for="product-image" class="form-label">Hình ảnh</label>
+                                    <input id="image-old" name="image-old" type="hidden" />
+                                    <input type="file" class="form-control" id="product-image" name="image"
+                                        accept=".jpg,.jpeg,.png">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -184,7 +183,7 @@
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/compiled/js/app.js"></script>
     <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
-
+    <script src="/js/adminCheck.js"></script>
     <script src="/js/productAdmin.js"></script>
 </body>
 
