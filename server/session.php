@@ -15,7 +15,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     $username = $row["username"];
     $avatar = $row["avatar"];
     $email = $row["email"];
-    $isAdmin = boolval($row["isAdmin"]);
+    $isAdmin  = boolval($row["isAdmin"]);
+    $isLocked = boolval($row["isLock"]);
+
+    if ($isLocked) {
+        echo json_encode(["success" => false, "message" => "Tài khoản bị khóa"]);
+        exit;
+    }
 
     echo json_encode([
       "success" => true,
