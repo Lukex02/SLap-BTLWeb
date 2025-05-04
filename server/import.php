@@ -1,7 +1,10 @@
 <?php
 $servername = "localhost";  // Hoặc 127.0.0.1
 $username = "root";         // Tài khoản mặc định của XAMPP
-$password = "mizugakitsukasa1412";             // Mặc định không có mật khẩu
+$servername = "localhost";  // Hoặc 127.0.0.1
+$username = "root";         // Tài khoản mặc định của XAMPP
+$password = getenv('DB_PASSWORD') ?: '';  // Get from environment variable
+$dbname = "slap";     // Tên database đã tạo
 $dbname = "slap";     // Tên database đã tạo
 
 // Kết nối MySQL
