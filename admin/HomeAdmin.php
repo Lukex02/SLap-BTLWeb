@@ -34,7 +34,8 @@
             <!-- Products Section -->
             <div class="mt-4">
                 <h4>Danh Sách Sản Phẩm</h4>
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản Phẩm</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản
+                    Phẩm</button>
                 <table class="table table-bordered" id="product-table">
                     <thead>
                         <tr>
@@ -51,7 +52,7 @@
                         include '../server/import.php';
 
                         $records_per_page = 10;
-                        $page = isset($_GET['product_page']) ? (int)$_GET['product_page'] : 1;
+                        $page = isset($_GET['product_page']) ? (int) $_GET['product_page'] : 1;
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
@@ -92,16 +93,19 @@
 
                 <nav aria-label="Product page navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
-                            <a class="page-link" href="?product_page=<?php echo $page-1; ?>">Trước</a>
+                        <li class="page-item <?php if ($page <= 1)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?product_page=<?php echo $page - 1; ?>">Trước</a>
                         </li>
-                        <?php for($i = 1; $i <= $total_pages; $i++): ?>
-                            <li class="page-item <?php if($i == $page) echo 'active'; ?>">
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="page-item <?php if ($i == $page)
+                                echo 'active'; ?>">
                                 <a class="page-link" href="?product_page=<?php echo $i; ?>"><?php echo $i; ?></a>
                             </li>
                         <?php endfor; ?>
-                        <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
-                            <a class="page-link" href="?product_page=<?php echo $page+1; ?>">Sau</a>
+                        <li class="page-item <?php if ($page >= $total_pages)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?product_page=<?php echo $page + 1; ?>">Sau</a>
                         </li>
                     </ul>
                 </nav>
@@ -110,7 +114,8 @@
             <!-- Articles Section -->
             <div class="mt-4">
                 <h4>Danh Sách Tin Tức</h4>
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addArticleModal">Thêm Tin Tức</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addArticleModal">Thêm Tin
+                    Tức</button>
                 <table class="table table-bordered" id="article-table">
                     <thead>
                         <tr>
@@ -125,7 +130,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $page = isset($_GET['article_page']) ? (int)$_GET['article_page'] : 1;
+                        $page = isset($_GET['article_page']) ? (int) $_GET['article_page'] : 1;
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
@@ -168,23 +173,27 @@
 
                 <nav aria-label="Article page navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
-                            <a class="page-link" href="?article_page=<?php echo $page-1; ?>">Trước</a>
+                        <li class="page-item <?php if ($page <= 1)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?article_page=<?php echo $page - 1; ?>">Trước</a>
                         </li>
-                        <?php for($i = 1; $i <= $total_pages; $i++): ?>
-                            <li class="page-item <?php if($i == $page) echo 'active'; ?>">
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="page-item <?php if ($i == $page)
+                                echo 'active'; ?>">
                                 <a class="page-link" href="?article_page=<?php echo $i; ?>"><?php echo $i; ?></a>
                             </li>
                         <?php endfor; ?>
-                        <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
-                            <a class="page-link" href="?article_page=<?php echo $page+1; ?>">Sau</a>
+                        <li class="page-item <?php if ($page >= $total_pages)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?article_page=<?php echo $page + 1; ?>">Sau</a>
                         </li>
                     </ul>
                 </nav>
             </div>
 
             <!-- Add Product Modal -->
-            <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -213,7 +222,8 @@
             </div>
 
             <!-- Edit Product Modal -->
-            <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -243,7 +253,8 @@
             </div>
 
             <!-- Add Article Modal -->
-            <div class="modal fade" id="addArticleModal" tabindex="-1" aria-labelledby="addArticleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addArticleModal" tabindex="-1" aria-labelledby="addArticleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -276,7 +287,8 @@
             </div>
 
             <!-- Edit Article Modal -->
-            <div class="modal fade" id="editArticleModal" tabindex="-1" aria-labelledby="editArticleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editArticleModal" tabindex="-1" aria-labelledby="editArticleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -341,6 +353,8 @@
             });
         });
     </script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+
     <script src="../js/admin.js"></script>
 </body>
 </html>

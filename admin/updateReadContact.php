@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
-    
+
     // Kiểm tra ID hợp lệ
     if ($id <= 0) {
         echo json_encode(['success' => false, 'error' => 'ID không hợp lệ']);

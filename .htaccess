@@ -39,8 +39,8 @@ RewriteRule ^admin$ /admin/index.php [L]
 # Chuyển hướng /admin/home → /admin/HomeAdmin.php
 RewriteRule ^admin/home$ /admin/HomeAdmin.php [L]
 
-# Chuyển hướng /admin/customer → /admin/CustomerAdmin.php
-RewriteRule ^admin/customer$ /admin/CustomerAdmin.php [L]
+# Chuyển hướng /admin/contact → /admin/contactAdmin.php
+RewriteRule ^admin/contact$ /admin/contactAdmin.php [L]
 
 # Chuyển hướng /admin/intro → /admin/IntroAdmin.php
 RewriteRule ^admin/intro$ /admin/IntroAdmin.php [L]

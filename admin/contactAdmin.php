@@ -54,7 +54,7 @@
 
                         // Pagination settings
                         $records_per_page = 10;
-                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
                         $page = max(1, $page);
                         $offset = ($page - 1) * $records_per_page;
 
@@ -83,8 +83,8 @@
                                 echo "<td>" . htmlspecialchars($row['message']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
                                 echo "<td>";
-                                echo $row['is_read'] == 0 
-                                    ? "<span class='badge bg-warning'>Chưa đọc</span>" 
+                                echo $row['is_read'] == 0
+                                    ? "<span class='badge bg-warning'>Chưa đọc</span>"
                                     : "<span class='badge bg-success'>Đã đọc</span>";
                                 echo "</td>";
                                 echo "<td>";
@@ -107,16 +107,19 @@
                 <!-- Pagination controls -->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
-                            <a class="page-link" href="?page=<?php echo $page-1; ?>">Trước</a>
+                        <li class="page-item <?php if ($page <= 1)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?page=<?php echo $page - 1; ?>">Trước</a>
                         </li>
-                        <?php for($i = 1; $i <= $total_pages; $i++): ?>
-                            <li class="page-item <?php if($i == $page) echo 'active'; ?>">
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="page-item <?php if ($i == $page)
+                                echo 'active'; ?>">
                                 <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                             </li>
                         <?php endfor; ?>
-                        <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
-                            <a class="page-link" href="?page=<?php echo $page+1; ?>">Sau</a>
+                        <li class="page-item <?php if ($page >= $total_pages)
+                            echo 'disabled'; ?>">
+                            <a class="page-link" href="?page=<?php echo $page + 1; ?>">Sau</a>
                         </li>
                     </ul>
                 </nav>
@@ -139,29 +142,31 @@
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: `id=${id}`
                     })
-                    .then(response => {
-                        console.log('Phản hồi server (đánh dấu đã đọc):', response.status); // Debug
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok: ' + response.statusText);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Dữ liệu JSON (đánh dấu đã đọc):', data); // Debug
-                        if (data.success) {
-                            Swal.fire('Thành công!', 'Liên hệ đã được đánh dấu là đã đọc.', 'success');
-                            setTimeout(() => location.reload(), 1000);
-                        } else {
-                            Swal.fire('Lỗi!', 'Không thể đánh dấu là đã đọc: ' + (data.error || 'Unknown error'), 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        Swal.fire('Lỗi!', 'Đã xảy ra lỗi khi đánh dấu đã đọc: ' + error.message, 'error');
-                    });
+                        .then(response => {
+                            console.log('Phản hồi server (đánh dấu đã đọc):', response.status); // Debug
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Dữ liệu JSON (đánh dấu đã đọc):', data); // Debug
+                            if (data.success) {
+                                Swal.fire('Thành công!', 'Liên hệ đã được đánh dấu là đã đọc.', 'success');
+                                setTimeout(() => location.reload(), 1000);
+                            } else {
+                                Swal.fire('Lỗi!', 'Không thể đánh dấu là đã đọc: ' + (data.error || 'Unknown error'), 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                            Swal.fire('Lỗi!', 'Đã xảy ra lỗi khi đánh dấu đã đọc: ' + error.message, 'error');
+                        });
                 });
             });
         });
     </script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+
 </body>
 </html>

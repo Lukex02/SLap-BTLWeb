@@ -143,6 +143,7 @@
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
     <script src="assets/compiled/js/app.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 
     <script src="assets/extensions/tinymce/tinymce.min.js"></script>
     <script src="assets/static/js/pages/tinymce.js"></script>
