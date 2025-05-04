@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             const data = await response.json();
             if (data.success) {
-              Swal.fire("Thành công!", `Sản phẩm đã được ${actionText}.`, "success");
-              location.reload();
+              Swal.fire("Thành công!", `Sản phẩm đã được ${actionText}.`, "success").then(() => {
+                location.reload();
+              });
             } else {
               Swal.fire("Lỗi!", data.message || `Không thể ${actionText} sản phẩm.`, "error");
             }
@@ -63,8 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             const data = await response.json();
             if (data.success) {
-              Swal.fire("Thành công!", `Tin tức đã được ${actionText}.`, "success");
-              location.reload();
+              Swal.fire("Thành công!", `Tin tức đã được ${actionText}.`, "success").then(() => {
+                location.reload();
+              });
             } else {
               Swal.fire("Lỗi!", data.message || `Không thể ${actionText} tin tức.`, "error");
             }
@@ -94,10 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const data = await response.json();
         if (data.success) {
-          Swal.fire("Thành công!", "Sản phẩm đã được thêm.", "success");
-          document.getElementById("add-product-form").reset();
-          document.querySelector("#addProductModal .btn-close").click();
-          location.reload();
+          Swal.fire("Thành công!", "Sản phẩm đã được thêm.", "success").then(() => {
+            document.getElementById("add-product-form").reset();
+            document.querySelector("#addProductModal .btn-close").click();
+            location.reload();
+          });
         } else {
           Swal.fire("Lỗi!", data.message || "Không thể thêm sản phẩm.", "error");
         }
@@ -151,9 +154,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const data = await response.json();
         if (data.success) {
-          Swal.fire("Thành công!", "Sản phẩm đã được cập nhật.", "success");
-          document.querySelector("#editProductModal .btn-close").click();
-          location.reload();
+          Swal.fire("Thành công!", "Sản phẩm đã được cập nhật.", "success").then(() => {
+            document.querySelector("#editProductModal .btn-close").click();
+            location.reload();
+          });
         } else {
           Swal.fire("Lỗi!", data.message || "Không thể cập nhật sản phẩm.", "error");
         }
@@ -189,10 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const data = await response.json();
         if (data.success) {
-          Swal.fire("Thành công!", "Tin tức đã được thêm.", "success");
-          document.getElementById("add-article-form").reset();
-          document.querySelector("#addArticleModal .btn-close").click();
-          location.reload();
+          Swal.fire("Thành công!", "Tin tức đã được thêm.", "success").then(() => {
+            document.getElementById("add-article-form").reset();
+            document.querySelector("#addArticleModal .btn-close").click();
+            location.reload();
+          });
         } else {
           Swal.fire("Lỗi!", data.message || "Không thể thêm tin tức.", "error");
         }
@@ -255,9 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const data = await response.json();
         if (data.success) {
-          Swal.fire("Thành công!", "Tin tức đã được cập nhật.", "success");
-          document.querySelector("#editArticleModal .btn-close").click();
-          location.reload();
+          Swal.fire("Thành công!", "Tin tức đã được cập nhật.", "success").then(() => {
+            document.querySelector("#editArticleModal .btn-close").click();
+            location.reload();
+          });
         } else {
           Swal.fire("Lỗi!", data.message || "Không thể cập nhật tin tức.", "error");
         }
