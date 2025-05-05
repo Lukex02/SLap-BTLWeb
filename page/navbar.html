@@ -71,13 +71,14 @@
           // Đổi nút đăng nhập/đăng ký theo người dùng đã đăng nhập hay không sang đăng xuất
           const authBtn = document.getElementById("auth-btn");
           authBtn.innerHTML = "Đăng xuất";
-          authBtn.href = "/";
+          authBtn.href = "#";
           authBtn.addEventListener("click", () => {
             if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
               fetch("/server/logout.php")
                 .then((response) => response.json())
                 .then((data) => {
                   alert(data.message);
+                  window.location.href = "/";
                 })
                 .catch((error) => console.error("Lỗi đăng xuất:", error));
             }
