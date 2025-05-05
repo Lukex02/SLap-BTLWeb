@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kiểm tra dữ liệu bắt buộc
     if (empty($full_name) || empty($email) || empty($phone) || empty($address) || empty($message)) {
-        header("Location: tranglienhe.php?status=error&message=" . urlencode("Vui lòng điền đầy đủ tất cả các trường."));
+        header("Location: /contact?status=error&message=" . urlencode("Vui lòng điền đầy đủ tất cả các trường."));
         exit;
     }
 
@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Thực thi và kiểm tra
     if ($stmt->execute()) {
-        header("Location: tranglienhe.php?status=success");
+        header("Location: /contact?status=success");
     } else {
-        header("Location: tranglienhe.php?status=error&message=" . urlencode("Có lỗi xảy ra. Vui lòng thử lại."));
+        header("Location: /contact?status=error&message=" . urlencode("Có lỗi xảy ra. Vui lòng thử lại."));
     }
 
     // Đóng statement và kết nối
